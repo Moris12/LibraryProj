@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="OBL_main_window_id" prefHeight="464.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.prototypeController">
+  <children>
+    <TextArea id="Outpu_Area" fx:id="output_area_TXTAREA" layoutX="171.0" layoutY="247.0" prefHeight="133.0" prefWidth="452.0" />
+    <Label id="Fill_Student_ID" layoutX="24.0" layoutY="85.0" text="Fill Student Id:">
+      <font>
+        <Font name="System Bold Italic" size="14.0" fx:id="x2" />
+      </font>
+    </Label>
+    <Button id="Done_btn_status" fx:id="update_student_status_BTN" layoutX="420.0" layoutY="196.0" mnemonicParsing="false" onAction="#updateStudentStatus" prefHeight="25.0" prefWidth="126.0" text="Update Student Status">
+      <font>
+        <Font size="10.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button id="Student_tn_id" fx:id="view_student_details_BTN" font="$x1" layoutX="152.0" layoutY="196.0" mnemonicParsing="false" onAction="#setStudentDetailsHandler" prefHeight="25.0" prefWidth="139.0" text="View Student Details" />
+    <TextField id="Student_id" fx:id="fillStudent_ID_TXTFLD" layoutX="401.0" layoutY="82.0" />
+    <TextField id="Update_Status" fx:id="update_status_TXTFLD" layoutX="401.0" layoutY="141.0" />
+    <Label id="OBL_label" layoutX="221.0" layoutY="18.0" text="OBL System" textFill="#2e00faee" textOverrun="CLIP" underline="true">
+      <font>
+        <Font name="System Bold Italic" size="36.0" />
+      </font>
+    </Label>
+    <Label id="Fill_Status" font="$x2" layoutX="18.0" layoutY="144.0" text="Update Status (Locked \ Frozen \ Active \ NotRegistered) :" />
+    <Label font="$x2" layoutX="40.0" layoutY="247.0" text="Output Area:" />
+    <Label layoutX="82.0" layoutY="44.0" />
+      <Button fx:id="close_obl_system_window_btn" layoutX="546.0" layoutY="407.0" mnemonicParsing="false" onAction="#closeWin" onMouseClicked="#closeWin" text="close" />
+      <Button fx:id="Connect_btn" layoutX="46.0" layoutY="400.0" mnemonicParsing="false" onAction="#setConnection" text="Connect" />
+      <Button fx:id="ConnectionSettingsBTN" layoutX="146.0" layoutY="400.0" mnemonicParsing="false" onAction="#ConnectionSettingsHandler" text="Connection settings" />
+  </children>
+</AnchorPane>
