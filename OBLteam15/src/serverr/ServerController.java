@@ -29,10 +29,10 @@ package serverr;
 		private Connection conn; 
 		
 		/** The username.  */
-		private String username="root" ;
+		private String username="Mor" ;
 		
 		/** The password. */
-		private String password="Aa123456" ;
+		private String password="123456" ;
 		
 		/** The port. */
 		private int port = 5555;
@@ -44,7 +44,7 @@ package serverr;
 		private String dbname="DataBase";
 		
 		/** The host. */
-		private String host="127.0.0.1:3306/?user=root";
+		private String host="127.0.0.1:3307/?user=Mor";
 		
 		/** The echo server. */
 		private EchoServer echoServer;
@@ -91,14 +91,14 @@ package serverr;
 		        try 
 		        {
 		            conn = DriverManager.getConnection(database,username,password);
-		            stmt = conn.createStatement();
+		         /*   stmt = conn.createStatement();
 		            StmtQuery = "CREATE DATABASE assignment2";
 		            stmt.execute(StmtQuery);
 		            StmtQuery = "CREATE TABLE assignment2.student("
 		            		+ "StudentID  VARCHAR(40),"
 		            		+ "StudentNAme  VARCHAR(40),"
 		            		+ "StatusMembership ENUM('Locked', 'Active', 'Frozen', 'NotRegistered'))"; 
-		            stmt.execute(StmtQuery);
+		            stmt.execute(StmtQuery); */
 		          
 		            //Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.3.68/test","root","Root");
 		            System.out.println("SQL connection succeed");
@@ -114,9 +114,9 @@ package serverr;
 		            }
 		    	echoServer = new EchoServer(port);
 				echoServer.setConn(conn);
-				echoServer.saveUserToDB("123451", "Shifra", "Active");
-				echoServer.saveUserToDB("123452", "Naomi-onckolos", "Frozen");
-				echoServer.saveUserToDB("123453", "Bochris", "NotRegistered");
+				//echoServer.saveUserToDB("123451", "Shifra", "Active");
+				//echoServer.saveUserToDB("123452", "Naomi-onckolos", "Frozen");
+				//echoServer.saveUserToDB("123453", "Bochris", "NotRegistered");
 		        try 
 		        {
 		        	echoServer.listen(); //Start listening for connections

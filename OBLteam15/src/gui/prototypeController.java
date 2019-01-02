@@ -1,5 +1,6 @@
 package gui;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedHashMap;
@@ -16,7 +17,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Message;
-import ConsoleAndServer.*;
 import client.Client;
 import client.ClientConsole;
 public class prototypeController implements Initializable{
