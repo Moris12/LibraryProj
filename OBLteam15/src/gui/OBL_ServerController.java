@@ -19,7 +19,7 @@ import models.Message;
 import client.Client;
 import client.ClientConsole;
 
-public class OBL_ServerController extends Initializable
+public class OBL_ServerController implements Initializable
 {
 	Stage Stage;
 	FXMLLoader loader;
@@ -35,6 +35,12 @@ public class OBL_ServerController extends Initializable
 		this.scene.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
 		this.Stage.setScene(scene);
 		this.Stage.showAndWait();
+		
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
 		
 	}
 
