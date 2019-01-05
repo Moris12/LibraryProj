@@ -24,15 +24,15 @@
             <Font name="System Bold Italic" size="11.0" />
          </font>
       </Label>
-      <Label fx:id="StudentMainPage_StatusStudent_LB" layoutX="273.0" layoutY="24.0" text="Status : status">
+      <Label fx:id="StudentMainPage_Status_LB" layoutX="273.0" layoutY="24.0" text="Status : status">
          <font>
             <Font name="System Bold Italic" size="9.0" />
          </font>
       </Label>
-      <MenuButton fx:id="StudentMainPage_EditDetails_MNBTN" layoutX="29.0" layoutY="102.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="95.0" text="Edit details">
+      <MenuButton layoutX="29.0" layoutY="102.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="95.0" text="Edit details">
         <items>
-          <MenuItem fx:id="StudentMainPage_EditEmail_MNI" mnemonicParsing="false" text="Edit Email" />
-          <MenuItem fx:id="StudentMainPage_EditPhoneNumber_MNI" mnemonicParsing="false" text="Edit Phone Number" />
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
          <font>
             <Font name="System Italic" size="11.0" />
@@ -51,7 +51,7 @@
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Button fx:id="StudentMainPage_ViewMyBooks_BTN" layoutX="29.0" layoutY="126.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="View My Books">
+      <Button layoutX="29.0" layoutY="126.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="View My Books">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
@@ -59,7 +59,7 @@
             <InnerShadow height="13.09" radius="7.22" width="17.79" />
          </effect>
       </Button>
-      <Label layoutX="149.0" layoutY="82.0" text="Book search ( guest ) :">
+      <Label layoutX="149.0" layoutY="82.0" text="Book search :">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
@@ -125,12 +125,12 @@
             <Font name="System Bold Italic" size="11.0" />
          </font>
       </Label>
-      <Label fx:id="StudentMainPage_LogOut_LB" layoutX="27.0" layoutY="47.0" text="Log out" underline="true">
+      <Label layoutX="27.0" layoutY="47.0" text="Log out" underline="true">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Button fx:id="StudentMainPage_Messages_BTN" layoutX="29.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Messages">
+      <Button layoutX="29.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Messages">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
