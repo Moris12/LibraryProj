@@ -29,10 +29,10 @@
             <Font name="System Bold Italic" size="9.0" />
          </font>
       </Label>
-      <MenuButton layoutX="29.0" layoutY="102.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="95.0" text="Edit details">
+      <MenuButton fx:id="StudentMainPage_EditDetails_MNBTN" layoutX="29.0" layoutY="102.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="95.0" text="Edit details">
         <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
+          <MenuItem fx:id="StudentMainPage_EditEmail_MNI" mnemonicParsing="false" text="Edit Email" />
+          <MenuItem fx:id="StudentMainPage_EditPhoneNumber_MNI" mnemonicParsing="false" text="Edit Phone Number" />
         </items>
          <font>
             <Font name="System Italic" size="11.0" />
@@ -51,7 +51,7 @@
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Button layoutX="29.0" layoutY="126.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="View My Books">
+      <Button fx:id="StudentMainPage_ViewMyBooks_BTN" layoutX="29.0" layoutY="126.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="View My Books">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
@@ -59,7 +59,7 @@
             <InnerShadow height="13.09" radius="7.22" width="17.79" />
          </effect>
       </Button>
-      <Label layoutX="149.0" layoutY="82.0" text="Book search :">
+      <Label layoutX="149.0" layoutY="82.0" text="Book search ( guest ) :">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
@@ -130,7 +130,7 @@
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Button layoutX="29.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Messages">
+      <Button fx:id="StudentMainPage_Messages_BTN" layoutX="29.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Messages">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
