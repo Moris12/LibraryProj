@@ -85,12 +85,16 @@ public class EchoServer extends AbstractServer
    * @param msg The message received from the client.
    * @param client The connection from which the message originated.
    */
-  public void handleMessageFromClient
-    (Object msg, ConnectionToClient client)
+  public void handleMessageFromClient(Object msg, ConnectionToClient client)
   {
 	  String PstmtQuery;
 	  String str = new String();
 	  str = (String)msg;
+	  LinkedHashMap details = new LinkedHashMap();
+	  Message mesag;
+	  mesag = (Message)msg;
+	  details = (LinkedHashMap) mesag.getMap();
+	  System.out.println(details.get("hey"));
 	  String str2[] = str.split(" ");
 	  String type = str2[0];
 	  String ID = str2[1];

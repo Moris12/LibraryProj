@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
-
+import java.util.HashMap;
+import java.util.Map;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -28,6 +29,7 @@ public class prototypeController implements Initializable{
 	Client client;
 	static public String Hostt = "192.168.1.78";
 	static public int Portt = 5555;
+	
 	
 	@FXML
 	private Button ConnectionSettingsBTN;
@@ -61,14 +63,20 @@ public class prototypeController implements Initializable{
 	
 	public void setStudentDetailsHandler()
 	{
+		// LinkedHashMap<String, Object> map = new LinkedHashMap<>();
+
 		
+			
 		if(!(getIDFromTxtFld().isEmpty()))
 		{
 		//search DB func for member details
-			String ID = "Search ";
-		ID += getIDFromTxtFld();
+			//String ID = "Search ";
+		//ID += getIDFromTxtFld();
+		 Message map=new Message ("Action",(Object)"Search ");
+	  map.setMap("ID", (Object)getIDFromTxtFld());
 		try {
-			client.sendToServer(ID);
+			//client.sendToServer(ID);
+			client.sendToServer(map);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,14 +107,22 @@ public class prototypeController implements Initializable{
 				if(newStatus.equals("NotRegistered") || newStatus.equals("Locked") || newStatus.equals("Frozen") || newStatus.equals("Active"))
 				{
 			    //func to DB
-					String todo = new String("UpdateStatus ");
-					todo+=getIDFromTxtFld() + " ";
-					todo+=getNewStatusTxtFld();
-					System.out.println(todo);
-					
+					//String todo = new String("UpdateStatus ");
+					//todo+=getIDFromTxtFld() + " ";
+					//todo+=getNewStatusTxtFld();
+				//	System.out.println(todo);
+					LinkedHashMap details = new LinkedHashMap();
+					details.put("hey", "yo");
+					Message msg = new Message(details);
+					  //map.setMap("ID", (Object)getIDFromTxtFld());
+					  //map.setMap("Status", (Object)getNewStatusTxtFld());
+					  
+					  
+					  
+
 					try {
 						System.out.println("line before clinet.sendtoServer()");
-						client.sendToServer(todo);
+						client.sendToServer(msg);
 						System.out.println("line after clinet.sendtoServer()");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
