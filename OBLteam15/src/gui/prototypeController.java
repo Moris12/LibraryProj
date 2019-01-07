@@ -72,11 +72,13 @@ public class prototypeController implements Initializable{
 		//search DB func for member details
 			//String ID = "Search ";
 		//ID += getIDFromTxtFld();
-		 Message map=new Message ("Action",(Object)"Search ");
-	  map.setMap("ID", (Object)getIDFromTxtFld());
+			LinkedHashMap details = new LinkedHashMap();
+			details.put("Action", "Search");
+			details.put("ID",getIDFromTxtFld());
+			Message msg = new Message(details);
 		try {
 			//client.sendToServer(ID);
-			client.sendToServer(map);
+			client.sendToServer(msg);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -112,7 +114,9 @@ public class prototypeController implements Initializable{
 					//todo+=getNewStatusTxtFld();
 				//	System.out.println(todo);
 					LinkedHashMap details = new LinkedHashMap();
-					details.put("hey", "yo");
+					details.put("Action", "UpdateStatus");
+					details.put("ID",getIDFromTxtFld());
+					details.put("NEW_STATUS",getNewStatusTxtFld());
 					Message msg = new Message(details);
 					  //map.setMap("ID", (Object)getIDFromTxtFld());
 					  //map.setMap("Status", (Object)getNewStatusTxtFld());
