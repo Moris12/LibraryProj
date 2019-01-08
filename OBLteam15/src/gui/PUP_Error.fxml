@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="158.0" prefWidth="324.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="28.0" layoutY="21.0" text="Error !" underline="true">
@@ -14,17 +13,17 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="PUPError_ErrorReason_LB" layoutX="28.0" layoutY="62.0" text="For Example: this book not exist in DB" textFill="#f50505ba">
+      <Label fx:id="PUPError_ErrorReason_LB" layoutX="28.0" layoutY="62.0" onMouseEntered="#PUPError_ErrorReason" text="For Example: this book not exist in DB" textFill="#f50505ba">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="PUPError_ErrorActive_LB" layoutX="28.0" layoutY="102.0" text="Try again !" textFill="#f20707b8">
+      <Label fx:id="PUPError_ErrorActive_LB" layoutX="28.0" layoutY="102.0" onMouseEntered="#PUPError_ErrorAction" text="Try again !" textFill="#f20707b8">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="PUPError_Cancel_BTN" cancelButton="true" layoutX="239.0" layoutY="112.0" mnemonicParsing="false" text="Cancel">
+      <Button fx:id="PUPError_Cancel_BTN" cancelButton="true" layoutX="239.0" layoutY="112.0" mnemonicParsing="false" onAction="#PUPError_Cancel" text="Cancel">
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font>

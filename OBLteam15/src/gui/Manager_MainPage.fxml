@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -13,26 +14,26 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="StudentMainPage_OBL_LB" layoutX="17.0" layoutY="21.0" text="OBL ( Ort Braude Library )">
+      <Label layoutX="17.0" layoutY="21.0" text="OBL ( Ort Braude Library )">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMainPage_HelloManagerName_LB" layoutX="254.0" layoutY="9.0" text="Hello Manager Name">
+      <Label fx:id="ManagerMainPage_HelloManagerName_LB" layoutX="254.0" layoutY="9.0" onMouseEntered="#ManagerMainPage_HelloManagerName" text="Hello Manager Name">
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMainPage_StatusManager_LB" layoutX="268.0" layoutY="24.0" text="Status : managment">
+      <Label fx:id="ManagerMainPage_StatusManager_LB" layoutX="268.0" layoutY="24.0" onMouseEntered="#ManagerMainPage_Status" text="Status : managment">
          <font>
             <Font name="System Bold Italic" size="9.0" />
          </font>
       </Label>
-      <MenuButton fx:id="ManagerMainPage_InventoryManagment_MNBTN" layoutX="29.0" layoutY="131.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="141.0" text="Inventory managment">
+      <MenuButton fx:id="ManagerMainPage_InventoryManagment_MNBTN" layoutX="29.0" layoutY="131.0" mnemonicParsing="false" onAction="#ManagerMainPage_InventoryManagment" prefHeight="24.0" prefWidth="141.0" text="Inventory managment">
          <items>
-            <MenuItem fx:id="LibririanMainPage_AddNewBook_MNI" mnemonicParsing="false" text="Add new book" />
-            <MenuItem fx:id="LibririanMainPage_RemoveBook_MNI" mnemonicParsing="false" text="Remove book" />
-            <MenuItem fx:id="LibririanMainPage_ViewBookDetails_MNI" mnemonicParsing="false" text="View book details" />
+            <MenuItem fx:id="ManagerMainPage_AddNewBook_MNI" mnemonicParsing="false" text="Add new book" />
+            <MenuItem fx:id="ManagerMainPage_RemoveBook_MNI" mnemonicParsing="false" text="Remove book" />
+            <MenuItem fx:id="ManagerMainPage_ViewBookDetails_MNI" mnemonicParsing="false" text="View book details" />
          </items>
          <font>
             <Font name="System Italic" size="11.0" />
@@ -41,17 +42,17 @@
             <InnerShadow radius="6.54" width="7.16" />
          </effect>
       </MenuButton>
-      <Label fx:id="ManagerMainPage_Date_LB" layoutX="491.0" layoutY="13.0" text="Date: 00/00/00">
+      <Label fx:id="ManagerMainPage_Date_LB" layoutX="491.0" layoutY="13.0" onMouseEntered="#ManagerMainPage_Date" text="Date: 00/00/00">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMainPage_Hour_LB" layoutX="502.0" layoutY="29.0" text="11:11:11">
+      <Label fx:id="ManagerMainPage_Hour_LB" layoutX="502.0" layoutY="29.0" onMouseEntered="#ManagerMainPage_Hour" text="11:11:11">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Button fx:id="ManagerMainPage_CreatNewMember_BTN" layoutX="29.0" layoutY="105.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="141.0" text="Create new member card">
+      <Button fx:id="ManagerMainPage_CreatNewMember_BTN" layoutX="29.0" layoutY="105.0" mnemonicParsing="false" onAction="#ManagerMainPage_CreateNewMemberCard" prefHeight="25.0" prefWidth="141.0" text="Create new member card">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
@@ -65,26 +66,6 @@
          </font>
       </Label>
       <Rectangle fx:id="LibririanMainPage_SearchByCategory_TXF" arcHeight="8.0" arcWidth="8.0" fill="#f2f6fa00" height="267.0" layoutX="292.0" layoutY="104.0" stroke="BLACK" strokeType="INSIDE" width="265.0" />
-      <CheckBox fx:id="ManagerMainPage_SerarchByBookName_CBX" layoutX="309.0" layoutY="118.0" mnemonicParsing="false" stylesheets="@../../../../../../../photon/simplechat1/src/gui/prototypeFXML.css" text="By book name">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-      </CheckBox>
-      <CheckBox fx:id="ManagerMainPage_SerarchByAutorName_CBX" layoutX="308.0" layoutY="173.0" mnemonicParsing="false" text="By autor name">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-      </CheckBox>
-      <CheckBox fx:id="ManagerMainPage_SerarchByCategory_CBX" layoutX="310.0" layoutY="228.0" mnemonicParsing="false" text="By category">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-      </CheckBox>
-      <CheckBox fx:id="ManagerMainPage_SerarchByFreeText_CBX" layoutX="311.0" layoutY="284.0" mnemonicParsing="false" text="By free text">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-      </CheckBox>
       <TextField fx:id="ManagerMainPage_SerarchByBookName_TXF" layoutX="308.0" layoutY="144.0" prefHeight="17.0" prefWidth="149.0" promptText="Type abook name">
          <font>
             <Font size="9.0" />
@@ -100,7 +81,7 @@
             <Font size="9.0" />
          </font>
       </TextField>
-      <Button fx:id="ManagerMainPage_SerarchFinish_BTN" layoutX="307.0" layoutY="340.0" mnemonicParsing="false" text="Search" underline="true">
+      <Button fx:id="ManagerMainPage_SerarchFinish_BTN" layoutX="307.0" layoutY="340.0" mnemonicParsing="false" onAction="#ManagerMainPage_SearchByGroup" text="Search" underline="true">
          <font>
             <Font name="System Bold Italic" size="9.0" />
          </font>
@@ -113,12 +94,12 @@
             <Font size="9.0" />
          </font>
       </TextField>
-      <Label fx:id="ManagerMainPage_LogOut_LB" layoutX="27.0" layoutY="47.0" text="Log out" underline="true">
+      <Label fx:id="ManagerMainPage_LogOut_LB" layoutX="27.0" layoutY="47.0" onMouseClicked="#ManagerMainPage_LogOut" text="Log out" underline="true">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Button fx:id="ManagerMainPage_ReturnBook_BTN" layoutX="29.0" layoutY="156.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="141.0" text="Return a book">
+      <Button fx:id="ManagerMainPage_ReturnBook_BTN" layoutX="29.0" layoutY="156.0" mnemonicParsing="false" onAction="#ManagerMainPage_ReturnBook" prefHeight="25.0" prefWidth="141.0" text="Return a book">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
@@ -126,7 +107,7 @@
             <InnerShadow height="13.09" radius="7.22" width="17.79" />
          </effect>
       </Button>
-      <Button fx:id="ManagerMainPage_ViewMemberCard_BTN" layoutX="29.0" layoutY="182.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="141.0" text="View a membership card">
+      <Button fx:id="ManagerMainPage_ViewMemberCard_BTN" layoutX="29.0" layoutY="182.0" mnemonicParsing="false" onAction="#ManagerMainPage_ViewMemberShipCard" prefHeight="25.0" prefWidth="141.0" text="View a membership card">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
@@ -134,7 +115,7 @@
             <InnerShadow height="13.09" radius="7.22" width="17.79" />
          </effect>
       </Button>
-      <Button fx:id="ManagerMainPage_Messages_BTN" layoutX="29.0" layoutY="207.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="141.0" text="Messages">
+      <Button fx:id="ManagerMainPage_Messages_BTN" layoutX="29.0" layoutY="207.0" mnemonicParsing="false" onAction="#ManagerMainPage_Messages" prefHeight="25.0" prefWidth="141.0" text="Messages">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
@@ -142,7 +123,7 @@
             <InnerShadow height="13.09" radius="7.22" width="17.79" />
          </effect>
       </Button>
-      <MenuButton fx:id="ManagerMainPage_GetStatisticReprt_MNBTN" layoutX="29.0" layoutY="258.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="141.0" text="Get statistic report">
+      <MenuButton fx:id="ManagerMainPage_GetStatisticReprt_MNBTN" layoutX="29.0" layoutY="258.0" mnemonicParsing="false" onAction="#ManagerMainPage_GetStatisticRport" prefHeight="24.0" prefWidth="141.0" text="Get statistic report">
          <items>
             <MenuItem fx:id="ManagerMainPage_ActivityReport_MNI" mnemonicParsing="false" text="Activity report" />
             <MenuItem fx:id="ManagerMainPage_LendingReport_MNI" mnemonicParsing="false" text="Lending reports" />
@@ -156,7 +137,7 @@
             <InnerShadow radius="6.54" width="7.16" />
          </effect>
       </MenuButton>
-      <Button fx:id="ManagerMainPage_ViewInformation_BTN" layoutX="29.0" layoutY="232.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="141.0" text="Viewing information">
+      <Button fx:id="ManagerMainPage_ViewInformation_BTN" layoutX="29.0" layoutY="232.0" mnemonicParsing="false" onAction="#ManagerMainPage_ViewingInformation" prefHeight="25.0" prefWidth="141.0" text="Viewing information">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
@@ -164,5 +145,28 @@
             <InnerShadow height="13.09" radius="7.22" width="17.79" />
          </effect>
       </Button>
+      <RadioButton fx:id="ManagerMainPage_SearchByBookName_RDBTN" layoutX="308.0" layoutY="117.0" mnemonicParsing="false" text="By book name ">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="Search_group" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="ManagerMainPage_SearchByAutorName_RDBTN" layoutX="308.0" layoutY="172.0" mnemonicParsing="false" text="By autor name " toggleGroup="$Search_group">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="ManagerMainPage_SearchByCategory_RDBTN" layoutX="308.0" layoutY="229.0" mnemonicParsing="false" text="By category" toggleGroup="$Search_group">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="ManagerMainPage_SearchByFreeText_RDBTN" layoutX="308.0" layoutY="282.0" mnemonicParsing="false" text="By free text" toggleGroup="$Search_group">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+      </RadioButton>
    </children>
 </AnchorPane>

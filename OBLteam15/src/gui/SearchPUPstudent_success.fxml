@@ -13,7 +13,7 @@
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="SearchPUPstudent_BookLocation_LB" layoutX="25.0" layoutY="73.0" text="Location :   row-?   shelf-?  ">
+      <Label fx:id="SearchPUPstudent_BookLocation_LB" layoutX="25.0" layoutY="73.0" onMouseEntered="#SearchBookPUPStudentSucces_BookLocation" text="Location :   row-?   shelf-?  ">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
@@ -23,8 +23,8 @@
             <Font name="System Italic" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="SearchPUPstudent_ForViewTBC_LB" layoutX="177.0" layoutY="142.0" text="Click here" textFill="#1f02f5" underline="true" />
-      <Button fx:id="SearchPUPstudent_Cancel_BTN" cancelButton="true" layoutX="263.0" layoutY="140.0" mnemonicParsing="false" text="Cancel">
+      <Label fx:id="SearchPUPstudent_ForViewTBC_LB" layoutX="177.0" layoutY="142.0" onMouseClicked="#SearchBookPUPStudentSucces_ViewTBC" text="Click here" textFill="#1f02f5" underline="true" />
+      <Button fx:id="SearchPUPstudent_Cancel_BTN" cancelButton="true" layoutX="263.0" layoutY="140.0" mnemonicParsing="false" onAction="#SearchBookPUPStudentSucces_cancel" text="Cancel">
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font>

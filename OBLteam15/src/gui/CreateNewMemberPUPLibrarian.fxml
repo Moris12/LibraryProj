@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="294.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label ellipsisString="" layoutX="28.0" layoutY="11.0" opacity="0.64" text="Create a new membership: " textFill="#000000e7">
@@ -60,12 +59,12 @@
             <Font name="System Italic" size="10.0" />
          </font>
       </TextField>
-      <TextField fx:id="LendingBookPUPLibrarian_Email_TXF111" layoutX="159.0" layoutY="142.0" prefHeight="25.0" prefWidth="196.0" promptText="Type Email">
+      <TextField fx:id="CreateNewMemberPUPLibrarian_Email_TXF" layoutX="159.0" layoutY="142.0" prefHeight="25.0" prefWidth="196.0" promptText="Type Email">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </TextField>
-      <TextField fx:id="LendingBookPUPLibrarian_PhoneNumber_TXF1111" layoutX="159.0" layoutY="172.0" prefHeight="25.0" prefWidth="196.0" promptText="Type a phone number">
+      <TextField fx:id="CreateNewMemberPUPLibrarian_PhoneNumber_TXF" layoutX="159.0" layoutY="172.0" prefHeight="25.0" prefWidth="196.0" promptText="Type a phone number">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
@@ -75,7 +74,7 @@
             <Font name="System Italic" size="10.0" />
          </font>
       </TextField>
-      <Button fx:id="CreateNewMemberPUPLibrarian_Cancel_BTN" cancelButton="true" layoutX="325.0" layoutY="257.0" mnemonicParsing="false" text="Cancel">
+      <Button fx:id="CreateNewMemberPUPLibrarian_Cancel_BTN" cancelButton="true" layoutX="325.0" layoutY="257.0" mnemonicParsing="false" onAction="#CreateNewMemberPUP_Cancel" text="Cancel">
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font>
@@ -83,7 +82,7 @@
             <InnerShadow blurType="ONE_PASS_BOX" radius="7.035" width="9.14" />
          </effect>
       </Button>
-      <Label fx:id="CreateNewMemberPUPLibrarian_Done_LB" layoutX="184.0" layoutY="259.0" text="Done" textFill="#2408f7" underline="true">
+      <Label fx:id="CreateNewMemberPUPLibrarian_Done_LB" layoutX="184.0" layoutY="259.0" onMouseClicked="#CreateNewMemberPUP_DONE" text="Done" textFill="#2408f7" underline="true">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>

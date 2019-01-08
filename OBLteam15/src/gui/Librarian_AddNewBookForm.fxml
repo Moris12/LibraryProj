@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="26.0" layoutY="26.0" text="Add new book :" textFill="#000000e7" underline="true">
@@ -41,7 +40,7 @@
             <Font name="System Italic" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="33.0" layoutY="219.0" text="Catalog number : ">
+      <Label layoutX="32.0" layoutY="219.0" text="Catalog number : ">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
@@ -71,7 +70,7 @@
             <Font name="System Italic" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="Librarian_BrowsePDFfileNewBook_BTN" layoutX="536.0" layoutY="156.0" mnemonicParsing="false" text="Browse" underline="true">
+      <Button fx:id="Librarian_BrowsePDFfileNewBook_BTN" layoutX="536.0" layoutY="156.0" mnemonicParsing="false" onAction="#LibrarianAddNewBookForm_BrowsePDFFile" onMouseClicked="#LibrarianAddNewBookForm_BrowsePDFFile" text="Browse" underline="true">
          <font>
             <Font name="System Bold Italic" size="9.0" />
          </font>
@@ -139,7 +138,7 @@
             <Font size="10.0" />
          </font>
       </TextField>
-      <Button fx:id="StudentMainPage_Search_BTN1" layoutX="531.0" layoutY="367.0" mnemonicParsing="false" text="Cancel" underline="true">
+      <Button fx:id="StudentMainPage_Search_BTN1" layoutX="531.0" layoutY="367.0" mnemonicParsing="false" onAction="#LibrarianAddNewBookForm_cancel" onMouseClicked="#LibrarianAddNewBookForm_cancel" text="Cancel" underline="true">
          <font>
             <Font name="System Bold Italic" size="9.0" />
          </font>
@@ -147,7 +146,7 @@
             <InnerShadow blurType="ONE_PASS_BOX" radius="7.035" width="9.14" />
          </effect>
       </Button>
-      <Label layoutX="290.0" layoutY="358.0" text="Done" textFill="#2408f7" underline="true">
+      <Label layoutX="290.0" layoutY="358.0" onMouseClicked="#LibrarianAddNewBookForm_Done" text="Done" textFill="#2408f7" underline="true">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>

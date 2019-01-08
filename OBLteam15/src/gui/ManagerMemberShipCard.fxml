@@ -15,27 +15,27 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMemberShipCard_HelloLibririanName_LB" layoutX="264.0" layoutY="19.0" text="Hello Manager Name">
+      <Label fx:id="ManagerMemberShipCard_HelloLibririanName_LB" layoutX="264.0" layoutY="19.0" onMouseEntered="#ManagerMemberShipCard_ManagerName" text="Hello Manager Name">
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMemberShipCard_StatusLibririan_LB" layoutX="277.0" layoutY="34.0" text="Status : managment">
+      <Label fx:id="ManagerMemberShipCard_StatusLibririan_LB" layoutX="277.0" layoutY="34.0" onMouseEntered="#ManagerMemberShipCard_status" text="Status : managment">
          <font>
             <Font name="System Bold Italic" size="9.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMemberShipCard_Date_LB" layoutX="501.0" layoutY="23.0" text="Date: 00/00/00">
+      <Label fx:id="ManagerMemberShipCard_Date_LB" layoutX="501.0" layoutY="23.0" onMouseEntered="#ManagerMemberShipCard_Date" text="Date: 00/00/00">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMemberShipCard_Hour_LB" layoutX="512.0" layoutY="39.0" text="11:11:11">
+      <Label fx:id="ManagerMemberShipCard_Hour_LB" layoutX="512.0" layoutY="39.0" onMouseEntered="#ManagerMemberShipCard_Hour" text="11:11:11">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMemberShipCard_LogOut_LB" layoutX="37.0" layoutY="57.0" text="Log out" underline="true">
+      <Label fx:id="ManagerMemberShipCard_LogOut_LB" layoutX="37.0" layoutY="57.0" onMouseClicked="#ManagerMemberShipCard_LogOut" text="Log out" underline="true">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
@@ -45,7 +45,7 @@
             <Font name="System Bold Italic" size="11.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMemberShipCard_MemberStatus_LB" layoutX="132.0" layoutY="88.0" text="( status - Activity )">
+      <Label fx:id="ManagerMemberShipCard_MemberStatus_LB" layoutX="132.0" layoutY="88.0" onMouseEntered="#ManagerMemberShipCard_StatusActivity" text="( status - Activity )">
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font>
@@ -75,32 +75,32 @@
             <Font name="System Bold Italic" size="10.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMemberShipCard_StudentName_LB" layoutX="104.0" layoutY="111.0" text="Student Name ">
+      <Label fx:id="ManagerMemberShipCard_StudentName_LB" layoutX="104.0" layoutY="111.0" onMouseEntered="#ManagerMemberShipCard_StudentName" text="Student Name ">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMemberShipCard_ID_LB" layoutX="259.0" layoutY="111.0" text="111222333">
+      <Label fx:id="ManagerMemberShipCard_ID_LB" layoutX="259.0" layoutY="111.0" onMouseEntered="#ManagerMemberShipCard_StudentID" text="111222333">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMemberShipCard_Email_LB" layoutX="437.0" layoutY="111.0" text="StudentEmail@gmail.com">
+      <Label fx:id="ManagerMemberShipCard_Email_LB" layoutX="437.0" layoutY="111.0" onMouseEntered="#ManagerMemberShipCard_StudentEmail" text="StudentEmail@gmail.com">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMemberShipCard_PhoneNumber_LB" layoutX="463.0" layoutY="134.0" text="0522333444">
+      <Label fx:id="ManagerMemberShipCard_PhoneNumber_LB" layoutX="463.0" layoutY="134.0" onMouseEntered="#ManagerMemberShipCard_StudentPhoneNumber" text="0522333444">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Label fx:id="ManagerMemberShipCard_MemberNum_LB" layoutX="485.0" layoutY="157.0" text="123456">
+      <Label fx:id="ManagerMemberShipCard_MemberNum_LB" layoutX="485.0" layoutY="157.0" onMouseEntered="#ManagerMemberShipCard_StudentMemberNum" text="123456">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <TextArea fx:id="ManagerMemberShipCard_HistoryOfLending_TXA" layoutX="12.0" layoutY="138.0" prefHeight="118.0" prefWidth="230.0" text="&#10;&#10;חדווא 1 מ' -                                       12.10.18&#10;אלגברה 1 מ' -                                   07.07.18&#10;&#10;">
+      <TextArea fx:id="ManagerMemberShipCard_HistoryOfLending_TXA" layoutX="11.0" layoutY="138.0" onMouseEntered="#ManagerMemberShipCard_HistoryOfLending" prefHeight="118.0" prefWidth="230.0" text="&#10;&#10;חדווא 1 מ' -                                       12.10.18&#10;אלגברה 1 מ' -                                   07.07.18&#10;&#10;">
          <font>
             <Font size="11.0" />
          </font>
@@ -110,7 +110,7 @@
             <Font name="System Bold Italic" size="11.0" />
          </font>
       </Label>
-      <TextArea fx:id="ManagerMemberShipCard_StatusOfBorrowesBooks_TXA" layoutX="11.0" layoutY="259.0" prefHeight="126.0" prefWidth="578.0" text="&#10;&#10;&#10;1)  &quot;The Mathematical Experience&quot;        &quot;required&quot;                  02.12.18                       05.12.18                     ( Can not Extend)&#10;&#10;2) &quot;The Principles of Mathematics&quot;       &quot;Regular&quot;                    21.11.18                       05.12.18                      Extension option">
+      <TextArea fx:id="ManagerMemberShipCard_StatusOfBorrowesBooks_TXA" layoutX="11.0" layoutY="260.0" onMouseEntered="#ManagerMemberShipCard_StatusOfBorrowedBooks" prefHeight="126.0" prefWidth="578.0" text="&#10;&#10;&#10;1)  &quot;The Mathematical Experience&quot;        &quot;required&quot;                  02.12.18                       05.12.18                     ( Can not Extend)&#10;&#10;2) &quot;The Principles of Mathematics&quot;        &quot;Regular&quot;                   21.11.18                      05.12.18                     Extension option">
          <font>
             <Font size="10.0" />
          </font>
@@ -125,7 +125,7 @@
             <Font name="System Bold Italic" size="10.0" />
          </font>
       </Label>
-      <Label layoutX="180.0" layoutY="281.0" text="Label : " underline="true">
+      <Label layoutX="194.0" layoutY="281.0" text="Label : " underline="true">
          <font>
             <Font name="System Bold Italic" size="10.0" />
          </font>
@@ -135,7 +135,7 @@
             <Font name="System Bold Italic" size="10.0" />
          </font>
       </Label>
-      <Label layoutX="381.0" layoutY="280.0" text="Return date : " underline="true">
+      <Label layoutX="376.0" layoutY="280.0" text="Return date : " underline="true">
          <font>
             <Font name="System Bold Italic" size="10.0" />
          </font>
@@ -155,7 +155,7 @@
             <Font size="9.0" />
          </font>
       </TextField>
-      <Button fx:id="ManagerMemberShipCard_FinishExtension_BTN" layoutX="259.0" layoutY="234.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="37.0" text="Finish">
+      <Button fx:id="ManagerMemberShipCard_FinishExtension_BTN" layoutX="259.0" layoutY="234.0" mnemonicParsing="false" onAction="#ManagerMemberShipCard_FinishExtension" prefHeight="19.0" prefWidth="37.0" text="Finish">
          <font>
             <Font name="System Bold Italic" size="9.0" />
          </font>
@@ -163,7 +163,7 @@
             <InnerShadow blurType="ONE_PASS_BOX" radius="7.035" width="9.14" />
          </effect>
       </Button>
-      <Button fx:id="ManagerMemberShipCard_Back_BTN" layoutX="94.0" layoutY="55.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="37.0" text="Back">
+      <Button fx:id="ManagerMemberShipCard_Back_BTN" layoutX="94.0" layoutY="55.0" mnemonicParsing="false" onAction="#ManagerMemberShipCard_Back" prefHeight="19.0" prefWidth="37.0" text="Back">
          <font>
             <Font name="System Bold Italic" size="9.0" />
          </font>
@@ -171,7 +171,7 @@
             <InnerShadow blurType="ONE_PASS_BOX" radius="7.035" width="9.14" />
          </effect>
       </Button>
-      <Button fx:id="ManagerMemberShipCar_FreezeMember_BTN" layoutX="491.0" layoutY="205.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="85.0" text="Freeze member">
+      <Button fx:id="ManagerMemberShipCar_FreezeMember_BTN" layoutX="491.0" layoutY="205.0" mnemonicParsing="false" onAction="#ManagerMemberShipCard_FreezeMember" prefHeight="19.0" prefWidth="85.0" text="Freeze member">
          <font>
             <Font name="System Bold Italic" size="9.0" />
          </font>
@@ -179,7 +179,7 @@
             <InnerShadow blurType="ONE_PASS_BOX" radius="7.035" width="9.14" />
          </effect>
       </Button>
-      <Button fx:id="ManagerMemberShipCard_ReleaseMember_BTN" layoutX="491.0" layoutY="224.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="85.0" text="Release member">
+      <Button fx:id="ManagerMemberShipCard_ReleaseMember_BTN" layoutX="491.0" layoutY="224.0" mnemonicParsing="false" onAction="#ManagerMemberShipCard_ReleaseMember" prefHeight="19.0" prefWidth="85.0" text="Release member">
          <font>
             <Font name="System Bold Italic" size="9.0" />
          </font>

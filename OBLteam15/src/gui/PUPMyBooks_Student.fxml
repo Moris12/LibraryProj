@@ -23,7 +23,7 @@
             <Font name="System Bold Italic" size="11.0" />
          </font>
       </Label>
-      <TextArea fx:id="PUPstudentMyBook_ViewMyBooks_TXA" layoutX="5.0" layoutY="89.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="105.0" prefWidth="590.0" text="1)  &quot;The Mathematical Experience&quot;        &quot;required&quot;                       02.12.18                               05.12.18                     ( Can not Extend)&#10;&#10;2) &quot;The Principles of Mathematics&quot;       &quot;Regular&quot;                        21.11.18                               05.12.18                      Extension option">
+      <TextArea fx:id="PUPstudentMyBook_ViewMyBooks_TXA" layoutX="5.0" layoutY="89.0" nodeOrientation="LEFT_TO_RIGHT" onMouseDragged="#PUPMyBooks_ListOfMyBooks" prefHeight="105.0" prefWidth="590.0" text="1)  &quot;The Mathematical Experience&quot;        &quot;required&quot;                       02.12.18                               05.12.18                     ( Can not Extend)&#10;&#10;2) &quot;The Principles of Mathematics&quot;       &quot;Regular&quot;                        21.11.18                               05.12.18                      Extension option">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
@@ -68,7 +68,7 @@
          </font>
       </Label>
       <TextField fx:id="PUPstudentMyBook_NumBookExtension_TXF" layoutX="184.0" layoutY="238.0" prefHeight="25.0" prefWidth="49.0" />
-      <Button fx:id="PUPstudentMyBook_FinishExtension_BTN" layoutX="99.0" layoutY="273.0" mnemonicParsing="false" text="Finish">
+      <Button fx:id="PUPstudentMyBook_FinishExtension_BTN" layoutX="99.0" layoutY="273.0" mnemonicParsing="false" onAction="#PUPMyBooks_FinishExtensionRequest" onMouseClicked="#PUPMyBooks_FinishExtensionRequest" text="Finish">
          <font>
             <Font name="System Bold Italic" size="10.0" />
          </font>
@@ -76,7 +76,7 @@
             <InnerShadow blurType="ONE_PASS_BOX" radius="7.035" width="9.14" />
          </effect>
       </Button>
-      <Button fx:id="PUPstudentMyBook_Cancel_BTN" cancelButton="true" layoutX="509.0" layoutY="260.0" mnemonicParsing="false" text="Cancel">
+      <Button fx:id="PUPstudentMyBook_Cancel_BTN" cancelButton="true" layoutX="509.0" layoutY="260.0" mnemonicParsing="false" onAction="#PUPMyBooks_Cancel" onMouseClicked="#PUPMyBooks_Cancel" text="Cancel">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>

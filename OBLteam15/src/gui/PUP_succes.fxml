@@ -6,15 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="PUPSucces_ActionNameSucces_LB" layoutX="35.0" layoutY="34.0" text="The ActionName success !" textFill="#2bab51dc" underline="true">
+      <Label fx:id="PUPSucces_ActionNameSucces_LB" layoutX="35.0" layoutY="34.0" onMouseEntered="#PUPSucces_ActionNameSucces" text="The ActionName success !" textFill="#2bab51dc" underline="true">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Button fx:id="PUPSucces_Cancel_BTN" cancelButton="true" layoutX="105.0" layoutY="87.0" mnemonicParsing="false" text="Cancel">
+      <Button fx:id="PUPSucces_Cancel_BTN" cancelButton="true" layoutX="105.0" layoutY="87.0" mnemonicParsing="false" onAction="#PUPSucces_Cancel" text="Cancel">
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font>
