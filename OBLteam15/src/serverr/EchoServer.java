@@ -116,6 +116,15 @@ public class EchoServer extends AbstractServer
 			  +"`M_name` VARCHAR(45) NULL,"
 			  +"PRIMARY KEY (`M_id`))";  */
 	  
+	 /* String libra = "CREATE TABLE `assignment2`.`librarian` ("
+			 +" `Emp_num` VARCHAR(45) NOT NULL,"
+			  +"`Emp_Pname` VARCHAR(45) NULL,"
+			  +"`Emp_Lname` VARCHAR(45) NULL DEFAULT NULL,"
+			  +"`emp_email` VARCHAR(45) NULL DEFAULT NULL,"
+			  +"`Emp_organization` VARCHAR(45) NULL DEFAULT NULL,"
+			  +"PRIMARY KEY (`Emp_num`))"; */
+	  
+
 
 	  String PstmtQuery;
 	 // String str = new String();
