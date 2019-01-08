@@ -27,7 +27,7 @@ public class prototypeController implements Initializable{
 	Pane root;
 	Scene scene;
 	Client client;
-	static public String Hostt = "192.168.4.38";
+	static public String Hostt = "192.168.1.78";
 	static public int Portt = 5555;
 	
 	
@@ -69,6 +69,9 @@ public class prototypeController implements Initializable{
 			
 		if(!(getIDFromTxtFld().isEmpty()))
 		{
+		//search DB func for member details
+			//String ID = "Search ";
+		//ID += getIDFromTxtFld();
 			LinkedHashMap details = new LinkedHashMap();
 			details.put("Action", "Search");
 			details.put("ID",getIDFromTxtFld());
