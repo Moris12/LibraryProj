@@ -18,16 +18,12 @@ public class Message extends AbstractModel {
 		this.map = map;
 	}
 	
-	public Message() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public Object getMap(){
 		return this.map;
 	}
 
 	//public void setMap(LinkedHashMap<String,Object> map) {
-	public void setMap(String key, Object value) {
+	public void setToMap(String key, Object value) {
 		//this.map = map;
 		this.Key=key;
 		this.Value=value;

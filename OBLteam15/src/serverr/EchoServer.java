@@ -87,6 +87,36 @@ public class EchoServer extends AbstractServer
    */
   public void handleMessageFromClient(Object msg, ConnectionToClient client)
   {
+	  /*String str = "CREATE TABLE `assignment2`.`copy of a book` ("
+		 + " `C_id` INT NOT NULL,"
+		 +" `C_edition` VARCHAR(45) NULL,"
+		  +"`C_printDate` DATE NULL,"
+		  +"`C_purchaseDate` DATE NULL,"
+		  +"`C_shelf` VARCHAR(45) NULL,"
+		  +"PRIMARY KEY (`C_id`))"; */
+	  
+	  /*String str = "CREATE TABLE `assignment2`.`book` ("
+			 +" `B_name` VARCHAR(45) NOT NULL,"
+			  +"`B_author` VARCHAR(45) NOT NULL,"
+			  +"`B_themes` VARCHAR(45) NULL DEFAULT NULL,"
+			 + "`B_TcPath` VARCHAR(45) NULL DEFAULT NULL,"
+			 +" `B_type` ENUM('exclusive', 'normal') NULL DEFAULT NULL,"
+			 +" `'B_instancesAmount` INT(11) NULL DEFAULT NULL,"
+			 +" `B_isWaiting` TINYINT(4) NULL DEFAULT 0,"
+			+"PRIMARY KEY (`B_name`, `B_author`))"; */
+
+	  /* String member = "CREATE TABLE `assignment2`.`member` ("
+			  +"`M_id` VARCHAR(45) NOT NULL,"
+			  +"`M_email` VARCHAR(45) NULL,"
+			  +"`M_registerDate` VARCHAR(45) NULL DEFAULT NULL,"
+			  +"`M_phone` VARCHAR(45) NULL DEFAULT NULL,"
+			  +"`M_status` ENUM('exclusive', 'normal') NULL DEFAULT NULL,"
+			  +"`M_runLate` INT(11) NULL DEFAULT NULL,"
+			  +"`M_graduateDate` VARCHAR(45) NULL,"
+			  +"`M_name` VARCHAR(45) NULL,"
+			  +"PRIMARY KEY (`M_id`))";  */
+	  
+
 	  String PstmtQuery;
 	 // String str = new String();
 	//  str = (String)msg;
