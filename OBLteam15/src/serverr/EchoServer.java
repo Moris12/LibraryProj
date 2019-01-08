@@ -85,16 +85,22 @@ public class EchoServer extends AbstractServer
    * @param msg The message received from the client.
    * @param client The connection from which the message originated.
    */
-  public void handleMessageFromClient
-    (Object msg, ConnectionToClient client)
+  public void handleMessageFromClient(Object msg, ConnectionToClient client)
   {
 	  String PstmtQuery;
-	  String str = new String();
-	  str = (String)msg;
-	  String str2[] = str.split(" ");
-	  String type = str2[0];
-	  String ID = str2[1];
-	
+	 // String str = new String();
+	//  str = (String)msg;
+	  
+	  LinkedHashMap details = new LinkedHashMap();
+	  Message mesag;
+	  mesag = (Message)msg;
+	  details = (LinkedHashMap) mesag.getMap();
+	 // System.out.println(details.get("hey"));
+	//  String str2[] = str.split(" ");
+	  String type =(String) details.get("Action");
+	 // String ID = str2[1];
+	  String Id =(String) details.get("ID");
+
 	  
 	  try 
 		{
@@ -103,18 +109,18 @@ public class EchoServer extends AbstractServer
 			switch (type)
 			{
 			case "UpdateStatus":
-				String status = str2[2];
+				String status = (String) details.get("NEW_STATUS");
 				PstmtQuery="UPDATE assignment2.student SET StatusMembership=? WHERE StudentID=?";
 				pstmt = con.prepareStatement(PstmtQuery);
 				pstmt.setString(1,status);
-				pstmt.setString(2, ID);
+				pstmt.setString(2, Id);
 				pstmt.executeUpdate();
 				break;
 				
 			case "Search":
 				PstmtQuery="SELECT * FROM assignment2.student WHERE StudentID = ? LIMIT 1";
 				pstmt = con.prepareStatement(PstmtQuery);
-				pstmt.setString(1, ID);
+				pstmt.setString(1, Id);
 				ResultSet res =pstmt.executeQuery();
 				int rcount = getRowCount(res);
 				if (rcount == 0) {
