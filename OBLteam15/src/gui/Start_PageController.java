@@ -107,13 +107,13 @@ public class Start_PageController implements Initializable
 		
 	}
     @FXML
-    public void StartPage_ChangeConnection(ActionEvent event) throws Exception {
+    public void StartPage_ChangeConnection() throws Exception {
 		CSC = new ConnectionSettingsController();
 		CSC.start(null);
     }
 
     @FXML
-    public void StartPage_Login(ActionEvent event) throws IOException {
+    public void StartPage_Login() throws IOException {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
     	
     	if(this.StartPage_UserName_TXF.getText()!=null||this.StartPage_Password_PSF.getText()!=null)
@@ -139,7 +139,7 @@ public class Start_PageController implements Initializable
     }
 
     @FXML
-    public void StartPage_SearchByGroup(ActionEvent event) {
+    public void StartPage_SearchByGroup() {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
     	map.put("Action", "Search Book");
     	Message msg;
