@@ -1,11 +1,10 @@
 package gui;
 
-import java.awt.event.ActionEvent;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
-
 import client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -101,19 +100,26 @@ public class Start_PageController implements Initializable
 		
 	}
  
-	
+	//asaf add this, at saturday. 12\1\19.
+	//the client was not initializied
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+		try {
+			client = new Client(Hostt, Portt);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-    @FXML
+    
+	@FXML
     public void StartPage_ChangeConnection() throws Exception {
 		CSC = new ConnectionSettingsController();
 		CSC.start(null);
     }
 
     @FXML
-    public void StartPage_Login() throws IOException {
+    public void StartPage_Login() throws Exception {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
     	
     	if(this.StartPage_UserName_TXF.getText()!=null||this.StartPage_Password_PSF.getText()!=null)
@@ -124,19 +130,41 @@ public class Start_PageController implements Initializable
     	map.put("User name", this.StartPage_UserName_TXF.getText());
     	map.put("Password", this.StartPage_Password_PSF.getText());
     	this.msg= new Message(map);
-    	this.client.sendToServer(map);
-    	if(this.client.getToDisplay().equals("Librarian")) {
+    	this.client.sendToServer(map); 
+    	// send the information to server for approval of existance.
+    	
+    	//HOW CAN WE MAKE SURE THAT THE CLIENT COMPUTER WILL NOT CONTINUE THE CODE WHILE 
+    	//THE SERVER COMPUTER IS STILL PROCESSING THE CLIENT'S REQUEST?
+    	//after the server gets the message this client-PC should wait for response. 
+    	//if the client PC gets to line 141 before the server replied than he will get null.
+    	
+    	
+    		if(this.client.getToDisplay().equals("Librarian")) { 
+    		//if the login matches Librarian account
     		this.TEXTAREA.setText("Librarian User");
+    		//create such screen.
+    		Librarian_MainPageController LMP = new Librarian_MainPageController(); 
+    		//set the connection to the server. in order to give him access too.
+    		LMP.setClient(this.client);
+    		//start the GUI.
+    		LMP.start(null);
+    		
     	}
     	if(this.client.getToDisplay().equals("Manager")) {
     		this.TEXTAREA.setText("Manager User");
     		
     	}
     	if(this.client.getToDisplay().equals("Member")) {
+    		StudentMainPage1Controller SMP = new StudentMainPage1Controller();
     		this.TEXTAREA.setText("Member User");
-    		
+    		SMP.setClient(this.client);
+    		//SMP.me(map);  //	FIX THE SERVER ACCORDINGLY.
+    		SMP.start(null);
     	}
-    }
+    	if(this.client.getToDisplay().equals("NE")) { //NE == not exist.
+    		this.TEXTAREA.setText("user does not exist");
+    	}
+   }
 
     @FXML
     public void StartPage_SearchByGroup() {

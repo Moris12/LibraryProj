@@ -1,7 +1,6 @@
 package gui;
 
 import java.util.LinkedHashMap;
-
 import client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -101,7 +100,7 @@ public class Librarian_MainPageController {
     private RadioButton LibririanMainPage_SearchByFreeText_RDBTN;
 
     @FXML
-    void LaibrarianMainPage_SearchByGroup(ActionEvent event) //search button click function. 
+    void LaibrarianMainPage_SearchByGroup() //search button click function. 
     //take information from txtfld, and search by the argument given.
     {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
@@ -152,52 +151,54 @@ public class Librarian_MainPageController {
     }
 
     @FXML
-    void LibrarianMainPage_Date(MouseEvent event) {
+    void LibrarianMainPage_Date() {
 
     }
 
     @FXML
-    void LibrarianMainPage_HelloLibrarianName(MouseEvent event) {
+    void LibrarianMainPage_HelloLibrarianName() {
 
     }
 
     @FXML
-    void LibrarianMainPage_Hour(MouseEvent event) {
+    void LibrarianMainPage_Hour() {
 
     }
 
     @FXML
-    void LibrarianMainPage_InventoryManagment(ActionEvent event) {
+    void LibrarianMainPage_InventoryManagment() {
 
     }
 
     @FXML
-    void LibrarianMainPage_LogOut(MouseEvent event) {
+    void LibrarianMainPage_LogOut() {
 
     }
 
     @FXML
-    void LibrarianMainPage_Messages(ActionEvent event) {
+    void LibrarianMainPage_Messages() {
 
     }
 
     @FXML
-    void LibrarianMainPage_ReturnBook(ActionEvent event) {
+    void LibrarianMainPage_ReturnBook() throws Exception //return book method 
+    {
+    	ReturnBookPUPController RetBookCntrlr = new ReturnBookPUPController();
+    	RetBookCntrlr.start(null);
+    }
+
+    @FXML
+    void LibrarianMainPage_Status() {
 
     }
 
     @FXML
-    void LibrarianMainPage_Status(MouseEvent event) {
-
-    }
-
-    @FXML
-    void LibrarianMainPage_ViewMemberShipCard(ActionEvent event) {
+    void LibrarianMainPage_ViewMemberShipCard() {
 
     }
     
-	public void start(Stage arg0) throws Exception {
-		
+	public void start(Stage arg0) throws Exception 
+	{	
 		this.Stage = new Stage();
 		this.loader = new FXMLLoader();
 		this.root = loader.load(getClass().getResource("/gui/Librarian_MainPage.fxml").openStream());
@@ -207,4 +208,11 @@ public class Librarian_MainPageController {
 		
 	}
 
+	void setClient(Client clnt) {
+		this.client = clnt;
+	}
+	Client getClient()
+	{
+		return this.client;
+	}
 }

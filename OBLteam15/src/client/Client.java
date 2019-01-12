@@ -35,7 +35,8 @@ public class Client extends AbstractClient {
 	
 	@Override
 	protected void handleMessageFromServer(Object msg) {
-		// TODO Auto-generated method stub
+		//this method actually gets the info from the server. we can do 
+		//casting to whatever data type we want. as long as it matches what the server sent
 		this.ToDisplay = (String)msg;
 	}
 	

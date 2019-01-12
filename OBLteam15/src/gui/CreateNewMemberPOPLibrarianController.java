@@ -47,13 +47,13 @@ public class CreateNewMemberPOPLibrarianController {
     private Label CreateNewMemberPUPLibrarian_Done_LB;
 
     @FXML
-    void CreateNewMemberPUP_Cancel(ActionEvent event) {//CANCEL button handler
+    void CreateNewMemberPUP_Cancel() {//CANCEL button handler
     	Stage stage = (Stage) CreateNewMemberPUPLibrarian_Cancel_BTN.getScene().getWindow();
 	    stage.close();
     }
 
     @FXML
-    void CreateNewMemberPUP_DONE(MouseEvent event) { //DONE clicked.
+    void CreateNewMemberPUP_DONE() { //DONE clicked.
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
     	Message msg;
     	String FirstName, LastName, ID, GraduateDate, Email, PhoneNumber;
