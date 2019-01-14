@@ -18,7 +18,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Message;
-
+/**	Description of Librarian_MainPageController class
+ * @author asaf bens habat
+ * @author adi gamliel
+ * @author yana mamedov
+ */
 public class Librarian_MainPageController {
 
 	Stage Stage;
@@ -26,7 +30,7 @@ public class Librarian_MainPageController {
 	Pane root;
 	Scene scene;
 	Client client;
-	
+
     @FXML
     private Label LibririanMainPage_LibrarianName_LB;
 

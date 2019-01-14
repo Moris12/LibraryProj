@@ -21,7 +21,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Message;
 import javafx.scene.control.TextArea;
-
+/** 
+ * 
+ * @author shahar shani
+ * @author Asaf ben shabat
+ *@author adi gamliel
+ */
 
 public class Start_PageController implements Initializable 
 {
