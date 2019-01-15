@@ -171,7 +171,7 @@ public class Start_PageController implements Initializable
     }
 
     @FXML
-    public void StartPage_SearchByGroup(ActionEvent event) {
+    public void StartPage_SearchByGroup() {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
     	map.put("Action", "Search Book");
     	Message msg;
