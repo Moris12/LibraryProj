@@ -123,8 +123,45 @@ public class EchoServer extends AbstractServer
 			  +"`emp_email` VARCHAR(45) NULL DEFAULT NULL,"
 			  +"`Emp_organization` VARCHAR(45) NULL DEFAULT NULL,"
 			  +"PRIMARY KEY (`Emp_num`))"; */
-	  
+	/* String lend =  "CREATE TABLE `assignment2`.`lend` ("
+			  +"`L_M_id` VARCHAR(45) NOT NULL,"
+			  +"`L_C_id` INT NOT NULL,"
+			  +"`L_B_author` VARCHAR(45) NULL,"
+			  +"`L_B_name` VARCHAR(45) NULL,"
+			  +"`L_lendDate` DATE NULL,"
+			  +"`L_initReturnDate` DATE NULL,"
+			  +"`L_newReturnDate` DATE NULL,"
+			  +"`L_Emp_num_initReturnDate` VARCHAR(45) NULL,"
+			  +"`L_emp_num_extReturnDate` VARCHAR(45) NULL,"
+			  +"`L_extMakeDate` VARCHAR(45) NULL,"
+			  +"PRIMARY KEY (`L_M_id`, `L_C_id`))+";  */
 
+	/* String orderbook = "CREATE TABLE `assignment2`.`orderbook` ("
+			  +"`O_supply` TINYINT NULL DEFAULT 0,"
+			  +"`B_name` VARCHAR(45) NOT NULL,"
+			  +"`B_author` VARCHAR(45) NOT NULL,"
+			  +"`M_id` VARCHAR(45) NOT NULL,"
+			  +"`O_date` DATE NULL,"
+			  +"`O_arriveDate` DATE NULL DEFAULT NULL,"
+			  +"PRIMARY KEY (`B_name`, `B_author`, `M_id`))";  */
+	  
+	/* String orderhistort = "CREATE TABLE `assignment2`.`orderhistory` ("
+			  +"`OH_B_name` VARCHAR(45) NOT NULL,"
+			  +"`OH_B_author` VARCHAR(45) NOT NULL,"
+			  +"`OH_M_id` VARCHAR(45) NULL,"
+			  +"`OH_O_date` DATE NULL,"
+			  +"`OH_O_supply` TINYINT NULL,"
+			  +"PRIMARY KEY (`OH_B_name`, `OH_B_author`))"; */
+	  
+	 /* String lendhistory = "CREATE TABLE `assignment2`.`lendrethistory` ("
+			  +"`LRH_M_id` VARCHAR(45) NOT NULL,"
+			  +"`LRH_B_name` VARCHAR(45) NULL,"
+			  +"`LRH_B_author` VARCHAR(45) NULL,"
+			  +"`LRH_C_id` VARCHAR(45) NULL,"
+			  +"`LRH_L_date` DATE NULL,"
+			  +"`LRH_actualReturnDate` DATE NULL,"
+			  +"`LRH_L_newReturnDate` DATE NULL,"
+			  +"PRIMARY KEY (`LRH_M_id`))";  */
 
 	  String PstmtQuery;
 	 // String str = new String();

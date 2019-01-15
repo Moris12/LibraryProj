@@ -1,6 +1,7 @@
 package gui;
 
 import java.util.LinkedHashMap;
+
 import client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,11 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Message;
-/**	Description of Librarian_MainPageController class
- * @author asaf bens habat
- * @author adi gamliel
- * @author yana mamedov
- */
+
 public class Librarian_MainPageController {
 
 	Stage Stage;
@@ -30,7 +27,7 @@ public class Librarian_MainPageController {
 	Pane root;
 	Scene scene;
 	Client client;
-
+	
     @FXML
     private Label LibririanMainPage_LibrarianName_LB;
 
@@ -104,7 +101,7 @@ public class Librarian_MainPageController {
     private RadioButton LibririanMainPage_SearchByFreeText_RDBTN;
 
     @FXML
-    void LaibrarianMainPage_SearchByGroup() //search button click function. 
+    void LaibrarianMainPage_SearchByGroup(ActionEvent event) //search button click function. 
     //take information from txtfld, and search by the argument given.
     {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
@@ -155,54 +152,52 @@ public class Librarian_MainPageController {
     }
 
     @FXML
-    void LibrarianMainPage_Date() {
+    void LibrarianMainPage_Date(MouseEvent event) {
 
     }
 
     @FXML
-    void LibrarianMainPage_HelloLibrarianName() {
+    void LibrarianMainPage_HelloLibrarianName(MouseEvent event) {
 
     }
 
     @FXML
-    void LibrarianMainPage_Hour() {
+    void LibrarianMainPage_Hour(MouseEvent event) {
 
     }
 
     @FXML
-    void LibrarianMainPage_InventoryManagment() {
+    void LibrarianMainPage_InventoryManagment(ActionEvent event) {
 
     }
 
     @FXML
-    void LibrarianMainPage_LogOut() {
+    void LibrarianMainPage_LogOut(MouseEvent event) {
 
     }
 
     @FXML
-    void LibrarianMainPage_Messages() {
+    void LibrarianMainPage_Messages(ActionEvent event) {
 
     }
 
     @FXML
-    void LibrarianMainPage_ReturnBook() throws Exception //return book method 
-    {
-    	ReturnBookPUPController RetBookCntrlr = new ReturnBookPUPController();
-    	RetBookCntrlr.start(null);
-    }
-
-    @FXML
-    void LibrarianMainPage_Status() {
+    void LibrarianMainPage_ReturnBook(ActionEvent event) {
 
     }
 
     @FXML
-    void LibrarianMainPage_ViewMemberShipCard() {
+    void LibrarianMainPage_Status(MouseEvent event) {
+
+    }
+
+    @FXML
+    void LibrarianMainPage_ViewMemberShipCard(ActionEvent event) {
 
     }
     
-	public void start(Stage arg0) throws Exception 
-	{	
+	public void start(Stage arg0) throws Exception {
+		
 		this.Stage = new Stage();
 		this.loader = new FXMLLoader();
 		this.root = loader.load(getClass().getResource("/gui/Librarian_MainPage.fxml").openStream());
@@ -212,11 +207,4 @@ public class Librarian_MainPageController {
 		
 	}
 
-	void setClient(Client clnt) {
-		this.client = clnt;
-	}
-	Client getClient()
-	{
-		return this.client;
-	}
 }

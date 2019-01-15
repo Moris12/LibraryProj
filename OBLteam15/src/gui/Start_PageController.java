@@ -21,12 +21,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Message;
 import javafx.scene.control.TextArea;
+import actors.Member;
 /** 
  * 
  * @author shahar shani
  * @author Asaf ben shabat
  *@author adi gamliel
  */
+
 
 public class Start_PageController implements Initializable 
 {
@@ -105,8 +107,7 @@ public class Start_PageController implements Initializable
 		
 	}
  
-	//asaf add this, at saturday. 12\1\19.
-	//the client was not initializied
+	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		try {
@@ -163,16 +164,14 @@ public class Start_PageController implements Initializable
     		StudentMainPage1Controller SMP = new StudentMainPage1Controller();
     		this.TEXTAREA.setText("Member User");
     		SMP.setClient(this.client);
+    		//SMP.me.setDetailsByHashMap(m);
     		//SMP.me(map);  //	FIX THE SERVER ACCORDINGLY.
     		SMP.start(null);
     	}
-    	if(this.client.getToDisplay().equals("NE")) { //NE == not exist.
-    		this.TEXTAREA.setText("user does not exist");
-    	}
-   }
+    }
 
     @FXML
-    public void StartPage_SearchByGroup() {
+    public void StartPage_SearchByGroup(ActionEvent event) {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
     	map.put("Action", "Search Book");
     	Message msg;

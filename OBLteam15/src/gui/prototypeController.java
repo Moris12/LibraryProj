@@ -63,15 +63,21 @@ public class prototypeController implements Initializable{
 	
 	public void setStudentDetailsHandler()
 	{
+		// LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 
+		
+			
 		if(!(getIDFromTxtFld().isEmpty()))
 		{
 		//search DB func for member details
+			//String ID = "Search ";
+		//ID += getIDFromTxtFld();
 			LinkedHashMap details = new LinkedHashMap();
 			details.put("Action", "Search");
 			details.put("ID",getIDFromTxtFld());
 			Message msg = new Message(details);
 		try {
+			//client.sendToServer(ID);
 			client.sendToServer(msg);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -102,11 +108,21 @@ public class prototypeController implements Initializable{
 				String newStatus = update_status_TXTFLD.getText();
 				if(newStatus.equals("NotRegistered") || newStatus.equals("Locked") || newStatus.equals("Frozen") || newStatus.equals("Active"))
 				{
+			    //func to DB
+					//String todo = new String("UpdateStatus ");
+					//todo+=getIDFromTxtFld() + " ";
+					//todo+=getNewStatusTxtFld();
+				//	System.out.println(todo);
 					LinkedHashMap details = new LinkedHashMap();
 					details.put("Action", "UpdateStatus");
 					details.put("ID",getIDFromTxtFld());
 					details.put("NEW_STATUS",getNewStatusTxtFld());
 					Message msg = new Message(details);
+					  //map.setMap("ID", (Object)getIDFromTxtFld());
+					  //map.setMap("Status", (Object)getNewStatusTxtFld());
+					  
+					  
+					  
 
 					try {
 						System.out.println("line before clinet.sendtoServer()");
@@ -163,7 +179,7 @@ public class prototypeController implements Initializable{
 		return update_status_TXTFLD.getText();
 	}
 	
-	public void ConnectionSettingsHandler() throws Exception
+	public void ConnectionSettingsHandler(ActionEvent event) throws Exception
 	{
 		CSC = new ConnectionSettingsController();
 		CSC.start(null);
