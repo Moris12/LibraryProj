@@ -113,19 +113,19 @@ public class Librarian_MainPageController {
     		if(Search_group.getSelectedToggle() == LibririanMainPage_SearchByBookName_RDBTN) //search by name of the book
     		{
     			searchVal = LibririanMainPage_SearchByBookName_TXF.getText();
-    			map.put("by", "book name");
+    			map.put("by", "B_name");
     			map.put("key",searchVal);
     		}
     		if(Search_group.getSelectedToggle() == LibririanMainPage_SearchByAutorName_RDBTN) //search by author name
     		{
     			searchVal = LibririanMainPage_SearchByAutorName_TXF.getText();
-    			map.put("by", "author name");
+    			map.put("by", "B_author");
     			map.put("key",searchVal);
     		}
     		if(Search_group.getSelectedToggle() == LibririanMainPage_SearchByCategory_RDBTN) //search by categories 
     		{
     			searchVal = LibririanMainPage_SearchCategory_TXF.getText();
-    			map.put("by", "category");
+    			map.put("by", "B_themes");
     			map.put("key",searchVal);
     		}
     		if(Search_group.getSelectedToggle() == LibririanMainPage_SearchByFreeText_RDBTN) //search by free text
@@ -182,7 +182,9 @@ public class Librarian_MainPageController {
     }
 
     @FXML
-    void LibrarianMainPage_ReturnBook(ActionEvent event) {
+    void LibrarianMainPage_ReturnBook(ActionEvent event) throws Exception {
+    	ReturnBookPUPController newReturnBook = new ReturnBookPUPController();
+    	newReturnBook.start(null); //one day we will send client here
 
     }
 
@@ -192,7 +194,9 @@ public class Librarian_MainPageController {
     }
 
     @FXML
-    void LibrarianMainPage_ViewMemberShipCard(ActionEvent event) {
+    void LibrarianMainPage_ViewMemberShipCard(ActionEvent event) throws Exception {
+    	PUP_FillMemberIDController newViewMSC = new PUP_FillMemberIDController();
+    	newViewMSC.start(null); //one day we will send client here
 
     }
     
@@ -205,6 +209,14 @@ public class Librarian_MainPageController {
 		this.Stage.setScene(scene);
 		this.Stage.showAndWait();
 		
+	}
+	Client getClient()
+	{
+		return this.client;
+	}
+	void setClient(Client clnt)
+	{
+		this.client = clnt;
 	}
 
 }

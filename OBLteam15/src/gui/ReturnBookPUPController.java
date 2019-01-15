@@ -44,8 +44,9 @@ public class ReturnBookPUPController {
     	String M_id = ReturnBookPUP_MemberID_TXF.getText();
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
     	Message msg;
-    	map.put("Member ID", M_id);
-    	map.put("Book Name", bookName);
+    	map.put("Action", "Return Book");
+    	map.put("M_id", M_id);
+    	map.put("B_name", bookName);
     	msg = new Message(map);
     	
     	
