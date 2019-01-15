@@ -26,6 +26,9 @@ public class OBL_ServerController implements Initializable
 	Pane root;
 	Scene scene;
 	
+
+
+	
 	public void start(Stage arg0) throws Exception {
 		
 		this.Stage = new Stage();
@@ -35,7 +38,7 @@ public class OBL_ServerController implements Initializable
 		this.scene.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
 		this.Stage.setScene(scene);
 		this.Stage.showAndWait();
-		
+
 	}
 
 	@Override

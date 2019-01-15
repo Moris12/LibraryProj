@@ -35,25 +35,36 @@ void setDetailsByHashMap(LinkedHashMap<String, Object> m)
 	
 	if(m.containsKey("B_TcPath"))
 	this.B_TcPath = (String) m.get("B_TcPath");
-	else System.out.println("ILLEGAL: NO TABLE CONTENT SET"); //essential field
+	else System.out.println("ILLEGAL: NO TABLE CONTENT SET");
 	
 	if(m.containsKey("B_type"))
 	this.B_type = (Type) m.get("B_type"); 
 	
-	if(m.containsKey("M_email"))
-	this.email = (String) m.get("M_email");
+	if(m.containsKey("B_instanceAmount"))
+	this.B_instanceAmount = (int) m.get("B_instanceAmount");
 	
-	if(m.containsKey("M_status"))
-	this.status = (Status) m.get("M_status"); //NOTICE: this might be a problem.
+	if(m.containsKey("B_isWaiting"))
+	this.B_isWaiting = (boolean) m.get("B_isWaiting"); 
 	
-	if(m.containsKey("M_graduateDate"))
-	this.graduateDate = (Date) m.get("M_graduateDate");
-	else System.out.println("ILLEGAL: NO GRADUATE DATE SET");  //essential field
-	
-	if(m.containsKey("M_registerDate"))
-	this.registerDate = (Date) m.get("M_registerDate"); //will fill automatically when the user is created 
-	
-	if(m.containsKey("M_runLate"))
-	this.runLate = (int) m.get("M_runLate"); 
+	if(m.containsKey("myCopies")) {
+		ArrayList<CopyOfABook> arrayList = (ArrayList<CopyOfABook>) m.get("myCopies");
+		this.myCopies = arrayList;
+	} else System.out.println("ILLEGAL: NO GRADUATE DATE SET"); 
+
+}
+
+public LinkedHashMap<String, Object> getDetailsByHashMap()
+{
+	LinkedHashMap<String,Object> m = new LinkedHashMap<String,Object>();
+	m.put("B_name", B_name);
+	m.put("B_author", B_author);
+	m.put("B_themes", B_themes);
+	m.put("B_type", B_type);
+	m.put("B_TcPath", B_TcPath);
+	m.put("B_instanceAmount", B_instanceAmount);
+	m.put("B_isWaiting", B_isWaiting);
+	m.put("myCopies", myCopies);
+
+	return m;
 }
 }

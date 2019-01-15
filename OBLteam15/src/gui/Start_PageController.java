@@ -157,18 +157,10 @@ public class Start_PageController implements Initializable
     		
     	}
     	if(this.client.getToDisplay().equals("Manager")) {
-    		//if the login matches Manager account
     		this.TEXTAREA.setText("Manager User");
-    		//create such screen.
-    		Manager_MainPageController MMP = new Manager_MainPageController();
-    		//set the connection to the server. in order to give him access too.
-    		MMP.setClient(this.client);
-    		//start the GUI.
-    		MMP.start(null);
     		
     	}
     	if(this.client.getToDisplay().equals("Member")) {
-    		//if the login matches Member account
     		StudentMainPage1Controller SMP = new StudentMainPage1Controller();
     		this.TEXTAREA.setText("Member User");
     		SMP.setClient(this.client);
@@ -189,19 +181,19 @@ public class Start_PageController implements Initializable
     		if(Search_group.getSelectedToggle() == StartPage_SearchByBookName_RDBTN) //search by name of the book
     		{
     			searchVal = StartPage_SearchByBookName_TXF.getText();
-    			map.put("by", "B_name");
+    			map.put("by", "book name");
     			map.put("key",searchVal);
     		}
     		if(Search_group.getSelectedToggle() == StartPage_SearchByAutorName_RDBTN) //search by author name
     		{
     			searchVal = StartPage_SearchByAutorName_TXF.getText();
-    			map.put("by", "B_author");
+    			map.put("by", "author name");
     			map.put("key",searchVal);
     		}
     		if(Search_group.getSelectedToggle() == StartPage_SearchByCategory_RDBTN) //search by categories 
     		{
     			searchVal = StartPage_SearchByCategory_TXF.getText();
-    			map.put("by", "B_themes");
+    			map.put("by", "category");
     			map.put("key",searchVal);
     		}
     		if(Search_group.getSelectedToggle() == StartPage_SearchByFreeText_RDBTN) //search by free text

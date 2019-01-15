@@ -15,7 +15,7 @@ public class OBL_serverMain extends Application {
 
 	OBL_ServerController OBL_ServerController;
 
-	public static void main(String[] args) {
+	public static void main(String[] args)throws Exception {
 		// TODO Auto-generated method stub
 		 launch(args);	
 		
