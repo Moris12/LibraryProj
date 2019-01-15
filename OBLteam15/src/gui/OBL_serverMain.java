@@ -12,10 +12,10 @@ import javafx.stage.Stage;
 import javafx.application.Application;
 
 public class OBL_serverMain extends Application {
-
+	
 	OBL_ServerController OBL_ServerController;
 
-	public static void main(String[] args)throws Exception {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		 launch(args);	
 		

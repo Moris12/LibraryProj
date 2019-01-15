@@ -21,13 +21,37 @@ import client.ClientConsole;
 
 public class OBL_ServerController implements Initializable
 {
+    @FXML
+    private TextField OblServer_Host_TXF;
+
+    @FXML
+    private TextField OblServer_Password_TXF;
+
+    @FXML
+    private Button OblServer_ChangeConnection_BTN;
+
+    @FXML
+    private TextArea OblServer_MyIp_TXA;
+
+    @FXML
+    private TextArea OblServer_MyPort_TXA;
+
+    @FXML
+    private CheckBox OblServer_DBexist_CBX;
+
+    @FXML
+    private Button OblServer_Close_BTN;
+
+    @FXML
+    private TextField OblServer_UserName_TXF;
+
+    @FXML
+    private TextArea OblServer_GeneralTextArea_TXA;
+    
 	Stage Stage;
 	FXMLLoader loader;
 	Pane root;
 	Scene scene;
-	
-
-
 	
 	public void start(Stage arg0) throws Exception {
 		
@@ -38,7 +62,7 @@ public class OBL_ServerController implements Initializable
 		this.scene.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
 		this.Stage.setScene(scene);
 		this.Stage.showAndWait();
-
+		
 	}
 
 	@Override
@@ -46,5 +70,15 @@ public class OBL_ServerController implements Initializable
 		// TODO Auto-generated method stub
 		
 	}
+    @FXML
+    void Obl_server_Cancel() {
+    	this.OblServer_GeneralTextArea_TXA.setText("Asaf The King");
+
+    }
+
+    @FXML
+    void Obl_server_SetConnection() {
+
+    }
 
 }

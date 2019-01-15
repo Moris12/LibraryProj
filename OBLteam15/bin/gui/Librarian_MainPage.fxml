@@ -34,6 +34,7 @@
             <MenuItem fx:id="LibririanMainPage_AddNewBook_MNI" mnemonicParsing="false" text="Add new book" />
             <MenuItem fx:id="LibririanMainPage_RemoveBook_MNI" mnemonicParsing="false" text="Remove book" />
             <MenuItem fx:id="LibririanMainPage_ViewBookDetails_MNI" mnemonicParsing="false" text="View book details" />
+            <MenuItem fx:id="LibririanMainPage_ViewBookDetails_MNI1" mnemonicParsing="false" text="Add new copy" />
          </items>
          <font>
             <Font name="System Italic" size="11.0" />

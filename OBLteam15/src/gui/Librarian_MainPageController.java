@@ -207,9 +207,4 @@ public class Librarian_MainPageController {
 		
 	}
 
-	public void setClient(Client clnt) {
-		this.client = clnt;
-		
-	}
-
 }
