@@ -1,10 +1,7 @@
+/Controllers/
+/actors/
+/client/
+/gui/
+/models/
 /ocsf/
 /serverr/
-<<<<<<< HEAD
-/models/
-=======
->>>>>>> branch 'master1' of https://github.com/Moris12/LibraryProj.git
-/actors/
-/gui/
-/Controllers/
-/client/
