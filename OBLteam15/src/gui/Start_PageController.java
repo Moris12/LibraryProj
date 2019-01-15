@@ -21,6 +21,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Message;
 import javafx.scene.control.TextArea;
+import actors.Member;
 /** 
  * 
  * @author shahar shani
@@ -163,6 +164,7 @@ public class Start_PageController implements Initializable
     		StudentMainPage1Controller SMP = new StudentMainPage1Controller();
     		this.TEXTAREA.setText("Member User");
     		SMP.setClient(this.client);
+    		//SMP.me.setDetailsByHashMap(m);
     		//SMP.me(map);  //	FIX THE SERVER ACCORDINGLY.
     		SMP.start(null);
     	}
