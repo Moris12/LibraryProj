@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="294.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label ellipsisString="" layoutX="28.0" layoutY="11.0" opacity="0.64" text="Create a new membership: " textFill="#000000e7">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="54.0" text="First name : ">
+         <font>
+            <Font name="System Italic" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="83.0" text="Last name : ">
+         <font>
+            <Font name="System Italic" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="113.0" text="ID : ">
+         <font>
+            <Font name="System Italic" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="144.0" text="Email : ">
+         <font>
+            <Font name="System Italic" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="175.0" text="Phone number : ">
+         <font>
+            <Font name="System Italic" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="207.0" text="Date of graduate : ">
+         <font>
+            <Font name="System Italic" size="11.0" />
+         </font>
+      </Label>
+      <TextField fx:id="CreateNewMemberPUPLibrarian_FirstName_TXF" layoutX="159.0" layoutY="49.0" prefHeight="25.0" prefWidth="196.0" promptText="Type First name">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="CreateNewMemberPUPLibrarian_LastName_TXF" layoutX="159.0" layoutY="80.0" prefHeight="25.0" prefWidth="196.0" promptText="Type Last name">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="CreateNewMemberPUPLibrarian_ID_TXF" layoutX="159.0" layoutY="111.0" prefHeight="25.0" prefWidth="196.0" promptText="Type Id number">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="CreateNewMemberPUPLibrarian_Email_TXF" layoutX="159.0" layoutY="142.0" prefHeight="25.0" prefWidth="196.0" promptText="Type Email">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="CreateNewMemberPUPLibrarian_PhoneNumber_TXF" layoutX="159.0" layoutY="172.0" prefHeight="25.0" prefWidth="196.0" promptText="Type a phone number">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="CreateNewMemberPUPLibrarian_DateOfGraduate_TXF" layoutX="159.0" layoutY="203.0" prefHeight="25.0" prefWidth="196.0" promptText="Type a date of graduate">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </TextField>
+      <Button fx:id="CreateNewMemberPUPLibrarian_Cancel_BTN" cancelButton="true" layoutX="325.0" layoutY="257.0" mnemonicParsing="false" onAction="#CreateNewMemberPUP_Cancel" text="Cancel">
+         <font>
+            <Font name="System Bold Italic" size="11.0" />
+         </font>
+         <effect>
+            <InnerShadow blurType="ONE_PASS_BOX" radius="7.035" width="9.14" />
+         </effect>
+      </Button>
+      <Label fx:id="CreateNewMemberPUPLibrarian_Done_LB" layoutX="184.0" layoutY="259.0" onMouseClicked="#CreateNewMemberPUP_DONE" text="Done" textFill="#2408f7" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="50.0" text="*" textFill="#ec0808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="80.0" text="*" textFill="#ec0808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="110.0" text="*" textFill="#ec0808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="204.0" text="*" textFill="#ec0808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

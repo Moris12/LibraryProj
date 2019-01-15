@@ -1,0 +1,21 @@
+
+
+.root {
+	  -fx-background-image: url("BackgroundFormat.jpg");
+	  
+	  -fx-background-size: cover;
+}
+ .button{
+ 
+    -fx-border-radius: 12px;
+
+}
+ .label{
+	-fx-text-fill:rgb(0,0,0);
+	-fx-opacity:1;
+	-fx-font-weight: bold;
+}
+.checkbox{
+
+	-fx-font-weight: bold;
+}

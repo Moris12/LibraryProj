@@ -220,8 +220,8 @@ public class EchoServer extends AbstractServer
 	  catch(Exception e) {}
 	  
 	  /*System.out.println("Ani po");
-	  params = new LinkedHashMap<String,Object>();
-	  Message = new Message(params);
+	  LinkedHashMap<String,Object> params = new LinkedHashMap<String,Object>();
+	  Message reply = new Message(params);
 	 
 	  Message mesg = (Message) msg;
 	  String type = (String) mesg.getMap().get("type");
