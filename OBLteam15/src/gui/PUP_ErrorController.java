@@ -23,6 +23,7 @@ public class PUP_ErrorController {
 	private String ErrorStr;
 	
 	public void start(Stage arg0) throws Exception {
+		//For setting new Error message you need to set the String in setErrorStr function when you call for PUP_Error//
 		Stage = new Stage();
 		loader = new FXMLLoader();
 		root = loader.load(getClass().getResource("/gui/PUP_Error.fxml").openStream());
@@ -39,6 +40,7 @@ public class PUP_ErrorController {
 
     @FXML
     void PUPError_ErrorReason() {
+    	this.Stage.close();
     	
 
     }
