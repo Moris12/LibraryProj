@@ -122,7 +122,7 @@ import java.util.Enumeration;
 				  +"`L_Emp_num_initReturnDate` VARCHAR(45) NULL,"
 				  +"`L_emp_num_extReturnDate` VARCHAR(45) NULL,"
 				  +"`L_extMakeDate` VARCHAR(45) NULL,"
-				  +"PRIMARY KEY (`L_M_id`, `L_C_id`))+";  
+				  +"PRIMARY KEY (`L_M_id`, `L_C_id`))";  
 
 		 String orderbook = "CREATE TABLE `assignment2`.`orderbook` ("
 				  +"`O_supply` TINYINT NULL DEFAULT 0,"
@@ -185,7 +185,9 @@ import java.util.Enumeration;
 		        if(DBexists == false)
 		        {
 		        	try {
-						stmt = conn.createStatement();
+		        		StmtQuery = "CREATE DATABASE assignment2";
+		        		stmt = conn.createStatement();
+		        		stmt.execute(StmtQuery);
 						stmt.execute(book);
 			        	stmt.execute(lendhistory);
 			        	stmt.execute(orderhistort);
