@@ -22,7 +22,7 @@ import models.Message;
 
 public class Librarian_MainPageController {
 
-	Stage Stage;
+	Stage Stg;
 	FXMLLoader loader;
 	Pane root;
 	Scene scene;
@@ -199,14 +199,22 @@ public class Librarian_MainPageController {
 
     }
     
-	public void start(Stage arg0) throws Exception {
-		
-		this.Stage = new Stage();
+	public void start(Stage arg0) throws Exception 
+	{
+		System.out.println(arg0);
+		System.out.println("1");	
+		this.Stg = arg0;
+		System.out.println(Stg);
+		System.out.println("2");
 		this.loader = new FXMLLoader();
+		System.out.println("3");
 		this.root = loader.load(getClass().getResource("/gui/Librarian_MainPage.fxml").openStream());
+		System.out.println("4");
 		this.scene = new Scene(root);			
-		this.Stage.setScene(scene);
-		this.Stage.showAndWait();
+		System.out.println("5");
+		this.Stg.setScene(scene);
+		System.out.println("6");
+		this.Stg.showAndWait();
 		
 	}
 

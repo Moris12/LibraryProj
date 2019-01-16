@@ -90,14 +90,18 @@ public class EchoServer extends AbstractServer
   public void handleMessageFromClient(Object msg, ConnectionToClient client)
   {
 
+	  System.out.println("Message received: " + msg + " from " + client);
 
 	  String PstmtQuery;
-	  LinkedHashMap details;
+	  LinkedHashMap<String,Object> details;
 	  Message mesag;
+	  System.out.println("declarations");
 	  mesag = (Message)msg;
-	  details = (LinkedHashMap) mesag.getMap();
+	  System.out.println("after message casting");
+	  details = (LinkedHashMap<String,Object>) mesag.getMap();
+	  System.out.println("after map");
 	  String type =(String) details.get("Type");
-	 
+	  System.out.println("hhh" + (String)details.get("Type"));
 
 	  
 	  try 
@@ -145,17 +149,19 @@ public class EchoServer extends AbstractServer
 			case "log in":
 				PstmtQuery="SELECT * FROM assignment2.member WHERE M_id=? AND M_password=? LIMIT 1";
 				pstmt = con.prepareStatement(PstmtQuery);
-				pstmt.setString(1, (String)details.get("M_id"));
-				pstmt.setString(2, (String)details.get("M_Password"));
+				pstmt.setString(1, (String)details.get("Username"));
+				pstmt.setString(2, (String)details.get("Password"));
 				ResultSet res =pstmt.executeQuery();
 				int rcount = getRowCount(res);
 				if (rcount == 0) {
-					PstmtQuery="SELECT * FROM assignment2.librarian WHERE Emp_num=? AND EMP_Password=? LIMIT 1";
+					System.out.println("im in lib");
+					PstmtQuery="SELECT * FROM assignment2.librarian WHERE Emp_num=? AND Emp_password=? LIMIT 1";
 					pstmt = con.prepareStatement(PstmtQuery);
-					pstmt.setString(1,(String)details.get("Emp_num") );
-					pstmt.setString(1,(String)details.get("EMP_Password") );
+					pstmt.setString(1,(String)details.get("Username") );
+					pstmt.setString(2,(String)details.get("Password") );
 					ResultSet res1 =pstmt.executeQuery();
 					int rscount = getRowCount(res1);
+					System.out.println(rscount);
 					if(rscount == 0)
 					{
 						String replay = "The user does not exist!";
@@ -163,21 +169,25 @@ public class EchoServer extends AbstractServer
 						Message repl = new Message(map);
 						repl.setToMap("Type", "log in");
 						repl.setToMap("Error", replay);
+						System.out.println("im sending no user");
 						client.sendToClient(repl);
 					}
 					else
 					{
-						res.next();
+						res1.next();
 						LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
-						Message repl = new Message(map);
-						repl.setToMap("Type", "log in");
-						repl.setToMap("Emp_num", res.getString("Emp_num"));
-						repl.setToMap("Emp_pname", res.getString("Emp_pname"));
-						repl.setToMap("Emp_lname", res.getString("Emp_lname"));
-						repl.setToMap("EMP_password", res.getString("EMP_password"));
-						repl.setToMap("Emp_email", res.getString("Emp_email"));
-						repl.setToMap("Emp_organization", res.getString("Emp_organization"));
+						System.out.println("befor set to map");
+						map.put("Type", "log in");
+						String toshow = res1.getString("Emp_num");
+						System.out.println(toshow);
+						map.put("Emp_num", res1.getString("Emp_num"));
+						map.put("Emp_pname", res1.getString("Emp_pname"));
+						map.put("Emp_lname", res1.getString("Emp_lname"));
+						map.put("Emp_password", res1.getString("Emp_password"));
+						map.put("Emp_email", res1.getString("Emp_email"));
+						map.put("Emp_organization", res1.getString("Emp_organization"));
 						
+						Message repl = new Message(map);
 						
 						System.out.println("im before send lib!");
 						client.sendToClient(repl);
@@ -187,6 +197,7 @@ public class EchoServer extends AbstractServer
 					res.next();
 					LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
 					Message repl = new Message(map);
+					repl.setToMap("Type", "log in");
 					repl.setToMap("M_id", res.getString("M_id"));
 					repl.setToMap("M_email", res.getString("M_email"));
 					repl.setToMap("M_registerDate", res.getDate("M_registerDate"));

@@ -40,7 +40,7 @@ public class Start_PageController implements Initializable
 	Message msg;
 	ConnectionSettingsController CSC;
 	Client client;
-	static public String Hostt = "192.168.1.78";
+	static public String Hostt = "10.100.102.8";
 	static public int Portt = 5555;
 	
 
@@ -110,12 +110,15 @@ public class Start_PageController implements Initializable
 	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		/*try {
+		try {
 			client = new Client(Hostt, Portt);
+			System.out.println("made new client");
+			client.openConnection();
+			System.out.println("open conn done");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 	}
     
 	@FXML
@@ -128,50 +131,24 @@ public class Start_PageController implements Initializable
     public void StartPage_Login() throws Exception {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
     	
-    	if(this.StartPage_UserName_TXF.getText()!=null||this.StartPage_Password_PSF.getText()!=null)
+    	if(this.StartPage_UserName_TXF.getText()==null||this.StartPage_Password_PSF.getText()==null)
     	{
     		System.out.print("Error Invalid user name and password");//PUP Error 
     	}
-    	map.put("Action", "Login");
-    	map.put("User name", this.StartPage_UserName_TXF.getText());
+    	map.put("Type", "log in");
+    	System.out.println((String) map.get("Type"));
+    	map.put("Username", this.StartPage_UserName_TXF.getText());
     	map.put("Password", this.StartPage_Password_PSF.getText());
+    	this.client.setSPC(this);
     	this.msg = new Message(map);
-    	this.client.sendToServer(map); 
+    	this.client.sendToServer(msg); 
     	// send the information to server for approval of existance.
+
     	
-    	//HOW CAN WE MAKE SURE THAT THE CLIENT COMPUTER WILL NOT CONTINUE THE CODE WHILE 
-    	//THE SERVER COMPUTER IS STILL PROCESSING THE CLIENT'S REQUEST?
-    	//after the server gets the message this client-PC should wait for response. 
-    	//if the client PC gets to line 141 before the server replied than he will get null.
-    	
-    	
-    		if(this.client.getToDisplay().equals("Librarian")) { 
-    		//if the login matches Librarian account
-    		this.TEXTAREA.setText("Librarian User");
-    		//create such screen.
-    		Librarian_MainPageController LMP = new Librarian_MainPageController(); 
-    		//set the connection to the server. in order to give him access too.
-    		LMP.setClient(this.client);
-    		//start the GUI.
-    		LMP.start(null);
-    		
-    	}
-    	if(this.client.getToDisplay().equals("Manager")) {
-    		this.TEXTAREA.setText("Manager User");
-    		
-    	}
-    	if(this.client.getToDisplay().equals("Member")) {
-    		StudentMainPage1Controller SMP = new StudentMainPage1Controller();
-    		this.TEXTAREA.setText("Member User");
-    		SMP.setClient(this.client);
-    		//SMP.me.setDetailsByHashMap(m);
-    		//SMP.me(map);  //	FIX THE SERVER ACCORDINGLY.
-    		SMP.start(null);
-    	}
     }
 
     @FXML
-    public void StartPage_SearchByGroup() {
+    public void StartPage_SearchByGroup() throws IOException {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
     	map.put("Action", "Search Book");
     	Message msg;
@@ -204,12 +181,20 @@ public class Start_PageController implements Initializable
     		}
     		//end if's.
     		msg = new Message(map);
-    		//send to server?.
+    		this.client.sendToServer(msg);
     	}
     	else //no radio button selected 
     	{
     		System.out.println("no radio button selected.");
     	}
 
+    }
+    
+    public Stage getStage() {
+    	return this.Stage;
+    }
+    public Start_PageController getSPC()
+    {
+    	return this;
     }
 }

@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.application.Application;
-
+import serverr.ServerController;
 public class OBL_serverMain extends Application {
 	
 	OBL_ServerController OBL_ServerController;
@@ -24,7 +24,7 @@ public class OBL_serverMain extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		OBL_ServerController = new OBL_ServerController();		
+		OBL_ServerController = new OBL_ServerController();	
 		OBL_ServerController.start(arg0);
 	}
 }

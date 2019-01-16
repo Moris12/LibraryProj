@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 
 import actors.*;
 import gui.*;
+import javafx.stage.Stage;
 import models.Message;
 import ocsf.client.AbstractClient;
 import ocsf.server.AbstractServer;
@@ -20,7 +21,16 @@ public class Client extends AbstractClient {
 	Librarian_MainPageController LibrarianMainPage;
 	ReturnBookPUPController returnBookController;
 	Manager_MainPageController ManagerMainPage;
+	Start_PageController SPC;
+	Stage stg;
 	
+	public Start_PageController getSPC() {
+		return SPC;
+	}
+
+	public void setSPC(Start_PageController sPC) {
+		SPC = sPC;
+	}
 	Employee currLibrarian, currManager;
 	Member currMember;
 	
@@ -95,6 +105,7 @@ public class Client extends AbstractClient {
 
 void handleLogIn(LinkedHashMap<String,Object> m) throws Exception
 {
+
 	if( !(m.containsKey("Error"))) //found the user
 	{
 		if(m.containsKey("M_id")) //it's a member
@@ -118,9 +129,11 @@ void handleLogIn(LinkedHashMap<String,Object> m) throws Exception
 			{
 				LibrarianMainPage = new Librarian_MainPageController();
 				LibrarianMainPage.setClient(this);
-				currLibrarian = new Employee();
+				currLibrarian = new Employee();		
 				currLibrarian.setDetailsByHashMap(m);
-				LibrarianMainPage.start(null);
+				System.out.println(SPC.getStage());
+				LibrarianMainPage.start(SPC.getStage());
+				
 			}
 		}
 	}
@@ -146,6 +159,8 @@ void handleAdd(LinkedHashMap<String,Object> m) throws Exception
 		PUP_Success.setActionStr("Added successfully.");
 		PUP_Success.start(null);
 	}
+	
+
 }
 
 	  

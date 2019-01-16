@@ -1,5 +1,6 @@
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
@@ -120,7 +121,7 @@ public class StudentMainPage1Controller implements Initializable {
     }
 
     @FXML
-    void StudentMainPage_SearchByGroup() {
+    void StudentMainPage_SearchByGroup() throws IOException {
         //take information from txtfld, and search by the argument given.
         {
         	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
@@ -155,7 +156,7 @@ public class StudentMainPage1Controller implements Initializable {
         		}
         		//end if's.
         		msg = new Message(map);
-        		//send to server?.
+        		this.client.sendToServer(msg);
         	}
         	else //no radio button selected 
         	{
@@ -167,7 +168,7 @@ public class StudentMainPage1Controller implements Initializable {
     }
 
     @FXML
-    void StudentMainPage_StatusOfOrdersArea(MouseEvent event) {
+    void StudentMainPage_StatusOfOrdersArea() {
 
     }
 
@@ -195,8 +196,8 @@ public class StudentMainPage1Controller implements Initializable {
 		// and the status of order text area details
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
     	Message msg;
-    	map.put("Action", "Get history");
-    	map.put("From", "LendRetHistory");
+    	map.put("Type", "get history");
+    	map.put("From", "lendRetHistory");
     	//map.put("Member", );
 			
 	}
