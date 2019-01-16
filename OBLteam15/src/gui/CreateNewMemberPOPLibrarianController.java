@@ -1,7 +1,13 @@
 package gui;
 
+import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
-
+import gui.*;
+import actors.Member;
+import client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +22,7 @@ import javafx.stage.Stage;
 import models.Message;
 
 public class CreateNewMemberPOPLibrarianController {
-
+	Client client;
 	Stage Stage;
 	FXMLLoader loader;
 	Pane root;
@@ -45,6 +51,9 @@ public class CreateNewMemberPOPLibrarianController {
 
     @FXML
     private Label CreateNewMemberPUPLibrarian_Done_LB;
+    
+    @FXML
+    private TextField CreateNewMemberPUPLibrarian_Password_TXF;
 
     @FXML
     void CreateNewMemberPUP_Cancel(ActionEvent event) {//CANCEL button handler
@@ -53,24 +62,53 @@ public class CreateNewMemberPOPLibrarianController {
     }
 
     @FXML
-    void CreateNewMemberPUP_DONE(MouseEvent event) { //DONE clicked.
-    	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+    void CreateNewMemberPUP_DONE(MouseEvent event) throws ParseException, IOException { //DONE clicked.
+    	LinkedHashMap<String, Object> m = new LinkedHashMap<String,Object>();
     	Message msg;
-    	String FirstName, LastName, ID, GraduateDate, Email, PhoneNumber;
+    	String M_pname, M_lname, M_id , M_graduateDate, M_email, M_phoneNumber, M_password;
     	if(!CreateNewMemberPUPLibrarian_FirstName_TXF.getText().isEmpty() && !CreateNewMemberPUPLibrarian_LastName_TXF.getText().isEmpty() && !CreateNewMemberPUPLibrarian_ID_TXF.getText().isEmpty() && !CreateNewMemberPUPLibrarian_DateOfGraduate_TXF.getText().isEmpty())
-    	{//check the essential fields.
-    		//set variables with the fields input.
-    		FirstName = CreateNewMemberPUPLibrarian_FirstName_TXF.getText();
-    		LastName = CreateNewMemberPUPLibrarian_LastName_TXF.getText();
-    		ID = CreateNewMemberPUPLibrarian_ID_TXF.getText();
-    		GraduateDate = CreateNewMemberPUPLibrarian_DateOfGraduate_TXF.getText();
+    	{
+    		/*********CHECK IF GETTEXT FROM EMPTY FIELD IS NULL***********/
     		
-    		if(!CreateNewMemberPUPLibrarian_Email_TXF.getText().isEmpty())
-    			Email = CreateNewMemberPUPLibrarian_Email_TXF.getText();
-    		else Email = null;
-    		if(CreateNewMemberPUPLibrarian_PhoneNumber_TXF.getText().isEmpty())
-    			PhoneNumber = CreateNewMemberPUPLibrarian_PhoneNumber_TXF.getText();
-    		else PhoneNumber = null;
+    		//check the essential fields.
+    		//set variables with the fields input.
+    		M_pname = CreateNewMemberPUPLibrarian_FirstName_TXF.getText();
+    		M_lname = CreateNewMemberPUPLibrarian_LastName_TXF.getText();
+    		M_id = CreateNewMemberPUPLibrarian_ID_TXF.getText();
+    		M_password = CreateNewMemberPUPLibrarian_Password_TXF.getText();
+    		M_graduateDate = CreateNewMemberPUPLibrarian_DateOfGraduate_TXF.getText();
+    		Date GD;
+    		SimpleDateFormat SDF = new SimpleDateFormat("yyyy/mm/dd");
+    		GD = (Date) SDF.parse(M_graduateDate);
+    		
+    		//extra fields. mail & phone.
+    		if(!CreateNewMemberPUPLibrarian_Email_TXF.getText().isEmpty()) {
+    			M_email = CreateNewMemberPUPLibrarian_Email_TXF.getText();
+    			m.put("M_email",M_email);
+    		}
+    		else M_email = null;
+    		
+    		if(!CreateNewMemberPUPLibrarian_PhoneNumber_TXF.getText().isEmpty()) {
+    			M_phoneNumber = CreateNewMemberPUPLibrarian_PhoneNumber_TXF.getText();
+    			m.put("M_phoneNumber", M_phoneNumber);
+    		}
+    		else M_phoneNumber = null;
+    		
+    		m.put("M_id", M_id);
+    		m.put("M_pname",M_pname);
+    		m.put("M_lname",M_lname );
+    		m.put("M_graduateDate",GD );
+    		m.put("M_password", M_password);
+    		
+    		if(Member.isValidInput(m).isEmpty())
+    		{
+    			client.sendToServer(m);
+    		}
+    		else //problem with input
+    		{
+    			System.out.println("here should be error msg with hashmap. ");
+    			System.out.println("problem with input");
+    		}
     	}
     }
 
@@ -84,5 +122,9 @@ public class CreateNewMemberPOPLibrarianController {
 		this.Stage.setScene(scene);
 		this.Stage.showAndWait();
 		
+	}
+	void setClient(Client clnt)
+	{
+		this.client = clnt;
 	}
 }

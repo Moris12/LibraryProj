@@ -1,7 +1,9 @@
 package gui;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 
+import client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,7 +16,8 @@ import javafx.stage.Stage;
 import models.Message;
 
 public class ReturnBookPUPController {
-
+	
+	Client client;
 	Stage Stage;
 	FXMLLoader loader;
 	Pane root;
@@ -32,6 +35,9 @@ public class ReturnBookPUPController {
     @FXML
     private Button ReturnBookPUP_Cancel_BTN;
 
+    @FXML 
+    private TextField ReturnBookPUP_AuthorName_TXF;
+    
     @FXML
     void ReturnBookPUP_Cancel() {
 		Stage stage = (Stage) ReturnBookPUP_Cancel_BTN.getScene().getWindow();
@@ -39,15 +45,19 @@ public class ReturnBookPUPController {
     }
 
     @FXML
-    void ReturnBookPUP_DoneReturnBook() {
-    	String bookName = ReturnBookPUP_BookName_TXF.getText();
+    void ReturnBookPUP_DoneReturnBook() throws IOException {
+    	String B_name = ReturnBookPUP_BookName_TXF.getText();
     	String M_id = ReturnBookPUP_MemberID_TXF.getText();
+    	String B_author = ReturnBookPUP_AuthorName_TXF.getText();
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
     	Message msg;
-    	map.put("Member ID", M_id);
-    	map.put("Book Name", bookName);
+    	map.put("Type" ,"return book");
+    	map.put("M_ID", M_id);
+    	map.put("B_name", B_name);
+    	map.put("B_author", B_author);
     	msg = new Message(map);
     	
+    	client.sendToServer(map);
     	
     	
     	//send to server here.
@@ -66,5 +76,9 @@ public class ReturnBookPUPController {
 		this.Stage.setScene(scene);
 		this.Stage.showAndWait();
 		
+	}
+	void setClient(Client clnt)
+	{
+		this.client = clnt;
 	}
 }

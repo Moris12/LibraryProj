@@ -101,7 +101,7 @@ public class Librarian_MainPageController {
     private RadioButton LibririanMainPage_SearchByFreeText_RDBTN;
 
     @FXML
-    void LaibrarianMainPage_SearchByGroup(ActionEvent event) //search button click function. 
+    void LaibrarianMainPage_SearchByGroup() //search button click function. 
     //take information from txtfld, and search by the argument given.
     {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
@@ -145,7 +145,7 @@ public class Librarian_MainPageController {
     }
 
     @FXML
-    void LibrarianMainPage_CreateNewMemberCard(ActionEvent event) throws Exception //create new member func 
+    void LibrarianMainPage_CreateNewMemberCard() throws Exception //create new member func 
     {
     	CreateNewMemberPOPLibrarianController newMemberForm = new CreateNewMemberPOPLibrarianController();
     	newMemberForm.start(null); //one day we will send client here
@@ -167,7 +167,7 @@ public class Librarian_MainPageController {
     }
 
     @FXML
-    void LibrarianMainPage_InventoryManagment(ActionEvent event) {
+    void LibrarianMainPage_InventoryManagment() {
 
     }
 
@@ -182,8 +182,11 @@ public class Librarian_MainPageController {
     }
 
     @FXML
-    void LibrarianMainPage_ReturnBook(ActionEvent event) {
-
+    void LibrarianMainPage_ReturnBook() throws Exception 
+    {
+    	ReturnBookPUPController returnBookPUPController = new ReturnBookPUPController();
+    	returnBookPUPController.setClient(client);
+    	returnBookPUPController.start(null);
     }
 
     @FXML
@@ -205,6 +208,11 @@ public class Librarian_MainPageController {
 		this.Stage.setScene(scene);
 		this.Stage.showAndWait();
 		
+	}
+
+	public void setClient(Client clnt) 
+	{
+		this.client = clnt;
 	}
 
 }

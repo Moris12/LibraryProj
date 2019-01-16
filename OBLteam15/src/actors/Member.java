@@ -13,63 +13,68 @@ public class Member {
 		Active, Frozen, Locked, NotRegistered;
 	}
 static String table = "member";
-private String id;
-private String Pname;
-private String Lname;
-private String phoneNumber;
-private String email;
-private Status status;
-private Date registerDate;
-private Date graduateDate;
-private int runLate;
+private String M_id;
+private String M_pname;
+private String M_lname;
+private String M_phoneNumber;
+private String M_email;
+private Status M_status;
+private Date M_registerDate;
+private Date M_graduateDate;
+private int M_runLate;
+private String M_password;
 
 //if there is exception thrown here. probably because the enum data type
 public void setDetailsByHashMap(LinkedHashMap<String, Object> m)
 {
 	if(m.containsKey("M_id"))  
-	this.id = (String) m.get("M_id");
+		this.M_id = (String) m.get("M_id");
 	else System.out.println("ILLEGAL: NO ID SET");  //essential field
 	
-	if(m.containsKey("M_Pname"))
-	this.Pname = (String) m.get("M_Pname");
+	if(m.containsKey("M_pname"))
+		this.M_pname = (String) m.get("M_pname");
 	else System.out.println("ILLEGAL: NO PNAME SET"); //essential field
 	
-	if(m.containsKey("M_Lname"))
-	this.Lname = (String) m.get("M_Lname");
+	if(m.containsKey("M_lname"))
+		this.M_lname = (String) m.get("M_lname");
 	else System.out.println("ILLEGAL: NO LNAME SET"); //essential field
 	
 	if(m.containsKey("M_phone"))
-	this.phoneNumber = (String) m.get("M_phone"); 
+		this.M_phoneNumber = (String) m.get("M_phone"); 
 	
 	if(m.containsKey("M_email"))
-	this.email = (String) m.get("M_email");
+		this.M_email = (String) m.get("M_email");
 	
 	if(m.containsKey("M_status"))
-	this.status = (Status) m.get("M_status"); //NOTICE: this might be a problem.
+		this.M_status = (Status) m.get("M_status"); //NOTICE: this might be a problem.
 	
 	if(m.containsKey("M_graduateDate"))
-	this.graduateDate = (Date) m.get("M_graduateDate");
+		this.M_graduateDate = (Date) m.get("M_graduateDate");
 	else System.out.println("ILLEGAL: NO GRADUATE DATE SET");  //essential field
 	
 	if(m.containsKey("M_registerDate"))
-	this.registerDate = (Date) m.get("M_registerDate"); //will fill automatically when the user is created 
+		this.M_registerDate = (Date) m.get("M_registerDate"); //will fill automatically when the user is created 
 	
 	if(m.containsKey("M_runLate"))
-	this.runLate = (int) m.get("M_runLate"); 
+		this.M_runLate = (int) m.get("M_runLate"); 
+	
+	if(m.containsKey("M_password"))
+		this.M_password = (String) m.get(M_password);
 }
 public LinkedHashMap<String, Object> getDetailsByHashMap()
 {
 	LinkedHashMap<String,Object> m = new LinkedHashMap<String,Object>();
-	m.put("M_id", id);
-	m.put("M_Pname", Pname);
-	m.put("M_Lname", Lname);
-	m.put("M_email", email);
-	m.put("M_status", status);
-	m.put("M_phone", phoneNumber);
-	m.put("M_registerDate", registerDate);
-	m.put("M_runLate",runLate);
-	m.put("M_graduateDate", graduateDate);
-	m.put("table", table);
+	m.put("M_id", M_id);
+	m.put("M_pname", M_pname);
+	m.put("M_lname", M_lname);
+	m.put("M_email", M_email);
+	m.put("M_status", M_status);
+	m.put("M_phone", M_phoneNumber);
+	m.put("M_registerDate", M_registerDate);
+	m.put("M_runLate",M_runLate);
+	m.put("M_graduateDate", M_graduateDate);
+	m.put("FROM", table);
+	m.put("M_password", M_password);
 	return m;
 }
 public static LinkedHashMap<String, String> isValidInput(LinkedHashMap<String,Object> details) 
@@ -87,30 +92,30 @@ public static LinkedHashMap<String, String> isValidInput(LinkedHashMap<String,Ob
 	
 	
 	//PRIVATE NAME CHECK
-	if(details.containsKey("M_Pname"))
+	if(details.containsKey("M_pname"))
 	{
-		if(!(temp.Pname.length()<=1))
+		if(!(temp.M_pname.length()<=1))
 		{
-			if(Member.isAlphabets(temp.Pname) == true) //the Pname is made of chars which are not only letters.
+			if(Member.isAlphabets(temp.M_pname) == true) //the Pname is made of chars which are not only letters.
 			{
 				System.out.println("all good with the Pname");
 			}//end if made of signs
 			else 
 			{
 				System.out.println("illegal: private name made of illegal characters");
-				m.put("M_Pname", "illegal: private name made of illegal characters");
+				m.put("M_pname", "illegal: private name made of illegal characters");
 			}
 		}//end if length
 		else 
 		{
 		System.out.println("illegal: Private name is too short");
-		m.put("M_Pname", "illegal: Private name is too short");
+		m.put("M_pname", "illegal: Private name is too short");
 		}
 	}//end if contains key
 	else
 	{
 		System.out.println("illegal: no Private name");
-		m.put("M_Pname","illegal: no private name");
+		m.put("M_pname","illegal: no private name");
 	}
 
 	
@@ -119,30 +124,30 @@ public static LinkedHashMap<String, String> isValidInput(LinkedHashMap<String,Ob
 	
 	
 	//LAST NAME CHECK
-	if(details.containsKey("M_Lname"))
+	if(details.containsKey("M_lname"))
 	{
-		if(!(temp.Lname.length()<=1))
+		if(!(temp.M_lname.length()<=1))
 		{
-			if(Member.isAlphabets(temp.Lname) == true) //the Pname is made of chars which are not only letters.
+			if(Member.isAlphabets(temp.M_lname) == true) //the Pname is made of chars which are not only letters.
 			{
 				System.out.println("all good with the Lname");
 			}//end if made of signs
 			else 
 			{
 				System.out.println("illegal: last name made of illegal characters");
-				m.put("M_Lname", "illegal: last name made of illegal characters");
+				m.put("M_lname", "illegal: last name made of illegal characters");
 			}
 		}//end if length
 		else 
 		{
 		System.out.println("illegal: last name is too short");
-		m.put("M_Lname", "illegal: last name is too short");
+		m.put("M_lname", "illegal: last name is too short");
 		}
 	}//end if contains key
 	else
 	{
 		System.out.println("illegal: no last name");
-		m.put("M_Lname","illegal: no last name");
+		m.put("M_lname","illegal: no last name");
 	}
 	
 	
@@ -152,9 +157,9 @@ public static LinkedHashMap<String, String> isValidInput(LinkedHashMap<String,Ob
 	//ID CHECK 
 	if(details.containsKey("M_id"))
 	{
-		if(temp.id.length()>=1)
+		if(temp.M_id.length()>=1)
 		{
-			if(Member.isNumbers(temp.Lname) == true) //the id is made of chars which are not only numbers.
+			if(Member.isNumbers(temp.M_lname) == true) //the id is made of chars which are not only numbers.
 			{
 				System.out.println("all good with the id");
 			}//end if made of signs
@@ -181,7 +186,7 @@ public static LinkedHashMap<String, String> isValidInput(LinkedHashMap<String,Ob
 	{
 		//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		java.sql.Date now = new java.sql.Date(new java.util.Date().getTime());
-		if(temp.graduateDate.after(now))
+		if(temp.M_graduateDate.after(now))
 		{
 			System.out.println("than it's ok");
 		}
@@ -203,14 +208,14 @@ public static LinkedHashMap<String, String> isValidInput(LinkedHashMap<String,Ob
 	
 	if(details.containsKey("M_email"))
 	{
-		if(!(temp.email.length()<=4))  //a@a.b shortest mail possible.
+		if(!(temp.M_email.length()<=4))  //a@a.b shortest mail possible.
 		{
-			if(temp.email.contains("@"))
+			if(temp.M_email.contains("@"))
 			{
-				if(temp.email.contains("."))
+				if(temp.M_email.contains("."))
 				{
-					int shtrudelPos = temp.email.indexOf("@");
-					int dotPos = temp.email.lastIndexOf(".");
+					int shtrudelPos = temp.M_email.indexOf("@");
+					int dotPos = temp.M_email.lastIndexOf(".");
 					if(shtrudelPos < dotPos)
 					{
 						System.out.println("all is good with the email");
@@ -253,9 +258,9 @@ public static LinkedHashMap<String, String> isValidInput(LinkedHashMap<String,Ob
 	//PHONE NUMBER CHECK
 	if(details.containsKey("M_phone"))
 	{
-		if(temp.phoneNumber.length()>=3 && temp.phoneNumber.length()<=10)
+		if(temp.M_phoneNumber.length()>=3 && temp.M_phoneNumber.length()<=10)
 		{
-			if(Member.isNumbers(temp.phoneNumber) == true) //the id is made of chars which are not only numbers.
+			if(Member.isNumbers(temp.M_phoneNumber) == true) //the id is made of chars which are not only numbers.
 			{
 				System.out.println("all good with the phone number");
 			}//end if made of signs
@@ -275,6 +280,25 @@ public static LinkedHashMap<String, String> isValidInput(LinkedHashMap<String,Ob
 	{
 		System.out.println("notice: no phone number.");
 		//but, same as email, it's OK to leave it empty.
+	}
+	
+	
+	if(m.containsKey("M_password"))
+	{
+		if(temp.M_password.length() <=2) //3 or more.
+		{
+			System.out.println("password all good");
+		}
+		else //too short
+		{
+			System.out.println("password is too short");
+			m.put("M_password", "illegal: password has to be 3 chars or more.");
+		}
+	}
+	else
+	{
+		System.out.println("illegal: M_password not set");
+		m.put("M_password", "no password input");
 	}
 	
 return m;

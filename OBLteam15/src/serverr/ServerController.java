@@ -95,19 +95,22 @@ import java.util.Enumeration;
 		  String member = "CREATE TABLE `assignment2`.`member` ("
 				  +"`M_id` VARCHAR(45) NOT NULL,"
 				  +"`M_email` VARCHAR(45) NULL,"
-				  +"`M_registerDate` VARCHAR(45) NULL DEFAULT NULL,"
+				  +"`M_registerDate` DATE NULL DEFAULT NULL,"
 				  +"`M_phone` VARCHAR(45) NULL DEFAULT NULL,"
-				  +"`M_status` ENUM('exclusive', 'normal') NULL DEFAULT NULL,"
+				  +"`M_status` ENUM('Locked', 'Active', 'Frozen', 'NotRegistered') NULL DEFAULT NULL,"
 				  +"`M_runLate` INT(11) NULL DEFAULT NULL,"
-				  +"`M_graduateDate` VARCHAR(45) NULL,"
-				  +"`M_name` VARCHAR(45) NULL,"
+				  +"`M_graduateDate` DATE NULL,"
+				  +"`M_pname` VARCHAR(45) NULL,"
+				  +"'M_lname' VARCHAR(45)NULL,"
+				  +"'M_password' VARChAR(45) NULL,"
 				  +"PRIMARY KEY (`M_id`))";  
 		  
 		 String libra = "CREATE TABLE `assignment2`.`librarian` ("
 				 +" `Emp_num` VARCHAR(45) NOT NULL,"
-				  +"`Emp_Pname` VARCHAR(45) NULL,"
-				  +"`Emp_Lname` VARCHAR(45) NULL DEFAULT NULL,"
-				  +"`emp_email` VARCHAR(45) NULL DEFAULT NULL,"
+				  +"`Emp_pname` VARCHAR(45) NULL,"
+				  +"`Emp_lname` VARCHAR(45) NULL DEFAULT NULL,"
+				  +"'EMP_password' VARCHAR(45) NULL,"
+				  +"`Emp_email` VARCHAR(45) NULL DEFAULT NULL,"
 				  +"`Emp_organization` VARCHAR(45) NULL DEFAULT NULL,"
 				  +"PRIMARY KEY (`Emp_num`))"; 
 			
@@ -119,9 +122,9 @@ import java.util.Enumeration;
 				  +"`L_lendDate` DATE NULL,"
 				  +"`L_initReturnDate` DATE NULL,"
 				  +"`L_newReturnDate` DATE NULL,"
-				  +"`L_Emp_num_initReturnDate` VARCHAR(45) NULL,"
-				  +"`L_emp_num_extReturnDate` VARCHAR(45) NULL,"
-				  +"`L_extMakeDate` VARCHAR(45) NULL,"
+				  +"`L_Emp_num_initReturnDate` DATE NULL,"
+				  +"`L_emp_num_extReturnDate` DATE NULL,"
+				  +"`L_extMakeDate` DATE NULL,"
 				  +"PRIMARY KEY (`L_M_id`, `L_C_id`))";  
 
 		 String orderbook = "CREATE TABLE `assignment2`.`orderbook` ("

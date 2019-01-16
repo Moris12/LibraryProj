@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.mysql.fabric.xmlrpc.base.Data;
+
 import models.*;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
@@ -44,7 +46,7 @@ public class EchoServer extends AbstractServer
 	
 	private ServerSocket serverSocket;
 	private ConnectionToClient clientConnection;
-	private Message Message;
+	private Message Msg;
 	
 	private Map<String,Object> params;
 	private String userDir;
@@ -90,18 +92,12 @@ public class EchoServer extends AbstractServer
 
 
 	  String PstmtQuery;
-	 // String str = new String();
-	//  str = (String)msg;
-	  
-	  LinkedHashMap details = new LinkedHashMap();
+	  LinkedHashMap details;
 	  Message mesag;
 	  mesag = (Message)msg;
 	  details = (LinkedHashMap) mesag.getMap();
-	 // System.out.println(details.get("hey"));
-	//  String str2[] = str.split(" ");
-	  String type =(String) details.get("Action");
-	 // String ID = str2[1];
-	  String Id =(String) details.get("ID");
+	  String type =(String) details.get("Type");
+	 
 
 	  
 	  try 
@@ -110,35 +106,99 @@ public class EchoServer extends AbstractServer
 			PreparedStatement pstmt = null;
 			switch (type)
 			{
-			case "UpdateStatus":
-				String status = (String) details.get("NEW_STATUS");
-				PstmtQuery="UPDATE assignment2.student SET StatusMembership=? WHERE StudentID=?";
-				pstmt = con.prepareStatement(PstmtQuery);
-				pstmt.setString(1,status);
-				pstmt.setString(2, Id);
-				pstmt.executeUpdate();
-				break;
+			case "add":
+			{
+						String table = (String) details.get("Table");
+						if(table == "mem")
+						{
+							String ID = (String)details.get("M_id");
+							String email = (String)details.get("M_email");
+							java.sql.Date register = (java.sql.Date)details.get("M_registerDate");
+							String phone = (String)details.get("M_phone");
+							String status = (String)details.get("M_status");
+							int runlate = (int)details.get("M_runLate");
+							java.sql.Date graduate = (java.sql.Date)details.get("M_graduateDate");
+							String pname = (String)details.get("M_pname");
+							String lname = (String)details.get("M_lname");
+							String pass = (String)details.get("M_password");
+							if(saveUserToDB(ID, pname, pass, register, phone, status, runlate, graduate, lname, email))
+							{
+								
+								LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+								Message repl = new Message(map);
+								repl.setToMap("Type", "add");
+								client.sendToClient(repl);
+							}
+							else
+							{
+								LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+								Message repl = new Message(map);
+								repl.setToMap("Type", "log in");
+								repl.setToMap("Error", "Cant add member!");
+								client.sendToClient(repl);
+							}
+							
+						}
+			} break;
+						
 				
-			case "Search":
-				PstmtQuery="SELECT * FROM assignment2.student WHERE StudentID = ? LIMIT 1";
+			case "log in":
+				PstmtQuery="SELECT * FROM assignment2.member WHERE M_id=? AND M_password=? LIMIT 1";
 				pstmt = con.prepareStatement(PstmtQuery);
-				pstmt.setString(1, Id);
+				pstmt.setString(1, (String)details.get("M_id"));
+				pstmt.setString(2, (String)details.get("M_Password"));
 				ResultSet res =pstmt.executeQuery();
 				int rcount = getRowCount(res);
 				if (rcount == 0) {
-					String replay = "The user does not exist!";
-					client.sendToClient(replay);
+					PstmtQuery="SELECT * FROM assignment2.librarian WHERE Emp_num=? AND EMP_Password=? LIMIT 1";
+					pstmt = con.prepareStatement(PstmtQuery);
+					pstmt.setString(1,(String)details.get("Emp_num") );
+					pstmt.setString(1,(String)details.get("EMP_Password") );
+					ResultSet res1 =pstmt.executeQuery();
+					int rscount = getRowCount(res1);
+					if(rscount == 0)
+					{
+						String replay = "The user does not exist!";
+						LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+						Message repl = new Message(map);
+						repl.setToMap("Type", "log in");
+						repl.setToMap("Error", replay);
+						client.sendToClient(repl);
+					}
+					else
+					{
+						res.next();
+						LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+						Message repl = new Message(map);
+						repl.setToMap("Type", "log in");
+						repl.setToMap("Emp_num", res.getString("Emp_num"));
+						repl.setToMap("Emp_pname", res.getString("Emp_pname"));
+						repl.setToMap("Emp_lname", res.getString("Emp_lname"));
+						repl.setToMap("EMP_password", res.getString("EMP_password"));
+						repl.setToMap("Emp_email", res.getString("Emp_email"));
+						repl.setToMap("Emp_organization", res.getString("Emp_organization"));
+						
+						
+						System.out.println("im before send lib!");
+						client.sendToClient(repl);
+					}
 				}
 				else {
 					res.next();
+					LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+					Message repl = new Message(map);
+					repl.setToMap("M_id", res.getString("M_id"));
+					repl.setToMap("M_email", res.getString("M_email"));
+					repl.setToMap("M_registerDate", res.getDate("M_registerDate"));
+					repl.setToMap("M_phone", res.getString("M_phone"));
+					repl.setToMap("M_status", res.getString("M_status"));
+					repl.setToMap("M_runLate", res.getInt("M_runLate"));
+					repl.setToMap("M_graduateDate", res.getDate("M_graduateDate"));
+					repl.setToMap("M_pname", res.getString("M_pname"));
+					repl.setToMap("M_lname", res.getString("M_lname"));
+					repl.setToMap("M_password", res.getString("M_password"));
 					
-					String repl = res.getString("StudentID");
-					repl += " ";
-					repl += res.getString("StudentNAme");
-					repl += " ";
-					repl += res.getString("StatusMembership");
-					repl += " ";
-					System.out.println(repl);
+					System.out.println("im before send!");
 					client.sendToClient(repl);
 				}
 				}
@@ -195,7 +255,7 @@ public class EchoServer extends AbstractServer
 
   
   
-  public void saveUserToDB(String ID, String name, String enumstatus)/*, String operation, boolean a)*/
+  public boolean saveUserToDB(String ID, String pname, String pass, java.sql.Date register, String phone, String status, int runlate, java.sql.Date graduate, String lname,String email)/*, String operation, boolean a)*/
   {
 
 		try {
@@ -203,18 +263,26 @@ public class EchoServer extends AbstractServer
 			//java.sql.Statement stmt = conn.createStatement();
 			//stmt.executeUpdate("create table client(UserName VARCHAR(40) , id Varchar(10), Department VARCHAR(10), tel Varchar(10));");
 			//stmt = conn.createStatement();
-			String query="insert into assignment2.student values(?,?,?)"; 
+			String query="insert into assignment2.member values(?,?,?,?,?,?,?,?,?,?)"; 
 			PreparedStatement ps = con.prepareStatement(query);
-			
-			ps.setString(2,name);
-			//ps.setString(2,operation);
-			ps.setString(3,enumstatus);
 			ps.setString(1,ID);
-			//ps.setBoolean(5, a);
+			ps.setString(2,email);
+			ps.setDate(3, register);
+			ps.setString(4,phone);
+			ps.setString(5, status);
+			ps.setInt(6, runlate);
+			ps.setDate(7, graduate);
+			ps.setString(8, pname);
+			ps.setString(9, lname);
+			ps.setString(10, pass);
 			ps.executeUpdate();
+			return true;
 			
 	 		
-		} catch (SQLException e) {	e.printStackTrace();}
+		} catch (SQLException e) {	
+			e.printStackTrace();
+			return false;
+		}
 	    
 	    
 	  
@@ -227,10 +295,7 @@ public class EchoServer extends AbstractServer
   public void setController(ServerController sc) {
 	  this.controller = sc;
   }
-  public void parsingTheData()
-  {
-  	
-  }
+
 
   
   

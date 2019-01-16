@@ -1,14 +1,18 @@
 package gui;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class PUP_Succes_Controller {
+public class PUP_Succes_Controller implements Initializable{
 	Stage Stage;
 	FXMLLoader loader;
 	Pane root;
@@ -48,6 +52,12 @@ public class PUP_Succes_Controller {
 
 	public void setActionStr(String actionStr) {
 		ActionStr = actionStr;
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		this.PUPSucces_ActionNameSucces();
 	}
 
 }

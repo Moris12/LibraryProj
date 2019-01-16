@@ -215,7 +215,7 @@ public class StudentMainPage1Controller implements Initializable {
 	{
 		return this.client;
 	}
-	void setClient(Client clnt)
+	public void setClient(Client clnt)
 	{
 		this.client = clnt;
 	}

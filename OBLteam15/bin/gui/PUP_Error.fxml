@@ -13,7 +13,7 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="PUPError_ErrorReason_LB" layoutX="28.0" layoutY="62.0" onMouseEntered="#PUPError_ErrorReason" text="For Example: this book not exist in DB" textFill="#f50505ba">
+      <Label fx:id="PUPError_ErrorReason_LB" layoutX="28.0" layoutY="62.0"  text="For Example: this book not exist in DB" textFill="#f50505ba">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
