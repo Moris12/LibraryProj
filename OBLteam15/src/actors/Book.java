@@ -12,7 +12,7 @@ public class Book {
 	{
 		normal, exclusive;
 	}
-	
+	//deleteMeLater - Testing Only! Don't punish me
 private String B_name;		//KEY FIELD
 private String B_author;	//KEY FIELD
 private ArrayList<String> B_themes = new ArrayList<String>();
