@@ -49,6 +49,9 @@ public class OBL_ServerController implements Initializable
 
     @FXML
     private TextArea OblServer_GeneralTextArea_TXA;
+
+    @FXML
+    private Button OblServer_DisConnect_BTN;
     
 	Stage Stage;
 	FXMLLoader loader;
@@ -90,6 +93,10 @@ public class OBL_ServerController implements Initializable
     @FXML
     void Obl_server_Cancel() {
     	this.OblServer_GeneralTextArea_TXA.setText("Asaf The King");
+
+    }
+    @FXML
+    void Obl_server_DisConnect() {
 
     }
 
