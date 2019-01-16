@@ -99,7 +99,7 @@ public class OBL_ServerController implements Initializable
     	sc.setPass(OblServer_Password_PSF.getText());
     	sc.setUser(OblServer_UserName_TXF.getText());
     	
-		if(OblServer_DBexist_CBX.isPressed() == true)
+		if(OblServer_DBexist_CBX.isSelected() == true)
 		{
 			sc.setDBexists(true);
 		}
