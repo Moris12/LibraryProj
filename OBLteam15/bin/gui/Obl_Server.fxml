@@ -34,7 +34,7 @@
          </font>
       </Label>
       <TextField fx:id="OblServer_Host_TXF" layoutX="115.0" layoutY="120.0" />
-      <Button fx:id="OblServer_ChangeConnection_BTN" layoutX="104.0" layoutY="266.0" mnemonicParsing="false" onAction="#Obl_server_SetConnection" opacity="0.7" prefHeight="17.0" prefWidth="91.0" text="Set Conection" textFill="#0c0000">
+      <Button fx:id="OblServer_ChangeConnection_BTN" layoutX="55.0" layoutY="268.0" mnemonicParsing="false" onAction="#Obl_server_SetConnection" opacity="0.7" prefHeight="19.0" prefWidth="66.0" text="connect" textFill="#0c0000">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
@@ -109,5 +109,13 @@
          </font>
       </Label>
       <PasswordField fx:id="OblServer_Password_PSF" layoutX="115.0" layoutY="186.0" />
+      <Button fx:id="OblServer_DisConnect_BTN" layoutX="204.0" layoutY="268.0" mnemonicParsing="false" onAction="#Obl_server_DisConnect" opacity="0.7" prefHeight="19.0" prefWidth="66.0" text="Disconnect" textFill="#0c0000">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+         <effect>
+            <InnerShadow blurType="ONE_PASS_BOX" choke="0.43" height="26.93" radius="10.495000000000001" width="17.05" />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>
