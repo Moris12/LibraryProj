@@ -1,24 +1,21 @@
 package actors;
 
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 
 public class Member {
 	
-	enum Status
+	/*enum Status
 	{
 		Active, Frozen, Locked, NotRegistered;
-	}
+	}*/
 static String table = "member";
 private String M_id;
 private String M_pname;
 private String M_lname;
-private String M_phoneNumber;
+private String M_phone;
 private String M_email;
-private Status M_status;
+private String M_status;
 private Date M_registerDate;
 private Date M_graduateDate;
 private int M_runLate;
@@ -40,13 +37,13 @@ public void setDetailsByHashMap(LinkedHashMap<String, Object> m)
 	else System.out.println("ILLEGAL: NO LNAME SET"); //essential field
 	
 	if(m.containsKey("M_phone"))
-		this.M_phoneNumber = (String) m.get("M_phone"); 
+		this.M_phone = (String) m.get("M_phone"); 
 	
 	if(m.containsKey("M_email"))
 		this.M_email = (String) m.get("M_email");
 	
 	if(m.containsKey("M_status"))
-		this.M_status = (Status) m.get("M_status"); //NOTICE: this might be a problem.
+		this.M_status = (String) m.get("M_status"); //NOTICE: this might be a problem.
 	
 	if(m.containsKey("M_graduateDate"))
 		this.M_graduateDate = (Date) m.get("M_graduateDate");
@@ -69,7 +66,7 @@ public LinkedHashMap<String, Object> getDetailsByHashMap()
 	m.put("M_lname", M_lname);
 	m.put("M_email", M_email);
 	m.put("M_status", M_status);
-	m.put("M_phone", M_phoneNumber);
+	m.put("M_phone", M_phone);
 	m.put("M_registerDate", M_registerDate);
 	m.put("M_runLate",M_runLate);
 	m.put("M_graduateDate", M_graduateDate);
@@ -258,9 +255,9 @@ public static LinkedHashMap<String, String> isValidInput(LinkedHashMap<String,Ob
 	//PHONE NUMBER CHECK
 	if(details.containsKey("M_phone"))
 	{
-		if(temp.M_phoneNumber.length()>=3 && temp.M_phoneNumber.length()<=10)
+		if(temp.M_phone.length()>=3 && temp.M_phone.length()<=10)
 		{
-			if(Member.isNumbers(temp.M_phoneNumber) == true) //the id is made of chars which are not only numbers.
+			if(Member.isNumbers(temp.M_phone) == true) //the id is made of chars which are not only numbers.
 			{
 				System.out.println("all good with the phone number");
 			}//end if made of signs

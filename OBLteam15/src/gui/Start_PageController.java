@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
+
 import client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,14 +15,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Message;
-import javafx.scene.control.TextArea;
-import actors.Member;
 /** 
  * 
  * @author shahar shani
@@ -110,12 +110,12 @@ public class Start_PageController implements Initializable
 	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		try {
+		/*try {
 			client = new Client(Hostt, Portt);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
     
 	@FXML
@@ -135,7 +135,7 @@ public class Start_PageController implements Initializable
     	map.put("Action", "Login");
     	map.put("User name", this.StartPage_UserName_TXF.getText());
     	map.put("Password", this.StartPage_Password_PSF.getText());
-    	this.msg= new Message(map);
+    	this.msg = new Message(map);
     	this.client.sendToServer(map); 
     	// send the information to server for approval of existance.
     	

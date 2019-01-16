@@ -56,7 +56,7 @@ import java.util.Enumeration;
 	    	SimpleDateFormat sdf = new SimpleDateFormat("MM_dd_yyyy_h_mm_ss");
 	    	openedtime = sdf.format(date);
 		}
-		
+		//function that disconnect the srver from listening to clients
 		public void disconnect()
 		{
 			if(echoServer!=null &&echoServer.isListening())
@@ -69,12 +69,12 @@ import java.util.Enumeration;
 			}
 			}
 		}
-		
+		//Function that creates a connection to the db and in case needed set him up from scratch
 		public  boolean connectToDB()
 		  {
 			String StmtQuery;
 			Statement stmt;
-		 String copyofbook = "CREATE TABLE `assignment2`.`?` ("
+		 String copyofbook = "CREATE TABLE `assignment2`.`?` (" //Save the String if the db needs to be set up
 			 + " `C_id` INT NOT NULL,"
 			 +" `C_edition` VARCHAR(45) NULL,"
 			  +"`C_printDate` DATE NULL,"
@@ -157,25 +157,17 @@ import java.util.Enumeration;
 			database = "jdbc:mysql://"+host+"/";
 				try 
 				{
+					
 		            Class.forName("com.mysql.jdbc.Driver").newInstance();
 		        }
 				catch (Exception ex) {/* handle the error*/}
 		        
 		        try 
 		        {
+		        	//getting connection to the db
 		            conn = DriverManager.getConnection(database,username,password);
-		         /*   stmt = conn.createStatement();
-		            StmtQuery = "CREATE DATABASE assignment2";
-		            stmt.execute(StmtQuery);
-		            StmtQuery = "CREATE TABLE assignment2.student("
-		            		+ "StudentID  VARCHAR(40),"
-		            		+ "StudentNAme  VARCHAR(40),"
-		            		+ "StatusMembership ENUM('Locked', 'Active', 'Frozen', 'NotRegistered'))"; 
-		            stmt.execute(StmtQuery); */
-		          
-		            //Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.3.68/test","root","Root");
 		            System.out.println("SQL connection succeed");
-		            clearLoggedInUsers();
+		            
 		            
 		     	} 
 		        catch (SQLException ex) 
@@ -187,6 +179,9 @@ import java.util.Enumeration;
 		            }
 		        if(DBexists == false)
 		        {
+		        	/*if the user indicate in the screen that the db does not exist
+		        	 *and than set him up
+		        	 */
 		        	try {
 		        		StmtQuery = "CREATE DATABASE assignment2";
 		        		stmt = conn.createStatement();
@@ -204,6 +199,7 @@ import java.util.Enumeration;
 					}
 		        	
 		        }
+		        
 		    	echoServer = new EchoServer(port);
 				echoServer.setConn(conn);
 				//echoServer.saveUserToDB("123451", "Shifra", "Active");

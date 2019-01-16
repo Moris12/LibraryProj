@@ -205,41 +205,7 @@ public class EchoServer extends AbstractServer
 			}	
 	  catch(Exception e) {}
 	  
-	  /*System.out.println("Ani po");
-	  LinkedHashMap<String,Object> params = new LinkedHashMap<String,Object>();
-	  Message reply = new Message(params);
-	 
-	  Message mesg = (Message) msg;
-	  String type = (String) mesg.getMap().get("type");
-	  String query = null;
-	  //PreparedStatement pstmt = null;
-	  String PstmtQuery = null;
-	  String searchExp = null;
-	  Date date = new Date();
-	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd H:mm:ss");
-	  String formattedDate = sdf.format(date);
-	  
-	 try 
-		{
-			Statement stmt = con.createStatement();  
-			PreparedStatement pstmt = null;
-			switch (type)
-			{
-			case "UpdateStatus":
-				System.out.println("syso ze hashov");
-				String StudentID = (String) mesg.getMap().get("ID");
-				String Status = (String) mesg.getMap().get("Status");
-				
-				PstmtQuery="UPDATE assignment2.student SET status=? WHERE StudentID=?";
-				pstmt = con.prepareStatement(PstmtQuery);
-				pstmt.setString(1,Status);
-				pstmt.setString(2, StudentID);
-				pstmt.executeUpdate();
-				break;
-				
-				
-			
-			default:*/
+
 	  			
 				System.out.println("Message received: " + msg + " from " + client);
 				//break;
@@ -247,14 +213,10 @@ public class EchoServer extends AbstractServer
 			
 			}
 	  
-		//}
-	   //System.out.println("Message received: " + msg + " from " + client);
-			
-		//catch(Exception e) {}	
-	 // }
-
   
-  
+  /*function that saves user member to the db by getting all the attributes
+   * 
+   */
   public boolean saveUserToDB(String ID, String pname, String pass, java.sql.Date register, String phone, String status, int runlate, java.sql.Date graduate, String lname,String email)/*, String operation, boolean a)*/
   {
 
@@ -322,15 +284,11 @@ public class EchoServer extends AbstractServer
   
   //Class methods ***************************************************
   
-  /**
-   * This method is responsible for the creation of 
-   * the server instance (there is no UI in this phase).
-   *
-   * @param args[0] The port number to listen on.  Defaults to 5555 
-   *          if no argument is entered.
+
+
+  /*Function that recieve a result set type and returns the number of rows 
+   * that exists in the result set
    */
-
-
 	private int getRowCount(ResultSet resultSet) //helper method to see if a select query has any matching rows
 	{
 		if (resultSet == null) {
