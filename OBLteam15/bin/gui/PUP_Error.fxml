@@ -18,9 +18,9 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="PUPError_Cancel_BTN" cancelButton="true" layoutX="239.0" layoutY="112.0" mnemonicParsing="false" onAction="#PUPError_Cancel" text="Cancel">
+      <Button fx:id="PUPError_Cancel_BTN" cancelButton="true" layoutX="248.0" layoutY="118.0" mnemonicParsing="false" onAction="#PUPError_Cancel" prefHeight="24.0" prefWidth="53.0" text="Ok">
          <font>
-            <Font name="System Bold Italic" size="11.0" />
+            <Font name="System Bold Italic" size="10.0" />
          </font>
          <effect>
             <InnerShadow blurType="ONE_PASS_BOX" radius="7.035" width="9.14" />

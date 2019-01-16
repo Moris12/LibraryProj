@@ -8,14 +8,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="PUPSucces_ActionNameSucces_LB" layoutX="35.0" layoutY="34.0" onMouseEntered="#PUPSucces_ActionNameSucces" text="The ActionName success !" textFill="#2bab51dc" underline="true">
+      <Label fx:id="PUPSucces_ActionNameSucces_LB" layoutX="34.0" layoutY="33.0" onMouseEntered="#PUPSucces_ActionNameSucces" text="The ActionName success !" textFill="#2bab51dc" underline="true">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Button fx:id="PUPSucces_Cancel_BTN" cancelButton="true" layoutX="105.0" layoutY="87.0" mnemonicParsing="false" onAction="#PUPSucces_Cancel" text="Cancel">
+      <Button fx:id="PUPSucces_Cancel_BTN" cancelButton="true" layoutX="179.0" layoutY="90.0" mnemonicParsing="false" onAction="#PUPSucces_Cancel" prefHeight="23.0" prefWidth="57.0" text="Ok">
          <font>
-            <Font name="System Bold Italic" size="11.0" />
+            <Font name="System Bold Italic" size="10.0" />
          </font>
          <effect>
             <InnerShadow blurType="ONE_PASS_BOX" radius="7.035" width="9.14" />
