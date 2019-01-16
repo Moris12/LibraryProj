@@ -1,7 +1,11 @@
 package gui;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,7 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
-public class PUP_ErrorController {
+public class PUP_ErrorController implements Initializable {
 	
 	Stage Stage;
 	FXMLLoader loader;
@@ -51,6 +55,11 @@ public class PUP_ErrorController {
 
 	public void setErrorStr(String errorStr) {
 		this.ErrorStr = errorStr;
+	}
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		this.PUPError_ErrorReason();
 	}
 
 }
