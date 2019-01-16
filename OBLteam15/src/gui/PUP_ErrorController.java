@@ -34,13 +34,13 @@ public class PUP_ErrorController {
 	}
     @FXML
     void PUPError_Cancel() {
-    	this.PUPError_ErrorReason_LB.setText(ErrorStr);
+    	this.Stage.close();
 
     }
 
     @FXML
     void PUPError_ErrorReason() {
-    	this.Stage.close();
+    	this.PUPError_ErrorReason_LB.setText(ErrorStr);
     	
 
     }
