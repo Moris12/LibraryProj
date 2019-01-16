@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Librarian_MainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Librarian_MainPageController">
    <children>
       <Label layoutX="17.0" layoutY="21.0" text="OBL ( Ort Braude Library )">
          <font>
@@ -29,7 +29,7 @@
             <Font name="System Bold Italic" size="9.0" />
          </font>
       </Label>
-      <MenuButton fx:id="LibririanMainPage_InventoryManag_MNBTN" layoutX="29.0" layoutY="131.0" mnemonicParsing="false" onAction="#LibrarianMainPage_InventoryManagment" prefHeight="24.0" prefWidth="141.0" text="Inventory managment">
+      <MenuButton fx:id="LibririanMainPage_InventoryManag_MNBTN" layoutX="29.0" layoutY="208.0" mnemonicParsing="false" onAction="#LibrarianMainPage_InventoryManagment" prefHeight="24.0" prefWidth="141.0" text="Inventory managment">
          <items>
             <MenuItem fx:id="LibririanMainPage_AddNewBook_MNI" mnemonicParsing="false" text="Add new book" />
             <MenuItem fx:id="LibririanMainPage_RemoveBook_MNI" mnemonicParsing="false" text="Remove book" />
@@ -100,7 +100,7 @@
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Button fx:id="LibririanMainPage_ReturnBook_BTN" layoutX="29.0" layoutY="156.0" mnemonicParsing="false" onAction="#LibrarianMainPage_ReturnBook" prefHeight="25.0" prefWidth="141.0" text="Return a book">
+      <Button fx:id="LibririanMainPage_ReturnBook_BTN" layoutX="29.0" layoutY="130.0" mnemonicParsing="false" onAction="#LibrarianMainPage_ReturnBook" prefHeight="25.0" prefWidth="141.0" text="Return a book">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
@@ -108,7 +108,7 @@
             <InnerShadow height="13.09" radius="7.22" width="17.79" />
          </effect>
       </Button>
-      <Button fx:id="LibririanMainPage_ViewMemberCard_BTN" layoutX="29.0" layoutY="182.0" mnemonicParsing="false" onAction="#LibrarianMainPage_ViewMemberShipCard" prefHeight="25.0" prefWidth="141.0" text="View a membership card">
+      <Button fx:id="LibririanMainPage_ViewMemberCard_BTN" layoutX="29.0" layoutY="156.0" mnemonicParsing="false" onAction="#LibrarianMainPage_ViewMemberShipCard" prefHeight="25.0" prefWidth="141.0" text="View a membership card">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
@@ -116,7 +116,7 @@
             <InnerShadow height="13.09" radius="7.22" width="17.79" />
          </effect>
       </Button>
-      <Button fx:id="LibririanMainPage_Messages_BTN" layoutX="29.0" layoutY="208.0" mnemonicParsing="false" onAction="#LibrarianMainPage_Messages" prefHeight="25.0" prefWidth="141.0" text="Messages">
+      <Button fx:id="LibririanMainPage_Messages_BTN" layoutX="29.0" layoutY="182.0" mnemonicParsing="false" onAction="#LibrarianMainPage_Messages" prefHeight="25.0" prefWidth="141.0" text="Messages">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
