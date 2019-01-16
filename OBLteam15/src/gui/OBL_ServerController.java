@@ -49,6 +49,9 @@ public class OBL_ServerController implements Initializable
 
     @FXML
     private TextArea OblServer_GeneralTextArea_TXA;
+
+    @FXML
+    private Button OblServer_DisConnect_BTN;
     
 	Stage Stage;
 	FXMLLoader loader;
@@ -92,6 +95,18 @@ public class OBL_ServerController implements Initializable
     	this.OblServer_GeneralTextArea_TXA.setText("Asaf The King");
 
     }
+    @FXML
+    void Obl_server_DisConnect() {
+    	sc.disconnect();
+    	PUP_ErrorController pupe = new PUP_ErrorController();
+    	pupe.setErrorStr("Server disconnected");
+    	try {
+			pupe.start(Stage);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
     @FXML
     void Obl_server_SetConnection() {
@@ -107,8 +122,28 @@ public class OBL_ServerController implements Initializable
 		{
 			sc.setDBexists(false);
 		}
-		if(sc.connectToDB()) OblServer_GeneralTextArea_TXA.setText("Connection Succesfuly");
-		else OblServer_GeneralTextArea_TXA.setText("Connection Unsuccesfuly");	
+		if(sc.connectToDB()) 
+		{
+			PUP_ErrorController pupe = new PUP_ErrorController();
+	    	pupe.setErrorStr("Connection Succesful");
+	    	try {
+				pupe.start(Stage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else 
+		{
+			PUP_ErrorController pupe = new PUP_ErrorController();
+	    	pupe.setErrorStr("Connection unseccesfuly");
+	    	try {
+				pupe.start(Stage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
     }
 
