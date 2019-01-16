@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
@@ -13,12 +14,12 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="PUPError_ErrorReason_LB" layoutX="28.0" layoutY="62.0"  text="For Example: this book not exist in DB" textFill="#f50505ba">
+      <Label fx:id="PUPError_ErrorReason_LB" layoutX="28.0" layoutY="62.0" text="For Example: this book not exist in DB" textFill="#f50505ba">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="PUPError_Cancel_BTN" cancelButton="true" layoutX="248.0" layoutY="118.0" mnemonicParsing="false" onAction="#PUPError_Cancel" prefHeight="24.0" prefWidth="53.0" text="Ok">
+      <Button fx:id="PUPError_Cancel_BTN" cancelButton="true" layoutX="248.0" layoutY="118.0" mnemonicParsing="false" onAction="#PUPError_Cancel" onMouseClicked="#PUPError_Cancel" prefHeight="24.0" prefWidth="53.0" text="Ok">
          <font>
             <Font name="System Bold Italic" size="10.0" />
          </font>
