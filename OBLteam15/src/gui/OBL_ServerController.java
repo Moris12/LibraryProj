@@ -62,7 +62,7 @@ public class OBL_ServerController implements Initializable
 	public void start(Stage arg0) throws Exception {
 		
 		this.Stage = new Stage();
-		System.out.println("im here");
+		
 		this.loader = new FXMLLoader();
 		this.root = loader.load(getClass().getResource("/gui/Obl_Server.fxml").openStream());
 		this.scene = new Scene(root);	

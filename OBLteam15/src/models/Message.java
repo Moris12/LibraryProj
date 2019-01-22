@@ -22,12 +22,4 @@ public class Message extends AbstractModel {
 		return this.map;
 	}
 
-	//public void setMap(LinkedHashMap<String,Object> map) {
-	public void setToMap(String key, Object value) {
-		//this.map = map;
-		this.Key=key;
-		this.Value=value;
-		map.put(Key, Value);
-		
-	}
 }

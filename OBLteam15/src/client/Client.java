@@ -62,7 +62,8 @@ public class Client extends AbstractClient {
 		//this function is a "navigation" func. we get the details from the server and than call the function we need.
 		Message mesag = (Message) msg;
 		LinkedHashMap<String, Object> m = (LinkedHashMap<String, Object>) mesag.getMap();
-		switch((String) m.get("Type"))
+		String type = (String) m.get("Type");
+		switch(type)
 		{
 		case "log in":
 		{

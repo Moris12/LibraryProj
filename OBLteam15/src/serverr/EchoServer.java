@@ -11,10 +11,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import com.mysql.fabric.xmlrpc.base.Data;
 
@@ -90,18 +92,15 @@ public class EchoServer extends AbstractServer
   public void handleMessageFromClient(Object msg, ConnectionToClient client)
   {
 
-	  System.out.println("Message received: " + msg + " from " + client);
+	  //System.out.println("Message received: " + msg + " from " + client);
 
 	  String PstmtQuery;
 	  LinkedHashMap<String,Object> details;
 	  Message mesag;
-	  System.out.println("declarations");
 	  mesag = (Message)msg;
-	  System.out.println("after message casting");
 	  details = (LinkedHashMap<String,Object>) mesag.getMap();
-	  System.out.println("after map");
 	  String type =(String) details.get("Type");
-	  System.out.println("hhh" + (String)details.get("Type"));
+	  System.out.println("hhh" + " " + (String)details.get("Type"));
 
 	  
 	  try 
@@ -129,24 +128,128 @@ public class EchoServer extends AbstractServer
 							{
 								
 								LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+								map.put("Type", "add");
 								Message repl = new Message(map);
-								repl.setToMap("Type", "add");
+								System.out.println("im before sending user saved");
 								client.sendToClient(repl);
 							}
 							else
 							{
 								LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+								
+								map.put("Type", "add");
+								map.put("Error", "Cant add member!");
 								Message repl = new Message(map);
-								repl.setToMap("Type", "log in");
-								repl.setToMap("Error", "Cant add member!");
 								client.sendToClient(repl);
 							}
 							
 						}
+						else if(table == "emp")
+						{
+							String num = (String)details.get("Emp_num");
+							String email = (String)details.get("Emp_email");
+							String pname = (String)details.get("Emp_pname");
+							String lname = (String)details.get("Emp_lname");
+							String pass = (String)details.get("Emp_password");
+							String organization = (String)details.get("Emp_organization");
+							if(SaveLibToDB(num, pname,lname, email,organization,pass))
+							{
+								LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+								map.put("Type", "add");
+								Message repl = new Message(map);
+								client.sendToClient(repl);
+							}
+							else
+							{
+								LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+								
+								map.put("Type", "add");
+								map.put("Error", "Cant Employee!");
+								Message repl = new Message(map);
+								client.sendToClient(repl);
+							}
+							
+						}
+						else if(table == "book")
+						{
+							String name = (String)details.get("B_name");
+							String author = (String)details.get("B_author");
+							String themes = (String)details.get("B_themes");
+							String tcPath = (String)details.get("B_TcPath");
+							String btype = (String)details.get("B_type");
+							int instancesAmount = (int)details.get("B_instancesAmount");
+							boolean iswait = (boolean)details.get("B_isWaiting");
+							if(SaveBookToDB(name, author,themes, tcPath,btype,instancesAmount,iswait))
+							{
+								LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+								map.put("Type", "add");
+								Message repl = new Message(map);
+								client.sendToClient(repl);
+							}
+							else
+							{
+								LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+								
+								map.put("Type", "add");
+								map.put("Error", "Cant add book!");
+								Message repl = new Message(map);
+								client.sendToClient(repl);
+							}
+							
+						
+						}
+						else if(table == "copy of book" )
+						{
+							 String copyofbook = "CREATE TABLE `assignment2`.`?` (" //Save the String if the db needs to be set up
+									 + " `C_id` INT NOT NULL,"
+									 +" `C_edition` VARCHAR(45) NULL,"
+									  +"`C_printDate` DATE NULL,"
+									  +"`C_purchaseDate` DATE NULL,"
+									  +"`C_shelf` VARCHAR(45) NULL,"
+									  +"PRIMARY KEY (`C_id`))"; 
+							 String copyname = (String)details.get("B_name")+(String)details.get("B_author");
+							 String[] UID = UUID.randomUUID().toString().split("-", 2);
+							 String uniqueID = UID[0];
+							 int cid = Integer.parseInt(uniqueID);
+							 String edition = (String)details.get("C_edition");
+							 java.sql.Date print = (java.sql.Date)details.get("C_printDate");
+							 Date date = new Date();  //java util date
+							 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+							 String currentTime = sdf.format(date);
+							 try 
+							 {
+								date=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(currentTime);
+							} 
+							 catch (ParseException e) 
+							{
+								e.printStackTrace();
+							}
+							java.sql.Date purchase = new java.sql.Date(date.getTime());
+							String shelf = (String)details.get("C_shelf");
+							if(SavecopyOfBook(copyname, cid, edition, print, purchase, shelf))
+							{
+								LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();	
+								map.put("Type", "add");
+								Message repl = new Message(map);
+								client.sendToClient(repl);
+							}
+							else
+							{
+								LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();	
+								map.put("Type", "add");
+								map.put("Error", "Cant add copy of book!");
+								Message repl = new Message(map);
+								client.sendToClient(repl);
+							}
+							 
+						}
+							
+						
 			} break;
 						
 				
 			case "log in":
+			{
 				PstmtQuery="SELECT * FROM assignment2.member WHERE M_id=? AND M_password=? LIMIT 1";
 				pstmt = con.prepareStatement(PstmtQuery);
 				pstmt.setString(1, (String)details.get("Username"));
@@ -166,9 +269,10 @@ public class EchoServer extends AbstractServer
 					{
 						String replay = "The user does not exist!";
 						LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+						
+						map.put("Type", "log in");
+						map.put("Error", replay);
 						Message repl = new Message(map);
-						repl.setToMap("Type", "log in");
-						repl.setToMap("Error", replay);
 						System.out.println("im sending no user");
 						client.sendToClient(repl);
 					}
@@ -196,26 +300,192 @@ public class EchoServer extends AbstractServer
 				else {
 					res.next();
 					LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
-					Message repl = new Message(map);
-					repl.setToMap("Type", "log in");
-					repl.setToMap("M_id", res.getString("M_id"));
-					repl.setToMap("M_email", res.getString("M_email"));
-					repl.setToMap("M_registerDate", res.getDate("M_registerDate"));
-					repl.setToMap("M_phone", res.getString("M_phone"));
-					repl.setToMap("M_status", res.getString("M_status"));
-					repl.setToMap("M_runLate", res.getInt("M_runLate"));
-					repl.setToMap("M_graduateDate", res.getDate("M_graduateDate"));
-					repl.setToMap("M_pname", res.getString("M_pname"));
-					repl.setToMap("M_lname", res.getString("M_lname"));
-					repl.setToMap("M_password", res.getString("M_password"));
 					
+					map.put("Type", "log in");
+					map.put("M_id", res.getString("M_id"));
+					map.put("M_email", res.getString("M_email"));
+					map.put("M_registerDate", res.getDate("M_registerDate"));
+					map.put("M_phone", res.getString("M_phone"));
+					map.put("M_status", res.getString("M_status"));
+					map.put("M_runLate", res.getInt("M_runLate"));
+					map.put("M_graduateDate", res.getDate("M_graduateDate"));
+					map.put("M_pname", res.getString("M_pname"));
+					map.put("M_lname", res.getString("M_lname"));
+					map.put("M_password", res.getString("M_password"));
+					Message repl = new Message(map);
 					System.out.println("im before send!");
 					client.sendToClient(repl);
 				}
+				
+				}break;
+				
+			case"search book":
+			{
+				System.out.println((String)details.get("By"));
+				switch((String)details.get("By"))
+				{
+				case "book name":
+				{
+					String bname = (String)details.get("key");
+					System.out.println(bname);
+					PstmtQuery="SELECT * FROM assignment2.book WHERE B_name=? LIMIT 1";
+					pstmt = con.prepareStatement(PstmtQuery);
+					pstmt.setString(1, bname);
+					ResultSet res =pstmt.executeQuery();
+					int rcount = getRowCount(res);
+					System.out.println(rcount);
+					if(rcount == 0)
+					{
+						String replay = "The book does not exist!";
+						LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+						
+						map.put("Type", "search book");
+						map.put("Error", replay);
+						Message repl = new Message(map);
+						System.out.println("im sending no user");
+						client.sendToClient(repl);
+					}
+					else {
+						res.next();
+						LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+						
+						map.put("Type", "search book");
+						map.put("Sender", (String)details.get("Sender"));
+						map.put("B_name", res.getString("B_name"));
+						map.put("B_author", res.getString("B_author"));
+						map.put("B_themes", res.getString("B_themes"));
+						map.put("B_TcPath", res.getString("B_TcPath"));
+						map.put("B_type", res.getString("B_type"));
+						map.put("B_instancesAmount", res.getInt("B_instancesAmount"));
+						map.put("B_isWaiting", res.getBoolean("B_isWaiting"));
+						Message repl = new Message(map);
+						client.sendToClient(repl);
+					}
+					
+				}break;
+				case "author name":
+				{
+					String aname = (String)details.get("key");
+					PstmtQuery="SELECT * FROM assignment2.book WHERE B_author=? LIMIT 1";
+					pstmt = con.prepareStatement(PstmtQuery);
+					pstmt.setString(1, aname);
+					ResultSet res =pstmt.executeQuery();
+					int rcount = getRowCount(res);
+					if(rcount == 0)
+					{
+						String replay = "The book does not exist!";
+						LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+						
+						map.put("Type", "search book");
+						map.put("Error", replay);
+						Message repl = new Message(map);
+						System.out.println("im sending no user");
+						client.sendToClient(repl);
+					}
+					else {
+						res.next();
+						LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+						
+						map.put("Type", "search book");
+						map.put("B_name", res.getString("B_name"));
+						map.put("B_author", res.getString("B_author"));
+						map.put("B_themes", res.getDate("B_themes"));
+						map.put("B_TcPath", res.getString("B_TcPath"));
+						map.put("B_type", res.getString("B_type"));
+						map.put("B_instancesAmount", res.getInt("B_instancesAmount"));
+						map.put("B_isWaiting", res.getDate("B_isWaiting"));
+						Message repl = new Message(map);
+						System.out.println("im before send!");
+						client.sendToClient(repl);
+					}
+					
+				}break;
+				
+				case "category":
+				{
+					String aname = (String)details.get("key");
+					PstmtQuery="SELECT * FROM assignment2.book WHERE B_themes=? LIMIT 1";
+					pstmt = con.prepareStatement(PstmtQuery);
+					pstmt.setString(1, aname);
+					ResultSet res =pstmt.executeQuery();
+					int rcount = getRowCount(res);
+					if(rcount == 0)
+					{
+						String replay = "The book does not exist!";
+						LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+						
+						map.put("Type", "search book");
+						map.put("Error", replay);
+						Message repl = new Message(map);
+						System.out.println("im sending no user");
+						client.sendToClient(repl);
+					}
+					else {
+						res.next();
+						LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+						
+						map.put("Type", "search book");
+						map.put("B_name", res.getString("B_name"));
+						map.put("B_author", res.getString("B_author"));
+						map.put("B_themes", res.getDate("B_themes"));
+						map.put("B_TcPath", res.getString("B_TcPath"));
+						map.put("B_type", res.getString("B_type"));
+						map.put("B_instancesAmount", res.getInt("B_instancesAmount"));
+						map.put("B_isWaiting", res.getDate("B_isWaiting"));
+						Message repl = new Message(map);
+						System.out.println("im before send!");
+						client.sendToClient(repl);
+					}
+					
+				}break;
+				case "free text":
+				{
+					String aname = (String)details.get("key");
+					PstmtQuery="SELECT * FROM assignment2.book WHERE B_themes=? LIMIT 1";
+					pstmt = con.prepareStatement(PstmtQuery);
+					pstmt.setString(1, aname);
+					ResultSet res =pstmt.executeQuery();
+					int rcount = getRowCount(res);
+					if(rcount == 0)
+					{
+						String replay = "The book does not exist!";
+						LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+						
+						map.put("Type", "search book");
+						map.put("Error", replay);
+						Message repl = new Message(map);
+						System.out.println("im sending no user");
+						client.sendToClient(repl);
+					}
+					else {
+						res.next();
+						LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
+						
+						map.put("Type", "search book");
+						map.put("B_name", res.getString("B_name"));
+						map.put("B_author", res.getString("B_author"));
+						map.put("B_themes", res.getDate("B_themes"));
+						map.put("B_TcPath", res.getString("B_TcPath"));
+						map.put("B_type", res.getString("B_type"));
+						map.put("B_instancesAmount", res.getInt("B_instancesAmount"));
+						map.put("B_isWaiting", res.getDate("B_isWaiting"));
+						Message repl = new Message(map);
+						System.out.println("im before send!");
+						client.sendToClient(repl);
+					}
+					
+				}break;
 				}
-			}	
+				
+				
+			}break;
+			
+			
+			}
+		}
+		
 	  catch(Exception e) {}
-	  
+			  
 
 	  			
 				System.out.println("Message received: " + msg + " from " + client);
@@ -260,6 +530,80 @@ public class EchoServer extends AbstractServer
 	    
 	  
 	 }
+  
+  public boolean SaveLibToDB(String num, String pname, String lname, String email, String organization, String pass)
+  {
+	  try {
+		  String query="insert into assignment2.librarian values(?,?,?,?,?,?)"; 
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1,num);
+			ps.setString(2,pname);
+			ps.setString(3, lname);
+			ps.setString(4,email);
+			ps.setString(5, organization);
+			ps.setString(6, pass);
+			ps.executeUpdate();
+			return true;
+	  }
+	  catch (SQLException e) {	
+			e.printStackTrace();
+			return false;
+		}
+  }
+  
+  public boolean SaveBookToDB(String name,String author,String themes,String tcPath,String btype, int instancesAmount, boolean iswaiting)
+  {
+	  try {
+		  String query="insert into assignment2.book values(?,?,?,?,?,?,?)"; 
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1,name);
+			ps.setString(2,author);
+			ps.setString(3, themes);
+			ps.setString(4,tcPath);
+			ps.setString(5, btype);
+			ps.setInt(6, instancesAmount );
+			ps.setBoolean(7, iswaiting);
+			ps.executeUpdate();
+			return true;
+	  }
+	  catch (SQLException e) {	
+			e.printStackTrace();
+			return false;
+		}
+  }
+  
+  public boolean SavecopyOfBook(String copyname,int cid, String edition, java.sql.Date print, java.sql.Date purchase, String shelf)
+  {
+	  	PreparedStatement pstmt = null;
+		 String copyofbook = "CREATE TABLE `assignment2`.`?` (" //Save the String if the db needs to be set up
+				 + " `C_id` INT NOT NULL,"
+				 +" `C_edition` VARCHAR(45) NULL,"
+				  +"`C_printDate` DATE NULL,"
+				  +"`C_purchaseDate` DATE NULL,"
+				  +"`C_shelf` VARCHAR(45) NULL,"
+				  +"PRIMARY KEY (`C_id`))";
+		 try {
+			 pstmt = con.prepareStatement(copyofbook);
+			 pstmt.setString(1, copyname);
+			 pstmt.execute();
+			 String query="insert into assignment2.? values(?,?,?,?,?)"; 
+			 pstmt = con.prepareStatement(query);
+			 pstmt.setString(1,copyname);
+			 pstmt.setInt(2,cid);
+			 pstmt.setString(3, edition);
+			 pstmt.setDate(4,print);
+			 pstmt.setDate(5, purchase);
+			 pstmt.setString(6, shelf );
+			 pstmt.executeUpdate();
+			 return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		 
+		
+  }
   	
   public void setConn(Connection conn) {
 	  this.con = conn;

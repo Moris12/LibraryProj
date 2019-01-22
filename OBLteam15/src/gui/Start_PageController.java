@@ -40,7 +40,7 @@ public class Start_PageController implements Initializable
 	Message msg;
 	ConnectionSettingsController CSC;
 	Client client;
-	static public String Hostt = "10.100.102.8";
+	static public String Hostt = "127.0.0.1";
 	static public int Portt = 5555;
 	
 
