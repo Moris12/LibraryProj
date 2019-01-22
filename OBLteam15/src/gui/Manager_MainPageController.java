@@ -1,5 +1,6 @@
 package gui;
 
+import actors.Employee;
 import client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,7 @@ public class Manager_MainPageController {
 	Pane root;
 	Scene scene;
 	Client client;
+	Employee me;
 
     @FXML
     private Label ManagerMainPage_HelloManagerName_LB;
@@ -120,7 +122,7 @@ public class Manager_MainPageController {
     }
 
     @FXML
-    void ManagerMainPage_Date(MouseEvent event) {
+    void ManagerMainPage_Date() {
 
     }
 
@@ -130,12 +132,12 @@ public class Manager_MainPageController {
     }
 
     @FXML
-    void ManagerMainPage_HelloManagerName(MouseEvent event) {
+    void ManagerMainPage_HelloManagerName() {
 
     }
 
     @FXML
-    void ManagerMainPage_Hour(MouseEvent event) {
+    void ManagerMainPage_Hour() {
 
     }
 
@@ -145,7 +147,7 @@ public class Manager_MainPageController {
     }
 
     @FXML
-    void ManagerMainPage_LogOut(MouseEvent event) {
+    void ManagerMainPage_LogOut() {
 
     }
 
@@ -165,7 +167,7 @@ public class Manager_MainPageController {
     }
 
     @FXML
-    void ManagerMainPage_Status(MouseEvent event) {
+    void ManagerMainPage_Status() {
 
     }
 

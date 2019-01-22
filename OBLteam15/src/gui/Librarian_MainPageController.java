@@ -2,8 +2,9 @@ package gui;
 
 import java.util.LinkedHashMap;
 
+import actors.Employee;
 import client.Client;
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,7 +15,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -22,12 +22,14 @@ import models.Message;
 
 public class Librarian_MainPageController {
 
-	Stage Stg;
-	FXMLLoader loader;
-	Pane root;
-	Scene scene;
-	Client client;
+	private Stage stg;
+	private FXMLLoader FxmlL;
+	private Scene scn;
+	private Pane rt;
+	private Client client;
+	Employee me;
 	
+	CreateNewMemberPOPLibrarianController newMemberForm;
     @FXML
     private Label LibririanMainPage_LibrarianName_LB;
 
@@ -106,7 +108,6 @@ public class Librarian_MainPageController {
     {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
     	map.put("Action", "Search Book");
-    	Message msg;
     	String searchVal;
     	if(Search_group.getSelectedToggle() != null)
     	{
@@ -134,9 +135,7 @@ public class Librarian_MainPageController {
     			map.put("by", "free text");
     			map.put("key",searchVal);
     		}
-    		//end if's.
-    		msg = new Message(map);
-    		//send to server?.
+    		new Message(map);
     	}
     	else //no radio button selected 
     	{
@@ -147,22 +146,28 @@ public class Librarian_MainPageController {
     @FXML
     void LibrarianMainPage_CreateNewMemberCard() throws Exception //create new member func 
     {
-    	CreateNewMemberPOPLibrarianController newMemberForm = new CreateNewMemberPOPLibrarianController();
-    	newMemberForm.start(null); //one day we will send client here
+    	newMemberForm = new CreateNewMemberPOPLibrarianController();
+    	newMemberForm.setClient(this.client);
+    	Platform.runLater(()->{try {
+			newMemberForm.start(null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} });
     }
 
     @FXML
-    void LibrarianMainPage_Date(MouseEvent event) {
+    void LibrarianMainPage_Date() {
 
     }
 
     @FXML
-    void LibrarianMainPage_HelloLibrarianName(MouseEvent event) {
+    void LibrarianMainPage_HelloLibrarianName() {
 
     }
 
     @FXML
-    void LibrarianMainPage_Hour(MouseEvent event) {
+    void LibrarianMainPage_Hour() {
 
     }
 
@@ -172,12 +177,12 @@ public class Librarian_MainPageController {
     }
 
     @FXML
-    void LibrarianMainPage_LogOut(MouseEvent event) {
+    void LibrarianMainPage_LogOut() {
 
     }
 
     @FXML
-    void LibrarianMainPage_Messages(ActionEvent event) {
+    void LibrarianMainPage_Messages() {
 
     }
 
@@ -190,31 +195,25 @@ public class Librarian_MainPageController {
     }
 
     @FXML
-    void LibrarianMainPage_Status(MouseEvent event) {
+    void LibrarianMainPage_Status() {
 
     }
 
     @FXML
-    void LibrarianMainPage_ViewMemberShipCard(ActionEvent event) {
+    void LibrarianMainPage_ViewMemberShipCard() {
 
     }
     
 	public void start(Stage arg0) throws Exception 
 	{
-		System.out.println(arg0);
-		System.out.println("1");	
-		this.Stg = arg0;
-		System.out.println(Stg);
-		System.out.println("2");
-		this.loader = new FXMLLoader();
-		System.out.println("3");
-		this.root = loader.load(getClass().getResource("/gui/Librarian_MainPage.fxml").openStream());
-		System.out.println("4");
-		this.scene = new Scene(root);			
-		System.out.println("5");
-		this.Stg.setScene(scene);
-		System.out.println("6");
-		this.Stg.showAndWait();
+		this.stg = new Stage();
+		this.FxmlL = new FXMLLoader();
+		System.out.println("load FXML");
+		this.rt = FxmlL.load(getClass().getResource("/gui/Librarian_MainPage.fxml").openStream());
+		this.scn = new Scene(rt);
+		this.scn.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
+		this.stg.setScene(scn);
+		this.stg.showAndWait();
 		
 	}
 

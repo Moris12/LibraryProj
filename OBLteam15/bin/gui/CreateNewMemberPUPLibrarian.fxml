@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="564.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="564.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CreateNewMemberPOPLibrarianController">
    <children>
       <Label ellipsisString="" layoutX="28.0" layoutY="11.0" opacity="0.64" text="Create a new membership: " textFill="#000000e7">
          <font>
@@ -138,5 +138,20 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <Button fx:id="CreateNewMemberPUPLibrarian_Done_BTN" cancelButton="true" layoutX="194.0" layoutY="287.0" mnemonicParsing="false" onAction="#CreateNewMemberPUP_DONE" prefHeight="25.0" prefWidth="51.0" text="Done">
+         <font>
+            <Font name="System Bold Italic" size="11.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.49" specularConstant="0.05">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

@@ -67,9 +67,9 @@ public class ReturnBookPUPController {
     }
 
 	public void start(Stage arg0) throws Exception {
-		final Modality WINDOW_MODAL = null; //makes it appear as pop up that has to be closed.
+		//final Modality WINDOW_MODAL = null; //makes it appear as pop up that has to be closed.
 		this.Stage = new Stage();
-		Stage.initModality(WINDOW_MODAL);
+		//Stage.initModality(WINDOW_MODAL);
 		this.loader = new FXMLLoader();
 		this.root = loader.load(getClass().getResource("/gui/ReturnBookPUP.fxml").openStream());
 		this.scene = new Scene(root);			

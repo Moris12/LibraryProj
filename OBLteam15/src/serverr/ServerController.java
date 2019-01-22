@@ -88,7 +88,7 @@ import java.util.Enumeration;
 				  +"`B_themes` VARCHAR(45) NULL DEFAULT NULL,"
 				 + "`B_TcPath` VARCHAR(45) NULL DEFAULT NULL,"
 				 +" `B_type` ENUM('exclusive', 'normal') NULL DEFAULT NULL,"
-				 +" `'B_instancesAmount` INT(11) NULL DEFAULT NULL,"
+				 +" `B_instancesAmount` INT(11) NULL DEFAULT NULL,"
 				 +" `B_isWaiting` TINYINT(4) NULL DEFAULT 0,"
 				+"PRIMARY KEY (`B_name`, `B_author`))"; 
 
@@ -101,15 +101,15 @@ import java.util.Enumeration;
 				  +"`M_runLate` INT(11) NULL DEFAULT NULL,"
 				  +"`M_graduateDate` DATE NULL,"
 				  +"`M_pname` VARCHAR(45) NULL,"
-				  +"'M_lname' VARCHAR(45)NULL,"
-				  +"'M_password' VARChAR(45) NULL,"
+				  +"`M_lname` VARCHAR(45)NULL,"
+				  +"`M_password` VARChAR(45) NULL,"
 				  +"PRIMARY KEY (`M_id`))";  
 		  
 		 String libra = "CREATE TABLE `assignment2`.`librarian` ("
 				 +" `Emp_num` VARCHAR(45) NOT NULL,"
 				  +"`Emp_pname` VARCHAR(45) NULL,"
 				  +"`Emp_lname` VARCHAR(45) NULL DEFAULT NULL,"
-				  +"'EMP_password' VARCHAR(45) NULL,"
+				  +"`Emp_password` VARCHAR(45) NULL,"
 				  +"`Emp_email` VARCHAR(45) NULL DEFAULT NULL,"
 				  +"`Emp_organization` VARCHAR(45) NULL DEFAULT NULL,"
 				  +"PRIMARY KEY (`Emp_num`))"; 

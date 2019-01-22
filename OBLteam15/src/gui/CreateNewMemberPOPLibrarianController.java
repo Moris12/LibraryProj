@@ -28,6 +28,9 @@ public class CreateNewMemberPOPLibrarianController {
 	Pane root;
 	Scene scene;
 	
+	@FXML
+	private Button CreateNewMemberPUPLibrarian_Done_BTN;
+	
     @FXML
     private TextField CreateNewMemberPUPLibrarian_FirstName_TXF;
 
@@ -56,16 +59,16 @@ public class CreateNewMemberPOPLibrarianController {
     private TextField CreateNewMemberPUPLibrarian_Password_TXF;
 
     @FXML
-    void CreateNewMemberPUP_Cancel(ActionEvent event) {//CANCEL button handler
+    void CreateNewMemberPUP_Cancel() {//CANCEL button handler
     	Stage stage = (Stage) CreateNewMemberPUPLibrarian_Cancel_BTN.getScene().getWindow();
 	    stage.close();
     }
 
     @FXML
-    void CreateNewMemberPUP_DONE(MouseEvent event) throws ParseException, IOException { //DONE clicked.
+    void CreateNewMemberPUP_DONE() throws ParseException, IOException { //DONE clicked.
     	LinkedHashMap<String, Object> m = new LinkedHashMap<String,Object>();
     	Message msg;
-    	String M_pname, M_lname, M_id , M_graduateDate, M_email, M_phoneNumber, M_password;
+    	String M_registerationDate, M_pname, M_lname, M_id , M_graduateDate, M_email, M_phoneNumber, M_password;
     	if(!CreateNewMemberPUPLibrarian_FirstName_TXF.getText().isEmpty() && !CreateNewMemberPUPLibrarian_LastName_TXF.getText().isEmpty() && !CreateNewMemberPUPLibrarian_ID_TXF.getText().isEmpty() && !CreateNewMemberPUPLibrarian_DateOfGraduate_TXF.getText().isEmpty())
     	{
     		/*********CHECK IF GETTEXT FROM EMPTY FIELD IS NULL***********/
@@ -78,10 +81,16 @@ public class CreateNewMemberPOPLibrarianController {
     		M_password = CreateNewMemberPUPLibrarian_Password_TXF.getText();
     		M_graduateDate = CreateNewMemberPUPLibrarian_DateOfGraduate_TXF.getText();
     		Date GD;
-    		SimpleDateFormat SDF = new SimpleDateFormat("yyyy/mm/dd");
-    		GD = (Date) SDF.parse(M_graduateDate);
+    		java.util.Date RD = new java.util.Date();
+    		SimpleDateFormat SDF = new SimpleDateFormat("dd-mm-yyyy-hh-mm-ss");
+    		M_registerationDate = SDF.format(RD);
+    		Date RegDate = Date.valueOf(M_registerationDate);
     		
-    		//extra fields. mail & phone.
+    		String Gdate = M_graduateDate;
+    		GD = Date.valueOf(Gdate);
+    		
+    		
+    		 //extra fields. mail & phone.
     		if(!CreateNewMemberPUPLibrarian_Email_TXF.getText().isEmpty()) {
     			M_email = CreateNewMemberPUPLibrarian_Email_TXF.getText();
     			m.put("M_email",M_email);
@@ -99,6 +108,7 @@ public class CreateNewMemberPOPLibrarianController {
     		m.put("M_lname",M_lname );
     		m.put("M_graduateDate",GD );
     		m.put("M_password", M_password);
+    		m.put("M_registerDate", RegDate);
     		
     		if(Member.isValidInput(m).isEmpty())
     		{
@@ -113,12 +123,13 @@ public class CreateNewMemberPOPLibrarianController {
     }
 
 	public void start(Stage arg0) throws Exception {
-		final Modality WINDOW_MODAL; //makes it appear as pop up that has to be closed.
+		//final Modality WINDOW_MODAL; //makes it appear as pop up that has to be closed.
 		this.Stage = new Stage();
 		//Stage.initModality(WINDOW_MODAL);
 		this.loader = new FXMLLoader();
-		this.root = loader.load(getClass().getResource("/gui/Librarian_MainPage.fxml").openStream());
-		this.scene = new Scene(root);			
+		this.root = loader.load(getClass().getResource("/gui/CreateNewMemberPUPLibrarian.fxml").openStream());
+		this.scene = new Scene(root);		
+		//this.scene.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
 		this.Stage.setScene(scene);
 		this.Stage.showAndWait();
 		

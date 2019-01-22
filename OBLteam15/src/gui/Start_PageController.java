@@ -6,7 +6,10 @@ import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
 
+import actors.Employee;
+import actors.Member;
 import client.Client;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -40,10 +43,13 @@ public class Start_PageController implements Initializable
 	Message msg;
 	ConnectionSettingsController CSC;
 	Client client;
-	static public String Hostt = "10.100.102.8";
+	Manager_MainPageController ManagerMainPage;
+	static public String Hostt = "192.168.1.66";
 	static public int Portt = 5555;
-	
-
+	StudentMainPage1Controller StudentMainPage;
+	Librarian_MainPageController LibrarianMainPage;
+	SearchPUPStudent_NotsuccessController searchPUPStudNotSuccessful;
+	SearchPUPStudent_successController searchPUPStudSuccessful;
 	@FXML
     private Rectangle LibririanMainPage_SearchByCategory_TXF;
 
@@ -121,11 +127,6 @@ public class Start_PageController implements Initializable
 		}
 	}
     
-	@FXML
-    public void StartPage_ChangeConnection() throws Exception {
-		CSC = new ConnectionSettingsController();
-		CSC.start(null);
-    }
 
     @FXML
     public void StartPage_Login() throws Exception {
@@ -136,51 +137,56 @@ public class Start_PageController implements Initializable
     		System.out.print("Error Invalid user name and password");//PUP Error 
     	}
     	map.put("Type", "log in");
-    	System.out.println((String) map.get("Type"));
+    	//System.out.println((String) map.get("Type"));
     	map.put("Username", this.StartPage_UserName_TXF.getText());
     	map.put("Password", this.StartPage_Password_PSF.getText());
     	this.client.setSPC(this);
     	this.msg = new Message(map);
+    	client.setSPC(this);
     	this.client.sendToServer(msg); 
-    	// send the information to server for approval of existance.
-
     	
+    	// send the information to server for approval of existance.
+    	
+
     }
 
     @FXML
     public void StartPage_SearchByGroup() throws IOException {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
-    	map.put("Action", "Search Book");
+    	map.put("Type", "search book");
     	Message msg;
     	String searchVal;
-    	if(Search_group.getSelectedToggle() != null)
+    	if(Search_group.getSelectedToggle() == null)
     	{
-    		if(Search_group.getSelectedToggle() == StartPage_SearchByBookName_RDBTN) //search by name of the book
+    		
+    		if(StartPage_SearchByBookName_RDBTN.isSelected()) //search by name of the book
     		{
     			searchVal = StartPage_SearchByBookName_TXF.getText();
-    			map.put("by", "book name");
+    			map.put("By", "book name");
     			map.put("key",searchVal);
     		}
-    		if(Search_group.getSelectedToggle() == StartPage_SearchByAutorName_RDBTN) //search by author name
+    		if(StartPage_SearchByAutorName_RDBTN.isSelected()) //search by author name
     		{
     			searchVal = StartPage_SearchByAutorName_TXF.getText();
-    			map.put("by", "author name");
+    			map.put("By", "author name");
     			map.put("key",searchVal);
     		}
-    		if(Search_group.getSelectedToggle() == StartPage_SearchByCategory_RDBTN) //search by categories 
+    		if(StartPage_SearchByCategory_RDBTN.isSelected()) //search by categories 
     		{
     			searchVal = StartPage_SearchByCategory_TXF.getText();
-    			map.put("by", "category");
+    			map.put("By", "category");
     			map.put("key",searchVal);
     		}
-    		if(Search_group.getSelectedToggle() == StartPage_SearchByFreeText_RDBTN) //search by free text
+    		if(StartPage_SearchByFreeText_RDBTN.isSelected()) //search by free text
     		{
     			searchVal = StartPage_SearchByFreeText_TXF.getText();
-    			map.put("by", "free text");
+    			map.put("By", "free text");
     			map.put("key",searchVal);
     		}
     		//end if's.
+    		map.put("Sender", "Start_PageController");
     		msg = new Message(map);
+    		client.setSPC(this);
     		this.client.sendToServer(msg);
     	}
     	else //no radio button selected 
@@ -190,11 +196,79 @@ public class Start_PageController implements Initializable
 
     }
     
-    public Stage getStage() {
-    	return this.Stage;
-    }
+    public Stage getStage() {return this.Stage;}
+    
     public Start_PageController getSPC()
     {
     	return this;
+    }
+    public void callStudentMainPage(LinkedHashMap<String, Object> m) throws Exception
+    {
+    	StudentMainPage1Controller StudentMainPage = new StudentMainPage1Controller();
+		StudentMainPage.setClient(this.client);
+		StudentMainPage.me = new Member();
+		StudentMainPage.me.setDetailsByHashMap(m);
+		StudentMainPage.start(null);
+    }
+    
+    public void callLibrarianMainPage(LinkedHashMap<String, Object> m) throws Exception
+    {
+    	LibrarianMainPage = new Librarian_MainPageController();
+		LibrarianMainPage.setClient(this.client);
+		LibrarianMainPage.me = new Employee();		
+		LibrarianMainPage.me.setDetailsByHashMap(m);
+		Stage stage = (Stage) StartPage_Login_BTN.getScene().getWindow();
+	    stage.close();
+	    Platform.runLater(()->{try {
+			LibrarianMainPage.start(null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}});
+		
+
+	
+    }
+    
+    public void callManagerMainPage(LinkedHashMap<String, Object> m) throws Exception
+    {
+    	ManagerMainPage = new Manager_MainPageController();
+		ManagerMainPage.setClient(this.client);
+		ManagerMainPage.me = new Employee();
+		ManagerMainPage.me.setDetailsByHashMap(m);
+		ManagerMainPage.start(null);
+	    Platform.runLater(()->{try {
+			LibrarianMainPage.start(null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}});
+		
+    }
+   
+    
+    @FXML
+    public void StartPage_ChangeConnection() throws Exception 
+    {
+		CSC = new ConnectionSettingsController();
+		CSC.start(null);
+
+    }
+
+    public void callSearchBookPUP(LinkedHashMap<String, Object> m) throws Exception
+    {
+    	if((boolean) m.get("B_isWaiting") == true ) //there is waiting list
+    	{//means there is no available book copy. i should present the earliest return date
+    		searchPUPStudNotSuccessful = new SearchPUPStudent_NotsuccessController();
+    		//searchPUPStudNotSuccessful.setSearchPUPstudentNotSCS_ClosestReturn__LB((String) m.get("B_shelf"));
+    		searchPUPStudNotSuccessful.getSearchPUPstudentNotSCS_ClosestReturn__LB().setVisible(false);;
+    		searchPUPStudNotSuccessful.start(null);
+    	}
+    	else if((boolean) m.get("B_isWaiting") == false)
+    	{//i should get the shelf location
+    		searchPUPStudSuccessful = new SearchPUPStudent_successController();
+    		searchPUPStudSuccessful.setSearchPUPstudent_Shelfnum_LB((String) m.get("B_shelf"));
+    		searchPUPStudSuccessful.start(null);
+    	}
     }
 }

@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="315.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="315.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="PUPError_ErrorReason_LB" layoutX="23.0" layoutY="25.0" text="There is'nt available copy for this book " textFill="#f50505ba">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="SearchPUPstudentNotSCS_ClosestReturn__LB" layoutX="23.0" layoutY="61.0" onMouseDragged="#SearchBookPUPStudentNotSucces_CloseReturnDate" text="Closest return date : 06.12.18" textFill="#120101c4">
+      <Label layoutX="23.0" layoutY="61.0" onMouseDragged="#SearchBookPUPStudentNotSucces_CloseReturnDate" text="Closest return date : " textFill="#120101c4">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
@@ -36,5 +36,10 @@
             <InnerShadow blurType="ONE_PASS_BOX" radius="7.035" width="9.14" />
          </effect>
       </Button>
+      <Label fx:id="SearchPUPstudentNotSCS_ClosestReturn__LB" layoutX="158.0" layoutY="61.0" onMouseDragged="#SearchBookPUPStudentNotSucces_CloseReturnDate" text="06.01.2010" textFill="#120101c4">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="338.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="338.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="25.0" layoutY="24.0" text="The book is found !" textFill="#2bab51dc">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="SearchPUPstudent_BookLocation_LB" layoutX="25.0" layoutY="73.0" onMouseEntered="#SearchBookPUPStudentSucces_BookLocation" text="Location :   row-?   shelf-?  ">
+      <Label layoutX="25.0" layoutY="76.0" onMouseEntered="#SearchBookPUPStudentSucces_BookLocation" text="Location :  shelf  ">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
@@ -32,5 +32,10 @@
             <InnerShadow blurType="ONE_PASS_BOX" radius="7.035" width="9.14" />
          </effect>
       </Button>
+      <Label fx:id="SearchPUPstudent_Shelfnum_LB" layoutX="147.0" layoutY="76.0" onMouseEntered="#SearchBookPUPStudentSucces_BookLocation" text="?">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

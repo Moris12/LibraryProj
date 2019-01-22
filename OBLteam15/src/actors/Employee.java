@@ -16,7 +16,7 @@ private String Emp_organzation;
 
 public void setDetailsByHashMap(LinkedHashMap<String, Object> m)
 {
-	this.actor = (String) m.get("actor_type"); 
+	//this.actor = (String) m.get("actor_type"); 
 	this.Emp_num = (String) m.get("Emp_num");
 	this.Emp_pname = (String) m.get("Emp_pname");
 	this.Emp_lname = (String) m.get("Emp_lname");

@@ -144,14 +144,12 @@ public class prototypeController implements Initializable{
 	}
 		
 	public void start(Stage arg0) throws Exception {
-		
-		this.Stage = new Stage();
-		this.loader = new FXMLLoader();
-		this.root = loader.load(getClass().getResource("/gui/prototypeFXML.fxml").openStream());
-		this.scene = new Scene(root);			
-		this.Stage.setScene(scene);
-		this.Stage.showAndWait();
-		
+		stg = new Stage();
+		FxmlL = new FXMLLoader();
+		rt = FxmlL.load(getClass().getResource("/gui/ConnectionSettingsFXML.fxml").openStream());
+		scn = new Scene(rt);
+		stg.setScene(scn);
+		stg.showAndWait();
 	}
 	
 	public void setConnection() throws IOException

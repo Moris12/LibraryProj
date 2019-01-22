@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 
 import actors.*;
 import gui.*;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import models.Message;
 import ocsf.client.AbstractClient;
@@ -22,7 +23,15 @@ public class Client extends AbstractClient {
 	ReturnBookPUPController returnBookController;
 	Manager_MainPageController ManagerMainPage;
 	Start_PageController SPC;
+	//gui
+	
 	Stage stg;
+	
+	public void setLibrarianMainPage(Librarian_MainPageController Real) 
+	{
+		LibrarianMainPage = Real;
+	}
+
 	
 	public Start_PageController getSPC() {
 		return SPC;
@@ -61,7 +70,7 @@ public class Client extends AbstractClient {
 	protected void handleMessageFromServer(Object msg) throws Exception {
 		//this function is a "navigation" func. we get the details from the server and than call the function we need.
 		Message mesag = (Message) msg;
-		LinkedHashMap<String, Object> m = (LinkedHashMap<String, Object>) mesag.getMap();
+		LinkedHashMap<String, Object> m = ((LinkedHashMap<String, Object>) mesag.getMap());
 		switch((String) m.get("Type"))
 		{
 		case "log in":
@@ -72,18 +81,24 @@ public class Client extends AbstractClient {
 		case "add":  //reply for 'add' from server. 
 		{//if add contains Error key than it failed. if not contains than successful.
 			handleAdd(m);
-		}
+		} 
+		case "search book":
+		{
+			switch((String) m.get("Sender"))
+			{
+			case "Start_PageController":
+			{
+				
+			}break;
+			
+			}//end switch
+		}//end search book
 		
 		}//end switch
 		
 		
 		
 		
-		
-		
-		
-		
-		//this.ToDisplay = (String)msg;
 	}
 	
 	public String getToDisplay() {
@@ -110,30 +125,31 @@ void handleLogIn(LinkedHashMap<String,Object> m) throws Exception
 	{
 		if(m.containsKey("M_id")) //it's a member
 		{
-			StudentMainPage = new StudentMainPage1Controller();
-			StudentMainPage.setClient(this);
-			currMember = new Member();
-			currMember.setDetailsByHashMap(m);
-			StudentMainPage.start(null);
+			SPC.callStudentMainPage(m);
 		}
 		else if(m.containsKey("Emp_num")) //it's an employee
 		{
 			if("Management" == (String) m.get("Emp_organization")) //it's the manager.
 			{
-				ManagerMainPage = new Manager_MainPageController();
-				ManagerMainPage.setClient(this);
-				currManager = new Employee();
-				currManager.setDetailsByHashMap(m);
-				ManagerMainPage.start(null);					}
+				Platform.runLater(()->{
+					try {
+						SPC.callManagerMainPage(m);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					});
+									}
 			else //regular librarian 
 			{
-				LibrarianMainPage = new Librarian_MainPageController();
-				LibrarianMainPage.setClient(this);
-				currLibrarian = new Employee();		
-				currLibrarian.setDetailsByHashMap(m);
-				System.out.println(SPC.getStage());
-				LibrarianMainPage.start(SPC.getStage());
-				
+				Platform.runLater(()->{
+				try {
+					SPC.callLibrarianMainPage(m);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				});
 			}
 		}
 	}
@@ -162,6 +178,7 @@ void handleAdd(LinkedHashMap<String,Object> m) throws Exception
 	
 
 }
+
 
 	  
 	  
