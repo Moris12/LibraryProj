@@ -31,10 +31,10 @@
       </Label>
       <MenuButton fx:id="LibririanMainPage_InventoryManag_MNBTN" layoutX="29.0" layoutY="208.0" mnemonicParsing="false" onAction="#LibrarianMainPage_InventoryManagment" prefHeight="24.0" prefWidth="141.0" text="Inventory managment">
          <items>
-            <MenuItem fx:id="LibririanMainPage_AddNewBook_MNI" mnemonicParsing="false" text="Add new book" />
-            <MenuItem fx:id="LibririanMainPage_RemoveBook_MNI" mnemonicParsing="false" text="Remove book" />
-            <MenuItem fx:id="LibririanMainPage_ViewBookDetails_MNI" mnemonicParsing="false" text="View book details" />
-            <MenuItem fx:id="LibririanMainPage_AddNewCopy_MNI" mnemonicParsing="false" text="Add new copy" />
+            <MenuItem fx:id="LibririanMainPage_AddNewBook_MNI" mnemonicParsing="false" onAction="#LibrarianMainPage_addNewBook" text="Add new book" />
+            <MenuItem fx:id="LibririanMainPage_RemoveBook_MNI" mnemonicParsing="false" onAction="#LibrarianMainPage_removeBook" text="Remove book" />
+            <MenuItem fx:id="LibririanMainPage_ViewBookDetails_MNI" mnemonicParsing="false" onAction="#LibrarianMainPage_vewBookDetails" text="View book details" />
+            <MenuItem fx:id="LibririanMainPage_AddNewCopy_MNI" mnemonicParsing="false" onAction="#LibrarianMainPage_addNewCopy" text="Add new copy" />
          </items>
          <font>
             <Font name="System Italic" size="11.0" />

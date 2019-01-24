@@ -44,7 +44,7 @@ public class Start_PageController implements Initializable
 	ConnectionSettingsController CSC;
 	Client client;
 	Manager_MainPageController ManagerMainPage;
-	static public String Hostt = "192.168.1.66";
+	static public String Hostt = "192.168.1.17";
 	static public int Portt = 5555;
 	StudentMainPage1Controller StudentMainPage;
 	Librarian_MainPageController LibrarianMainPage;

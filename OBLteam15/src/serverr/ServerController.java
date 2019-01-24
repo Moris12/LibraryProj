@@ -23,7 +23,7 @@ import java.util.Enumeration;
 		private Connection conn; 
 		
 		/** The username.  */
-		private String username="Mor" ;
+		private String username="root" ;
 		
 		/** The password. */
 		private String password="123456" ;
@@ -38,7 +38,7 @@ import java.util.Enumeration;
 		private String dbname="DataBase";
 		
 		/** The host. */
-		private String host="127.0.0.1:3307";
+		private String host="127.0.0.1";
 		
 		/** The echo server. */
 		private EchoServer echoServer;

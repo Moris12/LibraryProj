@@ -125,7 +125,15 @@ void handleLogIn(LinkedHashMap<String,Object> m) throws Exception
 	{
 		if(m.containsKey("M_id")) //it's a member
 		{
-			SPC.callStudentMainPage(m);
+			Platform.runLater(()->{
+				try {
+					SPC.callStudentMainPage(m);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				});
+			
 		}
 		else if(m.containsKey("Emp_num")) //it's an employee
 		{

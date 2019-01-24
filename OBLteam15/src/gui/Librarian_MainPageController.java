@@ -221,5 +221,28 @@ public class Librarian_MainPageController {
 	{
 		this.client = clnt;
 	}
-
+	
+	@FXML
+	public void LibrarianMainPage_addNewBook()
+	{
+		
+	}
+	
+	@FXML
+	public void LibrarianMainPage_removeBook()
+	{
+		
+	}
+	
+	@FXML
+	public void LibrarianMainPage_addNewCopy()
+	{
+		
+	}
+	
+	@FXML
+	public void LibrarianMainPage_vewBookDetails()
+	{
+		
+	}
 }
