@@ -200,6 +200,7 @@ public class Librarian_MainPageController implements Initializable{
     void LibrarianMainPage_ReturnBook() throws Exception 
     {
     	ReturnBookPUPController returnBookPUPController = new ReturnBookPUPController();
+    	
     	returnBookPUPController.setClient(client);
     	returnBookPUPController.start(null);
     }
@@ -233,6 +234,8 @@ public class Librarian_MainPageController implements Initializable{
 		System.out.println("before show and wait");
 		
 		this.stg.showAndWait();
+		System.out.println("after show and wait");
+
 	}
 
 	public void setClient(Client clnt) 
@@ -253,6 +256,8 @@ public class Librarian_MainPageController implements Initializable{
 	{
 		RBPC = new RemoveBookPUPController();
 		RBPC.setClient(this.client);
+		System.out.println("before start remove");
+
 		RBPC.start(null);
 	}
 	
@@ -301,6 +306,6 @@ public class Librarian_MainPageController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		initLabels(me.getDetailsByHashMap());
+		//initLabels(me.getDetailsByHashMap());
 	}
 }

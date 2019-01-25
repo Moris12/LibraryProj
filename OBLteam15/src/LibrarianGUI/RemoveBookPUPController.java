@@ -18,7 +18,7 @@ import models.Message;
 import gui.*;
 public class RemoveBookPUPController {
 	Client client;
-	Stage Stage;
+	Stage stage;
 	FXMLLoader loader;
 	Pane root;
 	Scene scene;
@@ -63,13 +63,14 @@ public class RemoveBookPUPController {
     
 public void start(Stage arg0) throws Exception {
 		
-		this.Stage = new Stage();
+		this.stage = new Stage();
 		this.loader = new FXMLLoader();
 		this.root = loader.load(getClass().getResource("/LibrarianGUI/RemoveBookPUP.fxml").openStream());
 		this.scene = new Scene(root);	
+		
 		this.scene.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
-		this.Stage.setScene(scene);
-		this.Stage.showAndWait();
+		this.stage.setScene(scene);
+		this.stage.showAndWait();
 	}
 
 }
