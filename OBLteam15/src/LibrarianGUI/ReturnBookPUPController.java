@@ -1,5 +1,5 @@
-package gui;
-
+package LibrarianGUI;
+import gui.*;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
@@ -14,6 +14,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Message;
+import MemberGUI.*;
+
 
 public class ReturnBookPUPController {
 	
@@ -71,13 +73,13 @@ public class ReturnBookPUPController {
 		this.Stage = new Stage();
 		//Stage.initModality(WINDOW_MODAL);
 		this.loader = new FXMLLoader();
-		this.root = loader.load(getClass().getResource("/gui/ReturnBookPUP.fxml").openStream());
+		this.root = loader.load(getClass().getResource("/LibrarianGUI/ReturnBookPUP.fxml").openStream());
 		this.scene = new Scene(root);			
 		this.Stage.setScene(scene);
 		this.Stage.showAndWait();
 		
 	}
-	void setClient(Client clnt)
+	public void setClient(Client clnt)
 	{
 		this.client = clnt;
 	}

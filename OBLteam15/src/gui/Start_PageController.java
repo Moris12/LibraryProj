@@ -6,8 +6,10 @@ import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
 
-import actors.Employee;
-import actors.Member;
+import LibrarianGUI.Employee;
+import LibrarianGUI.Librarian_MainPageController;
+import MemberGUI.Member;
+import MemberGUI.StudentMainPage1Controller;
 import client.Client;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -53,6 +55,9 @@ public class Start_PageController implements Initializable
 	@FXML
     private Rectangle LibririanMainPage_SearchByCategory_TXF;
 
+	@FXML
+	private Button StartPage_Connect_BTN;
+	
     @FXML
     private TextField StartPage_SearchByBookName_TXF;
     
@@ -110,21 +115,11 @@ public class Start_PageController implements Initializable
 		this.scene.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
 		this.Stage.setScene(scene);
 		this.Stage.showAndWait();
-		
 	}
  
 	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		try {
-			client = new Client(Hostt, Portt);
-			System.out.println("made new client");
-			client.openConnection();
-			System.out.println("open conn done");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
     
 
@@ -137,17 +132,16 @@ public class Start_PageController implements Initializable
     		System.out.print("Error Invalid user name and password");//PUP Error 
     	}
     	map.put("Type", "log in");
-    	//System.out.println((String) map.get("Type"));
+    	System.out.println((String) map.get("Type"));
     	map.put("Username", this.StartPage_UserName_TXF.getText());
     	map.put("Password", this.StartPage_Password_PSF.getText());
     	this.client.setSPC(this);
     	this.msg = new Message(map);
     	client.setSPC(this);
+    	lockKeys();
     	this.client.sendToServer(msg); 
     	
     	// send the information to server for approval of existance.
-    	
-
     }
 
     @FXML
@@ -187,6 +181,7 @@ public class Start_PageController implements Initializable
     		map.put("Sender", "Start_PageController");
     		msg = new Message(map);
     		client.setSPC(this);
+    		lockKeys();
     		this.client.sendToServer(msg);
     	}
     	else //no radio button selected 
@@ -202,13 +197,26 @@ public class Start_PageController implements Initializable
     {
     	return this;
     }
+    
+    public void closeThisWindow()
+    {
+    	Stage stage = (Stage) StartPage_Login_BTN.getScene().getWindow();
+	    stage.close();
+    }
     public void callStudentMainPage(LinkedHashMap<String, Object> m) throws Exception
     {
     	StudentMainPage1Controller StudentMainPage = new StudentMainPage1Controller();
 		StudentMainPage.setClient(this.client);
 		StudentMainPage.me = new Member();
 		StudentMainPage.me.setDetailsByHashMap(m);
-		StudentMainPage.start(null);
+		StudentMainPage.initLabels();
+		closeThisWindow();
+		Platform.runLater(()->{try {
+			StudentMainPage.start(null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}});
     }
     
     public void callLibrarianMainPage(LinkedHashMap<String, Object> m) throws Exception
@@ -217,17 +225,16 @@ public class Start_PageController implements Initializable
 		LibrarianMainPage.setClient(this.client);
 		LibrarianMainPage.me = new Employee();		
 		LibrarianMainPage.me.setDetailsByHashMap(m);
-		Stage stage = (Stage) StartPage_Login_BTN.getScene().getWindow();
-	    stage.close();
-	    Platform.runLater(()->{try {
-			LibrarianMainPage.start(null);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}});
-		
-
-	
+		closeThisWindow();
+			Platform.runLater(()->{
+				try {
+					System.out.println("calling start method");
+					LibrarianMainPage.start(null,m);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				});
     }
     
     public void callManagerMainPage(LinkedHashMap<String, Object> m) throws Exception
@@ -236,16 +243,32 @@ public class Start_PageController implements Initializable
 		ManagerMainPage.setClient(this.client);
 		ManagerMainPage.me = new Employee();
 		ManagerMainPage.me.setDetailsByHashMap(m);
-		ManagerMainPage.start(null);
+		
 	    Platform.runLater(()->{try {
-			LibrarianMainPage.start(null);
+	    	ManagerMainPage.start(null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}});
 		
     }
-   
+   @FXML /**sets connection only once, at the second time typed - will already use the existing connectiopn*/
+   public void Connect()
+   {
+	   if(client == null) {
+	   try {
+			client = new Client(Hostt, Portt);
+			System.out.println("made new client");
+			client.openConnection();
+			System.out.println("open conn done");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();	
+		}
+	   this.client.setSPC(this);
+	   }
+	   else System.out.println("already connected");
+   }
     
     @FXML
     public void StartPage_ChangeConnection() throws Exception 
@@ -270,5 +293,20 @@ public class Start_PageController implements Initializable
     		searchPUPStudSuccessful.setSearchPUPstudent_Shelfnum_LB((String) m.get("B_shelf"));
     		searchPUPStudSuccessful.start(null);
     	}
+    }
+
+    public void lockKeys()
+    {
+    	StartPage_Login_BTN.setDisable(true);
+    	StartPage_Connect_BTN.setDisable(true);
+    	StartPage_ChangeConnection_BTN.setDisable(true);
+    	StartPage_Search_BTN.setDisable(true);
+    }
+    public void releaseKeys()
+    {
+    	StartPage_Login_BTN.setDisable(false);
+    	StartPage_Connect_BTN.setDisable(false);
+    	StartPage_ChangeConnection_BTN.setDisable(false);
+    	StartPage_Search_BTN.setDisable(false);
     }
 }

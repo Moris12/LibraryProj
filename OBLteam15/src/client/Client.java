@@ -6,6 +6,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedHashMap;
 
+import LibrarianGUI.Employee;
+import LibrarianGUI.Librarian_MainPageController;
+import LibrarianGUI.ReturnBookPUPController;
+import MemberGUI.Member;
+import MemberGUI.StudentMainPage1Controller;
 import actors.*;
 import gui.*;
 import javafx.application.Platform;
@@ -18,20 +23,17 @@ public class Client extends AbstractClient {
 	//controllers.
 	PUP_ErrorController PUP_Error;
 	PUP_Succes_Controller PUP_Success;
-	StudentMainPage1Controller StudentMainPage;
+	StudentMainPage1Controller StudentMainPage = null;
 	Librarian_MainPageController LibrarianMainPage;
 	ReturnBookPUPController returnBookController;
 	Manager_MainPageController ManagerMainPage;
 	Start_PageController SPC;
+	PUP_successController PUP_success;
 	//gui
 	
 	Stage stg;
 	
-	public void setLibrarianMainPage(Librarian_MainPageController Real) 
-	{
-		LibrarianMainPage = Real;
-	}
-
+	
 	
 	public Start_PageController getSPC() {
 		return SPC;
@@ -91,16 +93,55 @@ public class Client extends AbstractClient {
 				
 			}break;
 			
-			}//end switch
+			}//end switch search book
 		}//end search book
+		case "remove book":
+		{
+			handleRemoveBook(m);
+		}break;
+		case "view membership card":
+		{
+			handleViewMembershipCard(m);
+		}break;
+		case "view my books":
+		{
+			handleViewMyBooks(m);
+		}break;
+		case "log out":
+		{
+			handleLogOut(m);
+		}break;
+		}//end switch "Type"
+}//end handleMessageFromServer
 		
-		}//end switch
 		
 		
 		
-		
-	}
 	
+	
+
+	private void handleLogOut(LinkedHashMap<String, Object> m) throws Exception 
+	{
+		switch((String) m.get("Sender"))
+		{
+		case "student":
+		{
+			StudentMainPage = null;
+		}break;
+		case "librarian":
+		{
+			LibrarianMainPage = null;
+		}break;
+		case "manager":
+		{
+			ManagerMainPage = null;
+		}break;
+		}
+	SPC = new Start_PageController();
+	
+	SPC.start(null);
+	}
+
 	public String getToDisplay() {
 		return this.ToDisplay;
 	}
@@ -120,13 +161,14 @@ public class Client extends AbstractClient {
 
 void handleLogIn(LinkedHashMap<String,Object> m) throws Exception
 {
-
+	System.out.println("inside handle login");
 	if( !(m.containsKey("Error"))) //found the user
 	{
 		if(m.containsKey("M_id")) //it's a member
 		{
 			Platform.runLater(()->{
 				try {
+					SPC.releaseKeys();
 					SPC.callStudentMainPage(m);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -152,6 +194,7 @@ void handleLogIn(LinkedHashMap<String,Object> m) throws Exception
 			{
 				Platform.runLater(()->{
 				try {
+					System.out.println("before call libra MP");
 					SPC.callLibrarianMainPage(m);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -169,30 +212,125 @@ void handleLogIn(LinkedHashMap<String,Object> m) throws Exception
 	}
 	
 }
+
+/**handleAdd handles all kind of addings, books, copies, members etc.*/
 void handleAdd(LinkedHashMap<String,Object> m) throws Exception
 {
 	if(m.containsKey("Error"))
 	{
 		PUP_Error = new PUP_ErrorController();
 		PUP_Error.setErrorStr((String) m.get("Error"));
-		PUP_Error.start(null);
+		Platform.runLater(()->{
+			try {
+				PUP_Error.start(null);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			});
 	}
 	else //successful add. 
 	{
 		PUP_Success = new PUP_Succes_Controller();
 		PUP_Success.setActionStr("Added successfully.");
-		PUP_Success.start(null);
+		Platform.runLater(()->{
+			try {
+				PUP_success.start(null);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			});
+	}
+}	
+
+void handleRemoveBook(LinkedHashMap<String,Object> m) throws Exception
+{
+	if(m.containsKey("Error")) 
+	{
+		PUP_Error = new PUP_ErrorController();
+		PUP_Error.setErrorStr((String) m.get("Error"));
+		Platform.runLater(()->{
+			try {
+				PUP_Error.start(null);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			});
+	}
+	else //no error
+	{
+		PUP_success = new PUP_successController();
+		PUP_success.SetSuccessMessage("the book "+(String)m.get("B_name") +
+				" by author: " + (String) m.get("B_author") + " successfully removed");
+		Platform.runLater(()->{
+			try {
+				PUP_success.start(null);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			});
+	}
+
+}
+
+void handleViewMembershipCard(LinkedHashMap<String,Object> m) throws Exception
+{
+	if(m.containsKey("Error"))
+	{
+		PUP_Error = new PUP_ErrorController();
+		PUP_Error.setErrorStr((String) m.get("Error"));
+		Platform.runLater(()->{
+			try {
+				PUP_Error.start(null);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			});
+	}
+	else 
+	{
+		if((String) m.get("Sender") == "librarian")
+		{
+			LibrarianMainPage.callViewMembershipCard(m);
+		}
+		else if((String) m.get("Sender") == "manager")
+		{
+			
+		}
+	}	
+}
+
+void handleViewMyBooks(LinkedHashMap<String, Object> m) throws Exception 
+{
+	if((String) m.get("Sender") == "student")
+	{
+		Platform.runLater(()->{
+			try {
+				StudentMainPage.callViewMyBooks(m);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			});
 	}
 	
-
 }
 
-
-	  
-	  
-	  
-	  
-	  
-	
-	
+public void setManagerMainPage(Manager_MainPageController MMP)
+{
+	this.ManagerMainPage = MMP;
 }
+public void setStudentMainPage(StudentMainPage1Controller SMP)
+{
+	this.StudentMainPage = SMP;
+}
+public void setLibrarianMainPage(Librarian_MainPageController Real) 
+{
+	LibrarianMainPage = Real;
+}
+
+}//end class

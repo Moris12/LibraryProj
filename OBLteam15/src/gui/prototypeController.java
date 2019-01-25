@@ -22,10 +22,10 @@ import client.Client;
 import client.ClientConsole;
 public class prototypeController implements Initializable{
 	ConnectionSettingsController CSC; 
-	Stage Stage;
-	FXMLLoader loader;
-	Pane root;
-	Scene scene;
+	Stage Stg;
+	FXMLLoader FxmlL;
+	Pane rt;
+	Scene scn;
 	Client client;
 	static public String Hostt = "192.168.1.78";
 	static public int Portt = 5555;
@@ -144,12 +144,12 @@ public class prototypeController implements Initializable{
 	}
 		
 	public void start(Stage arg0) throws Exception {
-		stg = new Stage();
+		Stg = new Stage();
 		FxmlL = new FXMLLoader();
-		rt = FxmlL.load(getClass().getResource("/gui/ConnectionSettingsFXML.fxml").openStream());
+		rt = FxmlL.load(getClass().getResource("/gui/prototypeFXML.fxml").openStream());
 		scn = new Scene(rt);
-		stg.setScene(scn);
-		stg.showAndWait();
+		Stg.setScene(scn);
+		Stg.showAndWait();
 	}
 	
 	public void setConnection() throws IOException

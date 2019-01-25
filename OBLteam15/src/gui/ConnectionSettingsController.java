@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ConnectionSettingsController {
@@ -26,6 +27,7 @@ public class ConnectionSettingsController {
 	
 	public void start(Stage arg0) throws Exception {
 		stg = new Stage();
+	    stg.initModality(Modality.APPLICATION_MODAL);
 		FxmlL = new FXMLLoader();
 		rt = FxmlL.load(getClass().getResource("/gui/ConnectionSettingsFXML.fxml").openStream());
 		scn = new Scene(rt);

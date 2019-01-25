@@ -1,4 +1,4 @@
-package gui;
+package LibrarianGUI;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import gui.*;
-import actors.Member;
 import client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,8 +19,9 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Message;
+import MemberGUI.*
 
-public class CreateNewMemberPOPLibrarianController {
+;public class CreateNewMemberPOPLibrarianController {
 	Client client;
 	Stage Stage;
 	FXMLLoader loader;

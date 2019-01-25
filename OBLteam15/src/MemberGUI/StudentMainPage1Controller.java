@@ -1,10 +1,10 @@
-package gui;
+package MemberGUI;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
-import actors.Member;
+
 import client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +23,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Message;
 
-public class StudentMainPage1Controller implements Initializable {
+public class StudentMainPage1Controller {
 	
 	//gui-loading atts
 	Stage Stage;
@@ -31,11 +31,12 @@ public class StudentMainPage1Controller implements Initializable {
 	Pane root;
 	Scene scene;
 	Client client;
-	Member me; //i hold reference to member (class only for attributes).
+	public Member me; //i hold reference to member (class only for attributes).
 	//it is set by the one who created this screen. and helps to get my info faster.
 	
 	//gui components
-	
+	@FXML
+	private Label StudentMainPage_logOutLBL;
     @FXML
     private Label StudentMainPage_OBL_LB;
 
@@ -91,7 +92,7 @@ public class StudentMainPage1Controller implements Initializable {
     private RadioButton StudentMainPage_SearchByFreeText_RDBTN;
 
     @FXML
-    void StudentMainPage_Date(DragEvent event) {
+    void StudentMainPage_Date() {
 
     }
 
@@ -101,20 +102,25 @@ public class StudentMainPage1Controller implements Initializable {
     }
 
     @FXML
-    void StudentMainPage_HistoryLendingArea(MouseEvent event) {
+    void StudentMainPage_HistoryLendingArea() {
 
     }
 
     @FXML
-    void StudentMainPage_Hour(DragEvent event) {
+    void StudentMainPage_Hour() {
 
     }
 
-    @FXML
-    void StudentMainPage_LogOut(MouseEvent event) {
-
+    @FXML	/**log out handler*/
+    void StudentMainPage_LogOut() throws IOException { 
+    	LinkedHashMap<String,Object> m = new LinkedHashMap<String,Object>();
+    	Message msg;
+    	m.put("Type", "log out");
+    	m.put("M_id", me.getM_id());
+    	m.put("Sender", "student"); /**to set the pointer in client to null*/
+    	msg = new Message(m);
+    	client.sendToServer(msg);
     }
-
     @FXML
     void StudentMainPage_Messages() {
 
@@ -183,33 +189,29 @@ public class StudentMainPage1Controller implements Initializable {
     }
 
     @FXML
-    void StudentMainPage_ViewMyBooks() {
-
+    void StudentMainPage_ViewMyBooks() throws Exception 
+    {
+    	LinkedHashMap<String,Object> m = new LinkedHashMap<String,Object>();
+    	Message msg;
+    	m.put("M_id", me.getM_id());
+    	m.put("Type", "view my books");
+    	m.put("Sender", "student");
+    	client.setStudentMainPage(this);
+    	msg = new Message(m);
+    	client.sendToServer(msg);
     }
     //void PrintInfoToTXA(TextArea area , DATASTRUCTRE DS);
     //this method should get a data structre too. 
     //and decide about the print format. + lock this window for writing
     
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) { 
-		//this method will load history of lending details for the text area
-		// and the status of order text area details
-    	LinkedHashMap<String, Object> map = new LinkedHashMap<String,Object>();
-    	Message msg;
-    	map.put("Type", "get history");
-    	map.put("From", "lendRetHistory");
-    	//map.put("Member", );
-			
-	}
-	
 	public void start(Stage arg0) throws Exception {
 		this.Stage = new Stage();
 		this.loader = new FXMLLoader();
 		this.root = loader.load(getClass().getResource("/gui/StudentMainPage1.fxml").openStream());
 		this.scene = new Scene(root);			
 		this.Stage.setScene(scene);
+		client.setStudentMainPage(this);
 		this.Stage.showAndWait();
-		
 	}
 
 	Client getClient()
@@ -220,5 +222,17 @@ public class StudentMainPage1Controller implements Initializable {
 	{
 		this.client = clnt;
 	}
+	public void initLabels()
+	{
+		LinkedHashMap<String,Object> m = me.getDetailsByHashMap();
+		StudentMainPage_HeloStudentName_LB.setText("Hello "+(String)m.get("M_pname") + " "+(String) m.get("M_pname"));
+		StudentMainPage_Status_LB.setText("Status: "+(String) m.get("M_status"));
+	}
 	
+	public void callViewMyBooks(LinkedHashMap<String,Object> m) throws Exception
+	{
+		PUPMyBooks_StudentController StudentMyBooks = new PUPMyBooks_StudentController();
+    	StudentMyBooks.setClient(this.client);
+    	StudentMyBooks.start(null);
+	}
 }

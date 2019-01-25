@@ -1,6 +1,8 @@
-package actors;
+package LibrarianGUI;
 
 import java.util.LinkedHashMap;
+import gui.*;
+import MemberGUI.*;
 
 
 
@@ -43,6 +45,9 @@ String getActor()
 {
 	return this.actor;
 }
-
+public String getEmp_num()
+{
+	return (String)this.Emp_num;
+}
 
 }

@@ -1,12 +1,16 @@
-package gui;
+package LibrarianGUI;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.LinkedHashMap;
+import java.util.ResourceBundle;
 
-import actors.Employee;
+import MemberGUI.*;
 import client.Client;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,17 +23,23 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Message;
-
-public class Librarian_MainPageController {
+import gui.*;
+public class Librarian_MainPageController implements Initializable{
 
 	private Stage stg;
 	private FXMLLoader FxmlL;
 	private Scene scn;
 	private Pane rt;
 	private Client client;
-	Employee me;
-	
+	public Employee me;
+	RemoveBookPUPController RBPC;
 	CreateNewMemberPOPLibrarianController newMemberForm;
+	PUP_FillMemberIDController fillMemberID;
+	MemberShipCardController MembershipCardController;
+	
+	@FXML
+	private Button LibririanMainPage_logOut_BTN;
+	
     @FXML
     private Label LibririanMainPage_LibrarianName_LB;
 
@@ -200,27 +210,37 @@ public class Librarian_MainPageController {
     }
 
     @FXML
-    void LibrarianMainPage_ViewMemberShipCard() {
-
+    void LibrarianMainPage_ViewMemberShipCard() throws Exception 
+    {
+    	fillMemberID = new PUP_FillMemberIDController();
+    	fillMemberID.setClient(this.client);
+    	fillMemberID.start(null);
     }
     
-	public void start(Stage arg0) throws Exception 
+	public void start(Stage arg0, LinkedHashMap<String, Object> m) throws Exception 
 	{
+		System.out.println("making new stage");
 		this.stg = new Stage();
+		System.out.println("making new loader");
 		this.FxmlL = new FXMLLoader();
 		System.out.println("load FXML");
-		this.rt = FxmlL.load(getClass().getResource("/gui/Librarian_MainPage.fxml").openStream());
+		this.rt = FxmlL.load(getClass().getResource("/LibrarianGUI/Librarian_MainPage.fxml").openStream());
+		System.out.println("found the fxml");
 		this.scn = new Scene(rt);
 		this.scn.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
 		this.stg.setScene(scn);
-		this.stg.showAndWait();
+		client.setLibrarianMainPage(this);
+		System.out.println("before show and wait");
 		
+		this.stg.showAndWait();
 	}
 
 	public void setClient(Client clnt) 
 	{
 		this.client = clnt;
 	}
+	
+	/**INVENTORY MANAGEMENT FUNCS : */
 	
 	@FXML
 	public void LibrarianMainPage_addNewBook()
@@ -229,9 +249,11 @@ public class Librarian_MainPageController {
 	}
 	
 	@FXML
-	public void LibrarianMainPage_removeBook()
+	public void LibrarianMainPage_removeBook() throws Exception
 	{
-		
+		RBPC = new RemoveBookPUPController();
+		RBPC.setClient(this.client);
+		RBPC.start(null);
 	}
 	
 	@FXML
@@ -244,5 +266,41 @@ public class Librarian_MainPageController {
 	public void LibrarianMainPage_vewBookDetails()
 	{
 		
+	}
+	
+	public void callViewMembershipCard(LinkedHashMap<String, Object> m) throws Exception
+	{
+		MembershipCardController = new MemberShipCardController();
+		MembershipCardController.setWhoCalledMe(this);
+		Stage stage = (Stage) LibririanMainPage_Hour_LB.getScene().getWindow();
+	    stage.hide();
+	    //SET ALL DETAILS ACCORDING TO MORIS SEND TYPE
+	    MembershipCardController.start(null);
+	}
+	
+	@FXML	/**log out handler*/
+    void StudentMainPage_LogOut() throws IOException { 
+		System.out.println("inside log out func");
+    	LinkedHashMap<String,Object> m = new LinkedHashMap<String,Object>();
+    	Message msg;
+    	m.put("Type", "log out");
+    	m.put("M_id", me.getEmp_num());
+    	m.put("Sender", "librarian"); /**to set the pointer in client to null*/
+    	msg = new Message(m);
+    	client.sendToServer(msg);
+    }
+	
+	public void initLabels(LinkedHashMap<String, Object> m)
+	{
+		System.out.println((String)m.get("Emp_pname"));
+		System.out.println((String)m.get("Emp_lname"));
+		if(m.containsKey("Emp_pname") && m.containsKey("Emp_lname")) {
+		LibririanMainPage_LibrarianName_LB.setText("Hello " + (String)m.get("Emp_pname")
+		+ " "+(String)m.get("Emp_lname") );}
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		initLabels(me.getDetailsByHashMap());
 	}
 }

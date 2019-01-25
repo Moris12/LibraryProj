@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Librarian_MainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibrarianGUI.Librarian_MainPageController">
    <children>
       <Label layoutX="17.0" layoutY="21.0" text="OBL ( Ort Braude Library )">
          <font>
@@ -147,5 +147,13 @@
             <Font name="System Bold" size="10.0" />
          </font>
       </RadioButton>
+      <Button fx:id="LibririanMainPage_logOut_BTN" layoutX="24.0" layoutY="362.0" mnemonicParsing="false" onAction="#LibrarianMainPage_LogOut" text="log out" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="9.0" />
+         </font>
+         <effect>
+            <InnerShadow blurType="ONE_PASS_BOX" radius="7.035" width="9.14" />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

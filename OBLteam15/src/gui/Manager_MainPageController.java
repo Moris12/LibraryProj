@@ -1,6 +1,6 @@
 package gui;
 
-import actors.Employee;
+import LibrarianGUI.Employee;
 import client.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -190,6 +190,7 @@ public void start(Stage arg0) throws Exception {
 		this.scene = new Scene(root);	
 		this.scene.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
 		this.Stage.setScene(scene);
+		client.setManagerMainPage(this);
 		this.Stage.showAndWait();
 		
 	}

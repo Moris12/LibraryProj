@@ -1,4 +1,4 @@
-package actors;
+package MemberGUI;
 
 import java.sql.Date;
 import java.util.LinkedHashMap;
@@ -21,6 +21,8 @@ private Date M_graduateDate;
 private int M_runLate;
 private String M_password;
 
+public Member() {}
+public Member(LinkedHashMap<String, Object> m) { this.setDetailsByHashMap(m);}
 //if there is exception thrown here. probably because the enum data type
 public void setDetailsByHashMap(LinkedHashMap<String, Object> m)
 {
@@ -301,13 +303,24 @@ public static LinkedHashMap<String, String> isValidInput(LinkedHashMap<String,Ob
 return m;
 }
 	
-	
+public String getM_id()
+{
+	return (String)this.M_id;
+}
+public String getM_pname()
+{
+	return (String)this.M_pname;
+}
+public String getM_lname()
+{
+	return (String) this.M_pname;
+}
 	
 	
 
 
 
-static boolean isAlphabets(String data)
+static public boolean isAlphabets(String data)
 {
 	char[] chars = data.toCharArray();
 	for(char c: chars)
@@ -320,7 +333,7 @@ static boolean isAlphabets(String data)
 	return true;
 }
 
-static boolean isNumbers(String data)
+static public boolean isNumbers(String data)
 {
 	char[] chars = data.toCharArray();
 	for(char c: chars)
