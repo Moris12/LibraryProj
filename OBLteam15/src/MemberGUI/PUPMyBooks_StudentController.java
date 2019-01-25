@@ -52,7 +52,7 @@ public class PUPMyBooks_StudentController {
 			this.Stage = new Stage();
 		    Stage.initModality(Modality.APPLICATION_MODAL);
 			this.loader = new FXMLLoader();
-			this.root = loader.load(getClass().getResource("/gui/PUP_MyBooks_Student.fxml").openStream());
+			this.root = loader.load(getClass().getResource("/MemberGUI/PUP_MyBooks_Student.fxml").openStream());
 			this.scene = new Scene(root);			
 			this.Stage.setScene(scene);
 			this.Stage.showAndWait();

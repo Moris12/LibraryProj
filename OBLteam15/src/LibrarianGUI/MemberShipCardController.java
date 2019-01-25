@@ -183,7 +183,7 @@ public void start(Stage arg0) throws Exception {
 		
 		this.Stage = new Stage();
 		this.loader = new FXMLLoader();
-		this.root = loader.load(getClass().getResource("/gui/RemoveBookPUP.fxml").openStream());
+		this.root = loader.load(getClass().getResource("/LibrarianGUI/RemoveBookPUP.fxml").openStream());
 		this.scene = new Scene(root);	
 		this.scene.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
 		this.Stage.setScene(scene);

@@ -1,4 +1,4 @@
-package gui;
+package MemberGUI;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -62,7 +62,7 @@ public class SearchPUPStudent_NotsuccessController {
 			
 			this.Stage = new Stage();
 			this.loader = new FXMLLoader();
-			this.root = loader.load(getClass().getResource("/gui/SearchPUPstudent_Notsuccess.fxml").openStream());
+			this.root = loader.load(getClass().getResource("/MemberGUI/SearchPUPstudent_Notsuccess.fxml").openStream());
 			this.scene = new Scene(root);	
 			//this.scene.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
 			this.Stage.setScene(scene);

@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import LibrarianGUI.Employee;
 import LibrarianGUI.Librarian_MainPageController;
 import LibrarianGUI.ReturnBookPUPController;
+import ManagerGUI.Manager_MainPageController;
 import MemberGUI.Member;
 import MemberGUI.StudentMainPage1Controller;
 import actors.*;

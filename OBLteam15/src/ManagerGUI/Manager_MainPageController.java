@@ -1,4 +1,4 @@
-package gui;
+package ManagerGUI;
 
 import LibrarianGUI.Employee;
 import client.Client;
@@ -24,7 +24,7 @@ public class Manager_MainPageController {
 	Pane root;
 	Scene scene;
 	Client client;
-	Employee me;
+	public Employee me;
 
     @FXML
     private Label ManagerMainPage_HelloManagerName_LB;
@@ -186,7 +186,7 @@ public void start(Stage arg0) throws Exception {
 		
 		this.Stage = new Stage();
 		this.loader = new FXMLLoader();
-		this.root = loader.load(getClass().getResource("/gui/Manager_MainPage.fxml").openStream());
+		this.root = loader.load(getClass().getResource("/ManagerGUI/Manager_MainPage.fxml").openStream());
 		this.scene = new Scene(root);	
 		this.scene.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
 		this.Stage.setScene(scene);

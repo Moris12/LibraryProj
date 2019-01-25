@@ -8,7 +8,9 @@ import java.util.ResourceBundle;
 
 import LibrarianGUI.Employee;
 import LibrarianGUI.Librarian_MainPageController;
+import ManagerGUI.Manager_MainPageController;
 import MemberGUI.Member;
+import MemberGUI.SearchPUPStudent_NotsuccessController;
 import MemberGUI.StudentMainPage1Controller;
 import client.Client;
 import javafx.application.Platform;

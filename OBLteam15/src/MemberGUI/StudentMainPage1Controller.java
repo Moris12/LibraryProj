@@ -207,7 +207,7 @@ public class StudentMainPage1Controller {
 	public void start(Stage arg0) throws Exception {
 		this.Stage = new Stage();
 		this.loader = new FXMLLoader();
-		this.root = loader.load(getClass().getResource("/gui/StudentMainPage1.fxml").openStream());
+		this.root = loader.load(getClass().getResource("/MemberGUI/StudentMainPage1.fxml").openStream());
 		this.scene = new Scene(root);			
 		this.Stage.setScene(scene);
 		client.setStudentMainPage(this);

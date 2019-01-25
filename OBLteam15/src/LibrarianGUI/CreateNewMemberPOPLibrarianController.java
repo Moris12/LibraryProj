@@ -127,7 +127,7 @@ import MemberGUI.*
 		this.Stage = new Stage();
 		//Stage.initModality(WINDOW_MODAL);
 		this.loader = new FXMLLoader();
-		this.root = loader.load(getClass().getResource("/gui/CreateNewMemberPUPLibrarian.fxml").openStream());
+		this.root = loader.load(getClass().getResource("/LibrarianGUI/CreateNewMemberPUPLibrarian.fxml").openStream());
 		this.scene = new Scene(root);		
 		//this.scene.getStylesheets().add(getClass().getResource("/gui/prototypeFXML.css").toExternalForm());
 		this.Stage.setScene(scene);
